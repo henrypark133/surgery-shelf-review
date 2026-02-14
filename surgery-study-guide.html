@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surgery 3 - High-Yield Study Guide</title>
+    <script>
+    if (sessionStorage.getItem('surgery_auth') !== '8750b1c70c66ee87a31cede20e17d62a458de31a5f7bbcb5fe5aea08579db229') {
+        window.location.href = 'login.html?r=' + encodeURIComponent(window.location.pathname.split('/').pop() || 'index.html');
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        nav li a {
+            display: block;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        nav li a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .topic-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .topic-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .topic-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .buzzwords {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .buzzwords h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .buzzword {
+            display: inline-block;
+            background: #ffc107;
+            color: #333;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .buzzword:hover {
+            background: #ff9800;
+            transform: scale(1.05);
+        }
+
+        .buzzword-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buzzword-overlay.hidden {
+            display: none;
+        }
+
+        .buzzword-overlay-content {
+            background: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            width: 360px;
+            max-width: 90vw;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            line-height: 1.6;
+        }
+
+        .buzzword-overlay-title {
+            font-weight: bold;
+            color: #ffc107;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .buzzword-tooltip {
+            display: none;
+        }
+
+        .summary {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .summary h4 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+
+        .summary ul {
+            margin-left: 20px;
+        }
+
+        .summary li {
+            margin: 8px 0;
+        }
+
+        .practice-question {
+            background: #f1f8e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .practice-question h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .choices {
+            list-style: upper-alpha;
+            margin-left: 30px;
+        }
+
+        .choices li {
+            margin: 8px 0;
+            padding: 5px;
+        }
+
+        .answer {
+            background: #c8e6c9;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer-hidden {
+            display: none;
+        }
+
+        .answer h5 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .toggle-answer {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .toggle-answer:hover {
+            background: #45a049;
+        }
+
+        .pearl {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .pearl h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            display: none;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+
+        .back-to-top.visible {
+            display: block;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .topic-section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .answer-hidden {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            nav ul {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Surgery Self-Assessment Study Guide</h1>
+            <p class="subtitle">High-Yield Topics, Buzzwords & Practice Questions</p>
+        </header>
+
+        <nav>
+            <h2>📚 Table of Contents</h2>
+            <ul>
+                <li><a href="#cardiovascular">Cardiovascular</a></li>
+                <li><a href="#trauma">Trauma</a></li>
+                <li><a href="#gastrointestinal">Gastrointestinal</a></li>
+                <li><a href="#endocrine">Endocrine</a></li>
+                <li><a href="#vascular">Vascular</a></li>
+                <li><a href="#pediatric">Pediatric Surgery</a></li>
+                <li><a href="#hematology">Hematology & Transfusion</a></li>
+                <li><a href="#oncology">Oncology</a></li>
+                <li><a href="#renal">Renal & Urology</a></li>
+                <li><a href="#obgyn">OB/GYN</a></li>
+                <li><a href="#neurosurgery">Neurosurgery</a></li>
+                <li><a href="#orthopedics">Orthopedics</a></li>
+                <li><a href="#critical-care">Critical Care</a></li>
+                <li><a href="#esophageal">Esophageal Disorders</a></li>
+                <li><a href="#acute-abdomen">Acute Abdomen</a></li>
+                <li><a href="#breast">Breast</a></li>
+                <li><a href="#hernias">Hernias</a></li>
+                <li><a href="#wound-healing">Wound Healing & Burns</a></li>
+            </ul>
+        </nav>
+
+        <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+        <div id="buzzword-overlay" class="buzzword-overlay hidden" onclick="closeBuzzwordOverlay()">
+            <div class="buzzword-overlay-content" onclick="event.stopPropagation()">
+                <div class="buzzword-overlay-title" id="buzzword-overlay-title"></div>
+                <div id="buzzword-overlay-body"></div>
+            </div>
+        </div>
+
+        <!-- CARDIOVASCULAR SECTION -->
+        <section id="cardiovascular" class="topic-section">
+            <h2>🫀 Cardiovascular</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Continuous machine-like murmur
+                    <span class="buzzword-tooltip hidden">Patent Ductus Arteriosus (PDA): Ductus arteriosus fails to close → continuous left-to-right shunt. Heard best at left 2nd intercostal space with bounding pulses.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Opening snap + diastolic rumble
+                    <span class="buzzword-tooltip hidden">Mitral Stenosis: Snap occurs when stenotic valve opens, followed by rumble from turbulent flow through narrowed valve. Heard at apex.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Crescendo-decrescendo systolic
+                    <span class="buzzword-tooltip hidden">Aortic Stenosis: Systolic ejection murmur that crescendos then decrescendos. Best heard at upper right sternal border, radiates to carotids.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Holosystolic murmur
+                    <span class="buzzword-tooltip hidden">Mitral Regurgitation or VSD: Murmur throughout systole due to regurgitation or shunt. MR heard at apex, VSD at left sternal border.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Fixed split S2
+                    <span class="buzzword-tooltip hidden">Atrial Septal Defect: Left-to-right shunt → increased RV stroke volume → delayed pulmonic valve closure. Split doesn't vary with respiration.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Bounding peripheral pulses
+                    <span class="buzzword-tooltip hidden">PDA or Aortic Regurgitation: Widened pulse pressure from runoff. In PDA, blood flows from aorta to pulmonary artery causing this finding.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+                <h3>Patent Ductus Arteriosus (PDA)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Continuous murmur at left 2nd intercostal space, radiates to clavicles, loud S2, bounding pulses</li>
+                    <li><strong>Pathophysiology:</strong> Ductus arteriosus fails to close after birth → left-to-right shunt from aorta to pulmonary artery</li>
+                    <li><strong>Complications:</strong> Eisenmenger syndrome (pulmonary hypertension with shunt reversal), heart failure if uncorrected</li>
+                    <li><strong>Treatment:</strong> Indomethacin or ibuprofen (prostaglandin inhibitors) to close ductus; surgical ligation if medical therapy fails</li>
+                </ul>
+
+                <h3>Mitral Stenosis</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Opening snap followed by diastolic rumble at apex, loud S1</li>
+                    <li><strong>Cause:</strong> Usually rheumatic heart disease, chronic fibrotic/calcific changes</li>
+                    <li><strong>Hemodynamics:</strong> Increased left atrial pressure → pulmonary edema, atrial fibrillation</li>
+                    <li><strong>Treatment:</strong> Medical optimization, surgical valve replacement if severe</li>
+                </ul>
+
+                <h3>Aortic Stenosis</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Crescendo-decrescendo systolic murmur at upper right sternal border, radiates to carotids</li>
+                    <li><strong>Associations:</strong> Bicuspid aortic valve, age-related calcific changes</li>
+                    <li><strong>Classic triad:</strong> Angina, syncope, heart failure (SAD = Syncope, Angina, Dyspnea)</li>
+                </ul>
+
+                <h3>Atrial Septal Defect (ASD)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Fixed split S2 + low-grade ejection murmur</li>
+                    <li><strong>Most common type:</strong> Ostium secundum defect (associated with Trisomy 21 for primum type)</li>
+                    <li><strong>Pathophysiology:</strong> Left-to-right shunt → RV volume overload → right heart failure</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Untreated PDA with chronic left-to-right shunting → pulmonary hypertension → <strong>Eisenmenger syndrome</strong> (shunt reversal, right-to-left)</li>
+                    <li>Think PDA in premature infants; indomethacin closes it by blocking prostaglandins</li>
+                    <li>Mitral stenosis → atrial fibrillation → stroke risk (anticoagulate!)</li>
+                    <li>Fixed split S2 = ASD until proven otherwise</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 4-month-old infant presents with failure to thrive and tachypnea. On exam, you hear a continuous murmur at the left upper sternal border that does not change with respiration. The infant has widened pulse pressure. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>Ventricular septal defect</li>
+                    <li>Patent ductus arteriosus</li>
+                    <li>Tetralogy of Fallot</li>
+                    <li>Coarctation of the aorta</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Patent ductus arteriosus</h5>
+                    <p><strong>Explanation:</strong> The continuous "machinery" murmur that persists throughout systole and diastole, combined with widened pulse pressure (bounding pulses) is classic for PDA. The murmur is best heard at the left 2nd intercostal space. VSD causes a holosystolic murmur, not continuous.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 42-year-old woman with a history of rheumatic fever presents with dyspnea on exertion. Cardiac auscultation reveals an opening snap followed by a low-pitched diastolic rumble heard best at the apex. What valve is affected?</p>
+                <ul class="choices">
+                    <li>Aortic valve</li>
+                    <li>Mitral valve</li>
+                    <li>Tricuspid valve</li>
+                    <li>Pulmonic valve</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Mitral valve</h5>
+                    <p><strong>Explanation:</strong> The opening snap followed by diastolic rumble at the apex is pathognomonic for mitral stenosis. Rheumatic heart disease is the most common cause. The opening snap occurs when the stenotic mitral valve opens.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAUMA SECTION -->
+        <section id="trauma" class="topic-section">
+            <h2>🚑 Trauma</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Expanding neck hematoma
+                    <span class="buzzword-tooltip hidden">Immediate airway emergency! Growing hematoma can compress trachea → airway obstruction. First step: INTUBATE before any other intervention.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Absent pulses + hard signs
+                    <span class="buzzword-tooltip hidden">Hard signs of arterial injury: Pulsatile bleeding, expanding hematoma, absent pulses, bruit/thrill. Immediate surgical exploration required - NO imaging first!</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    CT cervical spine
+                    <span class="buzzword-tooltip hidden">CT is the imaging of choice for suspected cervical spine injury in trauma. Use NEXUS/Canadian C-spine rules to determine if imaging is needed. MRI for suspected ligamentous or spinal cord injury.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Pulmonary contusion
+                    <span class="buzzword-tooltip hidden">Blunt chest trauma → alveolar/interstitial edema → respiratory distress. Supportive care (oxygen, pain control). Monitor for ARDS.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Ruptured bronchus
+                    <span class="buzzword-tooltip hidden">Persistent air leak despite chest tube, subcutaneous emphysema, pneumothorax. Requires surgical repair - won't resolve spontaneously.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    CT abdomen with contrast
+                    <span class="buzzword-tooltip hidden">Blunt Renal Trauma: CT with IV contrast is imaging of choice for stable patients. Assesses extent of injury (contusion, laceration, vascular).</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Airway Management in Trauma</h3>
+                <ul>
+                    <li><strong>Expanding neck hematoma:</strong> Immediate life-threatening emergency → endotracheal intubation FIRST before any other intervention</li>
+                    <li><strong>Cricothyrotomy/tracheostomy:</strong> Reserved for failed intubation, not first-line for expanding hematoma</li>
+                    <li><strong>Rule:</strong> Airway > Breathing > Circulation (ABCs)</li>
+                </ul>
+
+                <h3>Cervical Spine Trauma</h3>
+                <ul>
+                    <li><strong>Clinical clearance:</strong> NEXUS criteria or Canadian C-spine rules determine if imaging is needed</li>
+                    <li><strong>Imaging of choice:</strong> CT cervical spine (superior sensitivity to plain x-ray)</li>
+                    <li><strong>MRI:</strong> For suspected ligamentous injury, spinal cord injury, or neurologic deficits</li>
+                    <li><strong>Key point:</strong> All trauma patients get c-spine immobilization until cleared clinically or by imaging</li>
+                </ul>
+
+                <h3>Arterial Injury (Extremity)</h3>
+                <ul>
+                    <li><strong>Hard signs:</strong> Pulsatile bleeding, expanding hematoma, absent pulses, bruit/thrill, ischemia</li>
+                    <li><strong>Management:</strong> Immediate surgical exploration + repair (no time for imaging if hard signs present)</li>
+                    <li><strong>Femoral artery penetrating trauma:</strong> Surgical exploration is the answer when absent pulses or hard signs</li>
+                </ul>
+
+                <h3>Chest Trauma</h3>
+                <ul>
+                    <li><strong>Pulmonary contusion:</strong> Blunt chest trauma → alveolar/interstitial edema → respiratory distress, supportive care</li>
+                    <li><strong>Ruptured bronchus:</strong> Persistent air leak, subcutaneous emphysema, pneumothorax → requires surgical repair</li>
+                    <li><strong>Tension pneumothorax:</strong> Hemodynamic compromise, tracheal deviation → needle decompression THEN chest tube</li>
+                </ul>
+
+                <h3>Blunt Renal Trauma</h3>
+                <ul>
+                    <li><strong>Imaging of choice:</strong> CT scan of abdomen and kidneys with IV contrast</li>
+                    <li><strong>Indications:</strong> Hemodynamically stable patient with gross hematuria or microscopic hematuria + mechanism</li>
+                    <li><strong>Management:</strong> Most managed conservatively; surgery for expanding hematoma or vascular injury</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Expanding neck hematoma = INTUBATE NOW (airway compromise imminent)</li>
+                    <li>Hard signs of arterial injury = IMMEDIATE surgical exploration (no CT angiography)</li>
+                    <li>CT c-spine is imaging of choice in trauma; use NEXUS/Canadian rules to decide if imaging needed</li>
+                    <li>Ruptured bronchus: Think of it when persistent air leak despite chest tube</li>
+                    <li>Renal trauma: CT with contrast is key; most can be managed non-operatively</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 16-year-old girl is brought to the ED after being stabbed in the anterior neck. A large hematoma is evident and pulsatile. As you examine her, the hematoma expands. What is the most appropriate initial step?</p>
+                <ul class="choices">
+                    <li>Barium esophagography</li>
+                    <li>Endotracheal intubation</li>
+                    <li>Esophagoscopy</li>
+                    <li>Indirect laryngoscopy</li>
+                    <li>Tracheostomy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Endotracheal intubation</h5>
+                    <p><strong>Explanation:</strong> Airway obstruction is an immediate life-threatening emergency. The expanding hematoma can compress the trachea causing airway compromise. Secure the airway FIRST with endotracheal intubation before any other diagnostic or therapeutic intervention. Tracheostomy would be considered if intubation fails.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 27-year-old woman is brought to the ED after a motor vehicle collision. She has abdominal and left flank pain. She is hemodynamically stable. Urinalysis shows gross blood. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Renal blood flow scan</li>
+                    <li>CT scan of abdomen and kidneys</li>
+                    <li>Arteriography</li>
+                    <li>Peritoneal lavage</li>
+                    <li>Exploratory operation</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - CT scan of abdomen and kidneys</h5>
+                    <p><strong>Explanation:</strong> CT scan with IV contrast is the imaging modality of choice for blunt renal trauma in hemodynamically stable patients. It can assess the extent of injury (contusion, laceration, hematoma, vascular injury) and guide management. Most blunt renal injuries are managed conservatively.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GASTROINTESTINAL SECTION -->
+        <section id="gastrointestinal" class="topic-section">
+            <h2>🔪 Gastrointestinal</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Coffee-ground emesis
+                    <span class="buzzword-tooltip hidden">Upper GI bleeding with gastric acid exposure → blood appears dark/brown. First step: IV FLUIDS for resuscitation, then EGD for diagnosis/treatment.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Bloody diarrhea + toxic megacolon
+                    <span class="buzzword-tooltip hidden">Ulcerative Colitis complication: Colon dilation >6cm with fever, abdominal tenderness. Risk of perforation - may need emergency colectomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Bacterial overgrowth
+                    <span class="buzzword-tooltip hidden">Post-Billroth II: Blind loop → bacterial overgrowth → malabsorption, diarrhea, vitamin deficiencies. Treat with antibiotics.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    String sign
+                    <span class="buzzword-tooltip hidden">Crohn Disease: Narrowed terminal ileum on barium study looks like a "string". Skip lesions, transmural inflammation, fistulas.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Currant jelly stools
+                    <span class="buzzword-tooltip hidden">Intussusception: Bloody, mucoid stools from bowel ischemia. Infant with colicky pain drawing up knees. Diagnose/treat with contrast enema.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Target sign
+                    <span class="buzzword-tooltip hidden">Intussusception on ultrasound: Telescoped bowel appears as concentric circles. Contrast enema is both diagnostic and therapeutic.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Upper GI Bleeding (Gastritis)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Coffee-ground emesis, melena, hematemesis, tachycardia, dry mucous membranes</li>
+                    <li><strong>Initial management:</strong> IV fluid resuscitation (2 large-bore IVs, crystalloids) - ALWAYS before endoscopy</li>
+                    <li><strong>Definitive diagnosis/treatment:</strong> Upper endoscopy (EGD) after stabilization</li>
+                    <li><strong>Rule:</strong> ABG and NG tube do NOT replace volume resuscitation as first priority</li>
+                </ul>
+
+                <h3>Ulcerative Colitis</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Bloody diarrhea, abdominal pain, tenesmus, weight loss</li>
+                    <li><strong>Complications:</strong> Toxic megacolon (dilated colon >6cm, fever, abdominal tenderness)</li>
+                    <li><strong>Pathophysiology:</strong> Chronic inflammation limited to colon, starts in rectum, continuous</li>
+                    <li><strong>Imaging:</strong> Barium enema shows "lead pipe" colon, loss of haustra</li>
+                    <li><strong>Treatment:</strong> Medical (5-ASA, corticosteroids) → surgery for refractory/toxic megacolon</li>
+                </ul>
+
+                <h3>Crohn Disease</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Abdominal pain, diarrhea (often bloody), weight loss, RLQ tenderness</li>
+                    <li><strong>Key features:</strong> Skip lesions, transmural inflammation, terminal ileum involvement</li>
+                    <li><strong>Imaging:</strong> "String sign" on barium study (narrowed terminal ileum), cobblestoning</li>
+                    <li><strong>Complications:</strong> Fistulas, strictures, abscesses, malabsorption</li>
+                </ul>
+
+                <h3>Bacterial Overgrowth (Post-Billroth II)</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Loss of normal transit after gastric bypass → bacterial overgrowth in blind loop</li>
+                    <li><strong>Presentation:</strong> Diarrhea, bloating, weight loss, vitamin deficiencies (B12), steatorrhea</li>
+                    <li><strong>Treatment:</strong> Antibiotics to reduce bacterial burden</li>
+                </ul>
+
+                <h3>Intussusception (Pediatric)</h3>
+                <ul>
+                    <li><strong>Buzzwords:</strong> "Currant jelly" stools, colicky pain, drawing up knees, palpable mass RUQ</li>
+                    <li><strong>Imaging:</strong> "Target sign" on ultrasound (telescoped bowel)</li>
+                    <li><strong>Treatment:</strong> Contrast enema (both diagnostic and therapeutic); surgery if reduction fails</li>
+                    <li><strong>Age group:</strong> Infants and young children (6-36 months)</li>
+                </ul>
+
+                <h3>Peptic Ulcer Disease (Duodenal)</h3>
+                <ul>
+                    <li><strong>Cause:</strong> H. pylori infection, NSAIDs, stress</li>
+                    <li><strong>Pathophysiology:</strong> Scarring and fibrosis → gastric outlet obstruction (chronic)</li>
+                    <li><strong>Presentation:</strong> Epigastric pain, bloating, succussion splash, vomiting of undigested food</li>
+                    <li><strong>Treatment:</strong> Triple/quadruple therapy for H. pylori; endoscopic balloon dilation or surgery for stricture</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Upper GI bleed: <strong>IV fluids FIRST</strong>, then endoscopy - never skip resuscitation</li>
+                    <li>Ulcerative colitis → toxic megacolon risk; watch for fever, dilated colon, peritoneal signs</li>
+                    <li>Crohn: Skip lesions, fistulas, "cobblestone" appearance - can affect anywhere mouth to anus</li>
+                    <li>Intussusception: Contrast enema reduces AND diagnoses (kills two birds with one stone)</li>
+                    <li>Post-Billroth II: Think bacterial overgrowth if diarrhea + malabsorption</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 26-year-old woman with chronic alcoholism presents with hematemesis. She is tachycardic (124/min), hypotensive (92/68 mm Hg), and has dry blood-caked oral mucous membranes. What is the most appropriate first step?</p>
+                <ul class="choices">
+                    <li>Measurement of arterial blood gases</li>
+                    <li>Intravenous administration of fluids</li>
+                    <li>Intravenous infusion of ADH (vasopressin)</li>
+                    <li>Insertion of nasogastric tube</li>
+                    <li>Upper gastroduodenal endoscopy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Intravenous administration of fluids</h5>
+                    <p><strong>Explanation:</strong> This patient has signs of hypovolemic shock from GI bleeding (tachycardia, hypotension, dry mucous membranes). The FIRST priority is IV volume resuscitation with crystalloids to restore hemodynamic stability. After stabilization, upper endoscopy can be performed for diagnosis and treatment.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">An 11-month-old girl presents with fever, passing purple jelly-like stools, and episodes of drawing up her knees while crying. An elongated mass is palpated in the right upper abdominal quadrant. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Contrast enema</li>
+                    <li>Upper GI series with small bowel follow-through</li>
+                    <li>CT scan of abdomen</li>
+                    <li>HIDA scan</li>
+                    <li>Colonoscopy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: A - Contrast enema</h5>
+                    <p><strong>Explanation:</strong> This is classic intussusception (currant jelly stools, colicky pain, palpable mass). Contrast enema is both diagnostic (shows "target sign") and therapeutic (reduces the intussusception via hydrostatic pressure). Ultrasound can also diagnose it, but contrast enema is preferred as it's therapeutic.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENDOCRINE SECTION -->
+        <section id="endocrine" class="topic-section">
+            <h2>⚗️ Endocrine</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Low TSH + high T3/T4
+                    <span class="buzzword-tooltip hidden">Toxic Adenoma: Autonomous thyroid hormone production → negative feedback suppresses TSH. "Hot" nodule on radioiodine scan. Treat with thyroidectomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Adrenal crisis
+                    <span class="buzzword-tooltip hidden">Addisonian crisis during stress (surgery, infection): Hypotension refractory to fluids, hyperK, hypoNa. Give IV HYDROCORTISONE immediately - don't wait!</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Whipple's triad
+                    <span class="buzzword-tooltip hidden">Insulinoma: (1) Hypoglycemia symptoms, (2) Low glucose <45 mg/dL, (3) Relief with glucose. High insulin + C-peptide. Surgical resection.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Chronic pancreatitis → diabetes
+                    <span class="buzzword-tooltip hidden">Recurrent pancreatitis destroys islet cells → endocrine insufficiency. Requires INSULIN therapy to reduce long-term morbidity from diabetes.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Toxic Adenoma (Hyperthyroidism)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Heat intolerance, sweating, weight loss, palpitations, tremor, diarrhea</li>
+                    <li><strong>Labs:</strong> Low TSH (negative feedback), elevated T3 and T4</li>
+                    <li><strong>Imaging:</strong> Radioiodine uptake scan shows "hot" solitary nodule</li>
+                    <li><strong>Treatment:</strong> Partial thyroidectomy (surgical removal of adenoma)</li>
+                </ul>
+
+                <h3>Adrenal Crisis (Addisonian Crisis)</h3>
+                <ul>
+                    <li><strong>Trigger:</strong> Physiologic stress (surgery, infection, trauma) in patient with adrenal insufficiency</li>
+                    <li><strong>Presentation:</strong> Hypotension refractory to fluids, hyperkalemia, hyponatremia, hypoglycemia</li>
+                    <li><strong>Emergency treatment:</strong> Administer hydrocortisone IV (both mineralocorticoid and glucocorticoid effects)</li>
+                    <li><strong>Key point:</strong> Don't wait for labs - give hydrocortisone immediately if suspected</li>
+                </ul>
+
+                <h3>Insulinoma</h3>
+                <ul>
+                    <li><strong>Classic triad:</strong> 1) Hypoglycemia symptoms, 2) Low glucose <45 mg/dL, 3) Relief with glucose (Whipple's triad)</li>
+                    <li><strong>Labs:</strong> High insulin, high C-peptide, low glucose</li>
+                    <li><strong>Imaging:</strong> CT or MRI of pancreas, endoscopic ultrasound</li>
+                    <li><strong>Treatment:</strong> Surgical resection of tumor</li>
+                </ul>
+
+                <h3>Chronic Pancreatitis</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Recurrent acute pancreatitis → destruction of acinar and islet cells</li>
+                    <li><strong>Consequences:</strong> Exocrine insufficiency (malabsorption) + endocrine insufficiency (diabetes)</li>
+                    <li><strong>Treatment:</strong> Pancreatic enzyme replacement + insulin therapy for diabetes</li>
+                    <li><strong>Key to reducing morbidity:</strong> Insulin therapy prevents hyperglycemia complications</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Toxic adenoma: Autonomous T3/T4 production → negative feedback suppresses TSH</li>
+                    <li>Adrenal crisis in surgical patient: Give hydrocortisone BEFORE surgery if history of steroid use</li>
+                    <li>Insulinoma: Fasting hypoglycemia that improves with eating; C-peptide high (endogenous insulin)</li>
+                    <li>Chronic pancreatitis → diabetes: Requires insulin replacement (not sulfonylureas)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 52-year-old woman comes to the physician with a palpable left thyroid nodule. Labs show TSH is decreased and T3 and T4 are increased. Ultrasound shows a solid 1-cm mass. Radioiodine scan shows increased uptake in the nodule. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>Graves disease</li>
+                    <li>Hashimoto thyroiditis</li>
+                    <li>Toxic adenoma</li>
+                    <li>Papillary thyroid carcinoma</li>
+                    <li>Medullary thyroid carcinoma</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Toxic adenoma</h5>
+                    <p><strong>Explanation:</strong> A "hot" nodule (increased uptake on radioiodine scan) with suppressed TSH and elevated thyroid hormones is diagnostic of a toxic adenoma. The adenoma autonomously produces T3/T4, suppressing TSH via negative feedback. Treatment is partial thyroidectomy.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 32-year-old woman with SLE on long-term prednisone presents for laparoscopic cholecystectomy. On induction of propofol, her BP drops to 60/40 despite fluid administration. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Administer diphenhydramine</li>
+                    <li>Administer dopamine</li>
+                    <li>Administer gentamicin</li>
+                    <li>Administer hydrocortisone</li>
+                    <li>Decrease dose of propofol</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: D - Administer hydrocortisone</h5>
+                    <p><strong>Explanation:</strong> This is an adrenal crisis (Addisonian crisis). Chronic steroid use suppresses the HPA axis, and during stress (surgery), the adrenal glands cannot produce sufficient cortisol. The hypotension is refractory to fluids. Immediate IV hydrocortisone is lifesaving. Stress-dose steroids should be given perioperatively to patients on chronic steroids.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VASCULAR SECTION -->
+        <section id="vascular" class="topic-section">
+            <h2>🩸 Vascular</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Claudication
+                    <span class="buzzword-tooltip hidden">Leg pain with exertion, improves with rest. Atherosclerosis → arterial stenosis. BEST initial treatment: Walking program (improves collateral circulation).</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Virchow triad
+                    <span class="buzzword-tooltip hidden">DVT risk factors: (1) Stasis, (2) Endothelial injury, (3) Hypercoagulability. Catheter = endothelial injury. Diagnose with duplex ultrasound.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Amaurosis fugax
+                    <span class="buzzword-tooltip hidden">Transient monocular vision loss ("curtain coming down"). Retinal artery embolism from carotid stenosis. Needs carotid endarterectomy if symptomatic.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Peripheral Vascular Disease (Claudication)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Leg pain with exertion, improves with rest (classic claudication)</li>
+                    <li><strong>Pathophysiology:</strong> Atherosclerosis → arterial stenosis → inadequate blood flow during exercise</li>
+                    <li><strong>First-line treatment:</strong> Walking program (exercise improves collateral circulation)</li>
+                    <li><strong>Risk factor modification:</strong> Stop smoking, control hypertension, diabetes, hyperlipidemia</li>
+                    <li><strong>Medical:</strong> Aspirin, cilostazol (phosphodiesterase inhibitor)</li>
+                    <li><strong>Surgical:</strong> Bypass, angioplasty/stenting for severe disease or rest pain</li>
+                </ul>
+
+                <h3>Deep Venous Thrombosis (DVT)</h3>
+                <ul>
+                    <li><strong>Virchow triad:</strong> Stasis, endothelial injury, hypercoagulability</li>
+                    <li><strong>Catheter-associated DVT:</strong> Infrapopliteal vein thrombosis from central line/chemotherapy</li>
+                    <li><strong>Diagnosis:</strong> Duplex ultrasound (compression ultrasonography)</li>
+                    <li><strong>Treatment:</strong> Anticoagulation (heparin → warfarin or DOAC)</li>
+                    <li><strong>Complications:</strong> Pulmonary embolism, post-thrombotic syndrome</li>
+                </ul>
+
+                <h3>Carotid Stenosis</h3>
+                <ul>
+                    <li><strong>Amaurosis fugax:</strong> Transient monocular vision loss (retinal artery embolism)</li>
+                    <li><strong>Pathophysiology:</strong> Atherosclerotic plaque → embolization or reduced flow</li>
+                    <li><strong>Diagnosis:</strong> Carotid duplex ultrasound or CT/MR angiography</li>
+                    <li><strong>Treatment:</strong> Carotid endarterectomy for symptomatic >50% stenosis or asymptomatic >70%</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Claudication: Exercise is the BEST initial treatment (improves collateral flow)</li>
+                    <li>DVT risk factors: Immobility, surgery, cancer, oral contraceptives, hypercoagulable states</li>
+                    <li>Amaurosis fugax = "curtain coming down" → think carotid stenosis</li>
+                    <li>Catheter-related DVT: Remove catheter if infected; anticoagulate</li>
+                    <li>ABI <0.9 = PAD; <0.4 = critical limb ischemia (rest pain, tissue loss)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 57-year-old man with a 40-year smoking history presents with calf pain that occurs after walking half a mile and resolves with 5 minutes of rest. Ankle-brachial index is 0.6. What is the most appropriate initial treatment?</p>
+                <ul class="choices">
+                    <li>Immediate surgical bypass</li>
+                    <li>Recommend a walking program</li>
+                    <li>CT scan of lumbar spine</li>
+                    <li>MRI of the calf</li>
+                    <li>Aspirin therapy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Recommend a walking program</h5>
+                    <p><strong>Explanation:</strong> This is classic intermittent claudication from peripheral arterial disease. The BEST initial treatment is a structured walking/exercise program, which improves collateral circulation. Risk factor modification (smoking cessation, aspirin) is also important. Surgery is reserved for severe disease or lifestyle-limiting symptoms refractory to conservative measures.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 68-year-old man experiences a 5-minute episode of complete vision loss in his right eye, described as a "curtain coming down." The episode resolved spontaneously. Carotid duplex shows 80% stenosis of the right internal carotid artery. What is the most appropriate treatment?</p>
+                <ul class="choices">
+                    <li>Aspirin and observation</li>
+                    <li>Carotid endarterectomy</li>
+                    <li>Anticoagulation with warfarin</li>
+                    <li>MRI of the brain</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Carotid endarterectomy</h5>
+                    <p><strong>Explanation:</strong> Amaurosis fugax (transient monocular vision loss) is a TIA from retinal artery embolism, indicating symptomatic carotid stenosis. Carotid endarterectomy is indicated for symptomatic stenosis >50% (NASCET criteria). This patient has 80% stenosis with symptoms, making CEA the definitive treatment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PEDIATRIC SURGERY SECTION -->
+        <section id="pediatric" class="topic-section">
+            <h2>👶 Pediatric Surgery</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Conjugated hyperbilirubinemia
+                    <span class="buzzword-tooltip hidden">Biliary Atresia: Direct bilirubin >2 mg/dL or >20% total in newborn. Progressive jaundice, pale stools. Kasai procedure before 2-3 months for best outcome.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Kasai procedure
+                    <span class="buzzword-tooltip hidden">Hepatoportoenterostomy for biliary atresia. Connects liver to small bowel to restore bile flow. Must be done early. May still need liver transplant later.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Currant jelly stools
+                    <span class="buzzword-tooltip hidden">Intussusception: Bloody mucoid stools + colicky pain + drawing up knees. Age 6-36 months. Target sign on U/S. Contrast enema = diagnostic + therapeutic.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Biliary Atresia</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Progressive jaundice, pale stools, dark urine, poor weight gain in newborn (weeks 2-8 of life)</li>
+                    <li><strong>Labs:</strong> Conjugated (direct) hyperbilirubinemia >50% of total</li>
+                    <li><strong>Pathophysiology:</strong> Progressive fibrosis and obliteration of extrahepatic bile ducts</li>
+                    <li><strong>Diagnosis:</strong> HIDA scan, cholangiography, or exploratory surgery with liver biopsy</li>
+                    <li><strong>Treatment:</strong> Kasai procedure (hepatoportoenterostomy) - restores bile flow</li>
+                    <li><strong>Prognosis:</strong> May require liver transplant if Kasai fails</li>
+                </ul>
+
+                <h3>Intussusception</h3>
+                <ul>
+                    <li><strong>Age:</strong> 6-36 months (peak 6-12 months)</li>
+                    <li><strong>Presentation:</strong> Colicky abdominal pain (legs drawn up), "currant jelly" stools, palpable RUQ mass</li>
+                    <li><strong>Pathophysiology:</strong> Telescoping of bowel (usually ileum into cecum) → obstruction</li>
+                    <li><strong>Diagnosis:</strong> Ultrasound shows "target sign" or "donut sign"</li>
+                    <li><strong>Treatment:</strong> Contrast enema (air or water-soluble) - diagnostic AND therapeutic</li>
+                    <li><strong>Surgery:</strong> If enema reduction fails or perforation occurs</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Biliary atresia: Direct bilirubin >2 mg/dL or >20% of total = conjugated hyperbilirubinemia</li>
+                    <li>Kasai procedure must be done early (before 2-3 months) for best outcomes</li>
+                    <li>Intussusception: Contrast enema kills two birds - diagnoses AND treats</li>
+                    <li>Pathologic lead point (Meckel, polyp, lymphoma): Consider in children >3 years</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 3-week-old newborn presents with progressive jaundice, scleral icterus, and generalized jaundice. Labs show total bilirubin 15 mg/dL with direct component 13 mg/dL. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>ABO incompatibility</li>
+                    <li>Biliary atresia</li>
+                    <li>Breast milk jaundice</li>
+                    <li>Gilbert syndrome</li>
+                    <li>Physiologic jaundice</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Biliary atresia</h5>
+                    <p><strong>Explanation:</strong> Conjugated (direct) hyperbilirubinemia with progressively worsening jaundice in the first weeks of life is classic for biliary atresia. Direct bilirubin >2 mg/dL is always pathologic. Diagnosis requires HIDA scan, cholangiography, or liver biopsy. Treatment is the Kasai procedure (hepatoportoenterostomy).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HEMATOLOGY SECTION -->
+        <section id="hematology" class="topic-section">
+            <h2>🩸 Hematology & Transfusion</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    FNHTR
+                    <span class="buzzword-tooltip hidden">Febrile Non-Hemolytic Transfusion Reaction: Fever/chills 1-6hrs post-transfusion. Antibodies to donor WBC antigens. Prevent with leukoreduction.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Dilutional thrombocytopenia
+                    <span class="buzzword-tooltip hidden">Massive transfusion (>10 units PRBC) → platelet dilution → oozing. Give platelets to maintain >50,000/mm³ for surgery.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    ITP
+                    <span class="buzzword-tooltip hidden">Immune Thrombocytopenic Purpura: Antiplatelet antibodies → splenic destruction. Petechiae, purpura. Refractory to steroids/IVIG → splenectomy.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Febrile Non-Hemolytic Transfusion Reaction (FNHTR)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Fever, chills within 1-6 hours of transfusion (no hemolysis)</li>
+                    <li><strong>Cause:</strong> Preformed antibodies to donor leukocyte antigens or cytokines in plasma</li>
+                    <li><strong>Treatment:</strong> Stop transfusion, rule out hemolysis (check labs), antipyretics</li>
+                    <li><strong>Prevention:</strong> Leukoreduction of transfused blood products</li>
+                </ul>
+
+                <h3>Thrombocytopenia (Dilutional)</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Massive transfusion (>10 units PRBC) → dilution of platelets</li>
+                    <li><strong>Presentation:</strong> Oozing from operative sites, petechiae, mucosal bleeding</li>
+                    <li><strong>Treatment:</strong> Platelet transfusion to maintain >50,000/mm³ for surgery</li>
+                </ul>
+
+                <h3>Immune Thrombocytopenic Purpura (ITP)</h3>
+                <ul>
+                    <li><strong>Pathophysiology:</strong> Antiplatelet antibodies → splenic destruction</li>
+                    <li><strong>Presentation:</strong> Petechiae, purpura, mucosal bleeding, normal bone marrow</li>
+                    <li><strong>Treatment:</strong> Steroids, IVIG; splenectomy for refractory cases</li>
+                </ul>
+
+                <h3>Antithrombin III Deficiency</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Recurrent DVTs, early-onset thrombosis, family history</li>
+                    <li><strong>Lab:</strong> AT3 activity <50-70% (qualitative or quantitative deficiency)</li>
+                    <li><strong>Treatment:</strong> Lifelong anticoagulation; may require AT3 concentrate</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>FNHTR: Most common transfusion reaction; benign but rule out hemolysis</li>
+                    <li>Thrombocytopenia + oozing post-transfusion: Give platelets</li>
+                    <li>ITP refractory to steroids/IVIG → splenectomy (removes site of platelet destruction)</li>
+                    <li>AT3 deficiency: Unprovoked DVT in young patient → check hypercoagulable workup</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 45-year-old man develops fever and chills 2 hours after receiving a packed RBC transfusion. His vital signs are stable. There is no flank pain, dark urine, or hemoglobinuria. Labs show no evidence of hemolysis. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>Acute hemolytic transfusion reaction</li>
+                    <li>Febrile non-hemolytic transfusion reaction</li>
+                    <li>Transfusion-related acute lung injury</li>
+                    <li>Anaphylactic reaction</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Febrile non-hemolytic transfusion reaction</h5>
+                    <p><strong>Explanation:</strong> FNHTR is the most common transfusion reaction. It presents with fever and chills without hemolysis (no dark urine, no elevated LDH/indirect bilirubin, no decreased haptoglobin). It is caused by antibodies to donor leukocyte antigens. Treatment is antipyretics. Prevention is leukoreduction of blood products.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ONCOLOGY SECTION -->
+        <section id="oncology" class="topic-section">
+            <h2>🎗️ Oncology</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Non-caseating granulomas
+                    <span class="buzzword-tooltip hidden">Sarcoidosis: Key histologic finding. Vs TB which has caseating granulomas. Bilateral hilar lymphadenopathy + lung infiltrates. Treat with steroids.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    FEV1 <800 mL
+                    <span class="buzzword-tooltip hidden">High risk for postop pulmonary complications after pneumonectomy. Mortality >12%. FEV1 is BEST predictor of postoperative pulmonary function.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Sarcoidosis</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Shortness of breath, cough (asymptomatic common)</li>
+                    <li><strong>Imaging:</strong> Bilateral hilar lymphadenopathy with/without interstitial infiltrates</li>
+                    <li><strong>Histology:</strong> Non-caseating granulomas (key finding)</li>
+                    <li><strong>Diagnosis:</strong> Clinical + imaging + biopsy (lymph node or lung)</li>
+                    <li><strong>Treatment:</strong> Corticosteroids for symptomatic disease</li>
+                </ul>
+
+                <h3>Preoperative Pulmonary Risk Assessment</h3>
+                <ul>
+                    <li><strong>FEV1 (Forced Expiratory Volume in 1 second):</strong> Best predictor of postop pulmonary function</li>
+                    <li><strong>High risk:</strong> FEV1 <800 mL (or predicted FEV1 <40% after pneumonectomy)</li>
+                    <li><strong>Mortality rate:</strong> >12% if FEV1 <800 mL</li>
+                    <li><strong>DLCO:</strong> Also useful for assessing postoperative risk</li>
+                </ul>
+
+                <h3>Breast Cancer</h3>
+                <ul>
+                    <li><strong>Screening:</strong> Mammography (age 40-50 depending on guidelines); ultrasound for dense breasts</li>
+                    <li><strong>Workup:</strong> Palpable mass → mammogram + ultrasound → core needle biopsy (NOT FNA alone for solid masses)</li>
+                    <li><strong>Staging:</strong> TNM system; sentinel lymph node biopsy for clinically node-negative patients</li>
+                    <li><strong>Treatment:</strong> Lumpectomy + radiation (equivalent survival to mastectomy for early stage); mastectomy for large/multicentric</li>
+                    <li><strong>Receptor status:</strong> ER/PR+ → tamoxifen/aromatase inhibitor; HER2+ → trastuzumab; Triple negative → chemotherapy</li>
+                </ul>
+
+                <h3>Colon Cancer</h3>
+                <ul>
+                    <li><strong>Screening:</strong> Colonoscopy starting age 45, every 10 years; earlier if family history or Lynch/FAP</li>
+                    <li><strong>Presentation:</strong> Right-sided = iron deficiency anemia, occult blood; Left-sided = obstruction, change in stool caliber</li>
+                    <li><strong>Staging:</strong> CT chest/abdomen/pelvis + CEA level; CEA used for monitoring recurrence (not screening)</li>
+                    <li><strong>Treatment:</strong> Surgical resection with adequate margins; adjuvant chemo for stage III (node positive)</li>
+                    <li><strong>Lynch syndrome (HNPCC):</strong> Autosomal dominant, mismatch repair gene mutations, right-sided colon cancer</li>
+                    <li><strong>FAP:</strong> APC gene mutation, hundreds of polyps → prophylactic colectomy by age 25</li>
+                </ul>
+
+                <h3>Lung Cancer</h3>
+                <ul>
+                    <li><strong>Solitary pulmonary nodule:</strong> Compare to old imaging; if new or growing → CT-guided biopsy or PET scan</li>
+                    <li><strong>Workup:</strong> CT chest → PET scan → tissue biopsy; mediastinoscopy for staging lymph nodes</li>
+                    <li><strong>Non-small cell (NSCLC):</strong> Surgery if resectable (stage I-IIIA); chemoradiation if unresectable</li>
+                    <li><strong>Small cell (SCLC):</strong> Chemotherapy + radiation (surgery rarely indicated); paraneoplastic syndromes (SIADH, Cushing)</li>
+                    <li><strong>Pancoast tumor:</strong> Superior sulcus → Horner syndrome (ptosis, miosis, anhidrosis) + arm pain</li>
+                </ul>
+
+                <h3>Melanoma</h3>
+                <ul>
+                    <li><strong>ABCDEs:</strong> Asymmetry, Border irregularity, Color variation, Diameter >6mm, Evolution</li>
+                    <li><strong>Breslow depth:</strong> Most important prognostic factor (depth of invasion in mm)</li>
+                    <li><strong>Excision margins:</strong> In situ = 0.5cm; <1mm = 1cm; 1-2mm = 1-2cm; >2mm = 2cm</li>
+                    <li><strong>Sentinel lymph node biopsy:</strong> For lesions >1mm depth (or 0.8mm with ulceration)</li>
+                    <li><strong>Treatment:</strong> Wide local excision; immunotherapy (checkpoint inhibitors) for advanced disease</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Sarcoidosis: Non-caseating granulomas (vs. TB which is caseating)</li>
+                    <li>Bilateral hilar lymphadenopathy + lung infiltrates = think sarcoidosis</li>
+                    <li>FEV1 is the most useful parameter for predicting postop pulmonary complications</li>
+                    <li>Breast: Lumpectomy + radiation = mastectomy in survival for early-stage cancer</li>
+                    <li>Colon cancer: Right-sided = anemia; left-sided = obstruction</li>
+                    <li>CEA is for monitoring, NOT screening for colon cancer</li>
+                    <li>Melanoma: Breslow depth determines excision margins and need for SLNB</li>
+                    <li>Pancoast tumor → Horner syndrome (ptosis, miosis, anhidrosis)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 55-year-old woman presents with a 2-cm palpable breast mass. Mammogram shows an irregular spiculated lesion. Ultrasound confirms a solid mass. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Observation and repeat mammogram in 6 months</li>
+                    <li>Fine needle aspiration</li>
+                    <li>Core needle biopsy</li>
+                    <li>Immediate mastectomy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Core needle biopsy</h5>
+                    <p><strong>Explanation:</strong> A solid, spiculated mass on imaging is highly suspicious for malignancy. Core needle biopsy provides tissue architecture for definitive diagnosis, including receptor status (ER/PR/HER2). FNA alone may not provide enough tissue. Observation is inappropriate for a suspicious lesion. Surgery requires tissue diagnosis first.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 62-year-old man presents with iron deficiency anemia and positive fecal occult blood test. He has no family history of colon cancer and has never had a colonoscopy. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>CT scan of abdomen</li>
+                    <li>Colonoscopy</li>
+                    <li>Barium enema</li>
+                    <li>Check CEA level</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Colonoscopy</h5>
+                    <p><strong>Explanation:</strong> Iron deficiency anemia in an older male with positive FOBT is concerning for right-sided colon cancer (which presents with occult blood loss rather than obstruction). Colonoscopy is the gold standard for diagnosis and allows biopsy. CEA is used for monitoring after diagnosis, not screening.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RENAL/UROLOGY SECTION -->
+        <section id="renal" class="topic-section">
+            <h2>🫘 Renal & Urology</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Hematuria + flank pain + mass
+                    <span class="buzzword-tooltip hidden">Renal Cell Carcinoma classic triad (only 10% have all 3). Paraneoplastic: hypercalcemia (PTHrP), polycythemia (EPO). CT/MRI → nephrectomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Renal artery stenosis
+                    <span class="buzzword-tooltip hidden">Secondary HTN resistant to treatment. Young women = FMD; older men = atherosclerosis. Diagnose with renal artery Doppler. Treat with angioplasty/stenting.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    NSAIDs → AKI
+                    <span class="buzzword-tooltip hidden">Inhibit prostaglandins → decreased renal blood flow → rising creatinine. Risk: volume depletion, pre-existing renal disease, elderly. STOP NSAIDs!</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Renal Cell Carcinoma (RCC)</h3>
+                <ul>
+                    <li><strong>Classic triad:</strong> Hematuria, flank pain, palpable mass (only 10% have all three)</li>
+                    <li><strong>Paraneoplastic syndromes:</strong> Hypercalcemia (PTHrP), polycythemia (EPO)</li>
+                    <li><strong>Imaging:</strong> CT or MRI to detect mass and assess spread</li>
+                    <li><strong>Treatment:</strong> Partial or complete nephrectomy with biopsy</li>
+                </ul>
+
+                <h3>Renal Artery Stenosis</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Atherosclerosis (older) or fibromuscular dysplasia (younger women)</li>
+                    <li><strong>Presentation:</strong> Secondary hypertension, resistant to treatment, decreased kidney size</li>
+                    <li><strong>Diagnosis:</strong> Renal artery Doppler ultrasound, MR/CT angiography</li>
+                    <li><strong>Treatment:</strong> Angioplasty/stenting or ACE inhibitors (with caution)</li>
+                </ul>
+
+                <h3>Acute Kidney Injury (AKI) - NSAIDs</h3>
+                <ul>
+                    <li><strong>Mechanism:</strong> Inhibition of prostaglandin synthesis → decreased renal blood flow</li>
+                    <li><strong>Risk factors:</strong> Volume depletion, pre-existing renal disease, elderly</li>
+                    <li><strong>Presentation:</strong> Rising creatinine after NSAID use (ketorolac post-op)</li>
+                    <li><strong>Management:</strong> Stop NSAIDs, supportive care, avoid in high-risk patients</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>RCC: Hematuria + flank pain + mass = think kidney cancer</li>
+                    <li>Renal artery stenosis: Young women = FMD; older men = atherosclerosis</li>
+                    <li>NSAIDs post-op: Can cause AKI especially if volume depleted or baseline renal dysfunction</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 60-year-old man undergoes a right hemicolectomy. Postoperatively, he receives ketorolac for pain. On day 3, his creatinine rises from 1.0 to 2.8 mg/dL. Urine output has decreased. What is the most likely cause?</p>
+                <ul class="choices">
+                    <li>Acute tubular necrosis</li>
+                    <li>NSAID-induced acute kidney injury</li>
+                    <li>Ureteral injury</li>
+                    <li>Prerenal azotemia from dehydration</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - NSAID-induced acute kidney injury</h5>
+                    <p><strong>Explanation:</strong> Ketorolac (an NSAID) inhibits prostaglandin synthesis, which decreases renal blood flow. In postoperative patients who may be volume-depleted, this can cause significant AKI. The temporal relationship (ketorolac use → rising creatinine) is key. Management: stop the NSAID and provide IV fluids.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OB/GYN SECTION -->
+        <section id="obgyn" class="topic-section">
+            <h2>🤰 Obstetrics & Gynecology</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Ruptured ectopic pregnancy
+                    <span class="buzzword-tooltip hidden">Surgical emergency! Hemorrhagic shock from intraperitoneal bleeding. Most common site: ampulla of fallopian tube. Risk factors: PID, prior ectopic, smoking.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Postmenopausal ovarian mass
+                    <span class="buzzword-tooltip hidden">Cancer until proven otherwise! Higher suspicion for malignancy. Pelvic ultrasound first, then CA-125. Complex/solid mass → surgical evaluation.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Ectopic Pregnancy</h3>
+                <ul>
+                    <li><strong>Most common site:</strong> Ampulla of fallopian tube (fimbria and isthmus also possible)</li>
+                    <li><strong>Presentation:</strong> Abdominal pain, vaginal bleeding, amenorrhea, +hCG</li>
+                    <li><strong>Emergency:</strong> Ruptured ectopic → hemorrhagic shock (surgical emergency!)</li>
+                    <li><strong>Risk factors:</strong> PID, prior ectopic, tubal surgery, smoking, IVF</li>
+                    <li><strong>Treatment:</strong> Methotrexate (if small, unruptured) or surgery (if ruptured or large)</li>
+                </ul>
+
+                <h3>Ovarian Masses</h3>
+                <ul>
+                    <li><strong>Postmenopausal:</strong> Higher suspicion for malignancy (ovarian cancer)</li>
+                    <li><strong>Initial imaging:</strong> Pelvic ultrasonography to characterize mass</li>
+                    <li><strong>Benign vs. malignant:</strong> Simple cyst vs. complex/solid mass, septations, ascites</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Ectopic pregnancy is life-threatening if ruptured → think of it in any woman of reproductive age with abdominal pain</li>
+                    <li>Pelvic ultrasound is first-line imaging for ovarian masses</li>
+                    <li>Postmenopausal ovarian mass = cancer until proven otherwise</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 28-year-old woman presents with sudden-onset left lower quadrant pain and vaginal spotting. Her last menstrual period was 7 weeks ago. Urine pregnancy test is positive. She is tachycardic and hypotensive. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Pelvic ultrasound</li>
+                    <li>Quantitative beta-hCG</li>
+                    <li>CT scan of the abdomen</li>
+                    <li>Emergent surgical exploration</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: D - Emergent surgical exploration</h5>
+                    <p><strong>Explanation:</strong> This patient has a ruptured ectopic pregnancy until proven otherwise (positive pregnancy test, abdominal pain, hemodynamic instability). She is in hemorrhagic shock requiring emergent surgical intervention (salpingectomy). In a hemodynamically stable patient, ultrasound and beta-hCG would be appropriate, but this patient needs the OR immediately.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEUROSURGERY SECTION -->
+        <section id="neurosurgery" class="topic-section">
+            <h2>🧠 Neurosurgery</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Crescent-shaped SDH
+                    <span class="buzzword-tooltip hidden">Subdural Hematoma: Crescent shape (vs epidural = lens/lentiform). Head trauma, elderly, anticoagulants. Altered mental status. Treat with craniotomy/burr hole drainage.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Acoustic neuroma
+                    <span class="buzzword-tooltip hidden">Vestibular schwannoma at cerebellopontine angle (CN VIII). Progressive hearing loss + vertigo + ataxia + tinnitus. MRI shows CPA mass. Surgical resection.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Subdural Hematoma (SDH)</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Head trauma, falls (especially elderly on anticoagulants)</li>
+                    <li><strong>Imaging:</strong> CT shows crescent-shaped fluid collection (not bound by suture lines)</li>
+                    <li><strong>Presentation:</strong> Altered mental status, headache, focal neurologic deficits</li>
+                    <li><strong>Chronic SDH:</strong> Gradual onset over weeks, bridging vein tear</li>
+                    <li><strong>Treatment:</strong> Burr hole drainage or craniotomy for evacuation</li>
+                </ul>
+
+                <h3>Acoustic Neuroma (Vestibular Schwannoma)</h3>
+                <ul>
+                    <li><strong>Location:</strong> Cerebellopontine angle (CN VIII)</li>
+                    <li><strong>Presentation:</strong> Progressive hearing loss, vertigo, ataxia, tinnitus</li>
+                    <li><strong>Facial nerve involvement:</strong> Loss of skeletal muscle innervation (CN VII compression)</li>
+                    <li><strong>Imaging:</strong> MRI shows mass at CPA angle</li>
+                    <li><strong>Treatment:</strong> Surgical resection or stereotactic radiosurgery</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>SDH: Crescent-shaped (vs. epidural which is lens-shaped/lentiform)</li>
+                    <li>Alcohol use disorder + cerebral atrophy → increased risk of SDH</li>
+                    <li>Acoustic neuroma: Slow-onset unilateral hearing loss + vertigo + ataxia</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 72-year-old man on warfarin presents after a fall with progressively worsening headache and confusion over 2 days. CT head shows a crescent-shaped hyperdense collection along the right cerebral convexity. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>Epidural hematoma</li>
+                    <li>Subdural hematoma</li>
+                    <li>Subarachnoid hemorrhage</li>
+                    <li>Intraparenchymal hemorrhage</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Subdural hematoma</h5>
+                    <p><strong>Explanation:</strong> A crescent-shaped collection that crosses suture lines is characteristic of subdural hematoma (bridging vein tear). Risk factors include elderly age, anticoagulation, and falls. Epidural hematoma is lens-shaped and bounded by suture lines. Treatment is burr hole drainage or craniotomy, and reversal of anticoagulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORTHOPEDICS SECTION -->
+        <section id="orthopedics" class="topic-section">
+            <h2>🦴 Orthopedics</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    C8 nerve root injury
+                    <span class="buzzword-tooltip hidden">C8 + T1 → ulnar nerve. Motor: intrinsic hand muscles (interossei, lumbricals). Sensory: medial hand, ring/little fingers. Causes: cervical stenosis, disc, trauma.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    5 P's of compartment syndrome
+                    <span class="buzzword-tooltip hidden">Pain (out of proportion, with passive stretch), Pressure, Paresthesias, Paralysis, Pulselessness. Pain is EARLIEST sign. Pulselessness is LATE. Measure compartment pressures → fasciotomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Fat embolism syndrome
+                    <span class="buzzword-tooltip hidden">24-72hrs after long bone fracture: Petechiae + respiratory distress + mental status changes. Classic triad. Supportive care. Prevent with early fracture fixation.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Supracondylar fracture
+                    <span class="buzzword-tooltip hidden">Most common pediatric elbow fracture. Risk of brachial artery injury + anterior interosseous nerve (AIN). Check distal pulses! Volkmann contracture if missed compartment syndrome.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>C8 Nerve Root Injury</h3>
+                <ul>
+                    <li><strong>Anatomy:</strong> C8 contributes to ulnar nerve (primarily C8 + T1)</li>
+                    <li><strong>Motor:</strong> Intrinsic hand muscles (interossei, lumbricals), finger flexors</li>
+                    <li><strong>Sensory:</strong> Medial hand, ring and little fingers, medial palm</li>
+                    <li><strong>Causes:</strong> Cervical stenosis, disc herniation, trauma, brachial plexus injury</li>
+                </ul>
+
+                <h3>Compartment Syndrome</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Fracture (especially tibial shaft), crush injury, tight cast, reperfusion after ischemia</li>
+                    <li><strong>Pathophysiology:</strong> Increased pressure within fascial compartment → compromised perfusion → muscle/nerve ischemia</li>
+                    <li><strong>Earliest sign:</strong> Pain out of proportion to injury, worse with passive stretch of muscles</li>
+                    <li><strong>Diagnosis:</strong> Clinical; compartment pressure >30 mmHg or within 30 mmHg of diastolic (delta pressure <30)</li>
+                    <li><strong>Treatment:</strong> Emergency fasciotomy (remove cast/dressings first if present)</li>
+                    <li><strong>Complication if missed:</strong> Volkmann ischemic contracture (forearm), rhabdomyolysis, renal failure</li>
+                </ul>
+
+                <h3>Fat Embolism Syndrome</h3>
+                <ul>
+                    <li><strong>Timing:</strong> 24-72 hours after long bone fracture (especially femur, tibia)</li>
+                    <li><strong>Classic triad:</strong> Respiratory distress + neurologic changes (confusion) + petechial rash (chest/axillae)</li>
+                    <li><strong>Diagnosis:</strong> Clinical; no single definitive test</li>
+                    <li><strong>Treatment:</strong> Supportive care (oxygen, fluids, mechanical ventilation if needed)</li>
+                    <li><strong>Prevention:</strong> Early fixation of long bone fractures</li>
+                </ul>
+
+                <h3>Common Fracture Associations</h3>
+                <ul>
+                    <li><strong>Supracondylar fracture (pediatric):</strong> Brachial artery injury, anterior interosseous nerve → Volkmann contracture</li>
+                    <li><strong>Midshaft humerus fracture:</strong> Radial nerve injury (wrist drop)</li>
+                    <li><strong>Hip fracture (elderly):</strong> Femoral neck → AVN risk; intertrochanteric → less AVN risk; DVT prophylaxis essential</li>
+                    <li><strong>Posterior hip dislocation:</strong> Sciatic nerve injury (foot drop); dashboard injury mechanism</li>
+                    <li><strong>Fibular neck fracture:</strong> Common peroneal nerve injury (foot drop)</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>C8 nerve root → ulnar nerve → intrinsic hand muscle weakness</li>
+                    <li>Ulnar nerve palsy: "Claw hand" deformity (MCP hyperextension, IP flexion)</li>
+                    <li>Compartment syndrome: Pain with passive stretch is the EARLIEST and most reliable sign</li>
+                    <li>Pulselessness is a LATE finding in compartment syndrome - don't wait for it</li>
+                    <li>Fat embolism: Petechiae + confusion + dyspnea 24-72 hrs post long bone fracture</li>
+                    <li>Supracondylar fracture: Always check distal pulses (brachial artery at risk)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 22-year-old man is brought to the ED after a motorcycle accident with a closed tibial shaft fracture. Six hours later, he reports severe leg pain that worsens when his toes are passively extended. The leg is tense and swollen. Distal pulses are present. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Elevation and ice</li>
+                    <li>Increase IV morphine</li>
+                    <li>Emergent fasciotomy</li>
+                    <li>CT angiography of the leg</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Emergent fasciotomy</h5>
+                    <p><strong>Explanation:</strong> This is compartment syndrome: pain out of proportion, worsened by passive stretch of the affected muscles, tense compartment. Distal pulses may still be present (pulselessness is a late finding). Fasciotomy is the definitive treatment and must be done emergently to prevent irreversible muscle and nerve damage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRITICAL CARE SECTION -->
+        <section id="critical-care" class="topic-section">
+            <h2>🏥 Critical Care</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Hypovolemic shock
+                    <span class="buzzword-tooltip hidden">Tachycardia, hypotension, low UOP, cool extremities. First-line: rapid 500mL 0.9% saline bolus to restore volume. Monitor UOP >0.5 mL/kg/hr.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    High PCWP
+                    <span class="buzzword-tooltip hidden">Postop MI with left heart failure. PCWP = left atrial pressure. Give diuretics/nitrates, NOT more fluids. Check troponin, ECG.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Ventilatory insufficiency
+                    <span class="buzzword-tooltip hidden">High spinal block → diaphragm paralysis → respiratory acidosis (high PCO2). Need ventilatory support, may require mechanical ventilation.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Patient autonomy
+                    <span class="buzzword-tooltip hidden">Patients with decision-making capacity can refuse treatment (even blood products). Must respect wishes. Explore alternatives (e.g., exploratory laparotomy for Jehovah's Witness).</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Hypovolemic Shock</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Tachycardia, hypotension, low urine output, cool extremities</li>
+                    <li><strong>Initial treatment:</strong> Rapid administration of 500 mL 0.9% saline bolus</li>
+                    <li><strong>Goal:</strong> Restore intravascular volume, maintain organ perfusion</li>
+                    <li><strong>Monitor:</strong> Urine output (target >0.5 mL/kg/hr), vital signs, mental status</li>
+                </ul>
+
+                <h3>Postoperative Myocardial Infarction</h3>
+                <ul>
+                    <li><strong>Hemodynamics:</strong> High PCWP (pulmonary capillary wedge pressure) indicates left heart failure</li>
+                    <li><strong>Presentation:</strong> Chest pain, shortness of breath, ECG changes, troponin elevation</li>
+                    <li><strong>Treatment:</strong> Oxygen, aspirin, nitrates, morphine, beta-blockers (if not contraindicated)</li>
+                </ul>
+
+                <h3>Ventilatory Insufficiency</h3>
+                <ul>
+                    <li><strong>Spinal anesthesia complication:</strong> High spinal block → diaphragm paralysis</li>
+                    <li><strong>ABG:</strong> Respiratory acidosis (high PCO2, low pH)</li>
+                    <li><strong>Treatment:</strong> Ventilatory support, may require mechanical ventilation</li>
+                </ul>
+
+                <h3>Patient Autonomy & Medical Ethics</h3>
+                <ul>
+                    <li><strong>Four principles:</strong> Autonomy, beneficence, non-maleficence, justice</li>
+                    <li><strong>Key concept:</strong> Patients with decision-making capacity can refuse treatment</li>
+                    <li><strong>Jehovah's Witness example:</strong> Can refuse blood products; must respect autonomy</li>
+                    <li><strong>Emergency:</strong> Exploratory laparotomy if life-threatening, even if patient refuses specific intervention</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Hypovolemic shock: Rapid 500 mL saline bolus is first-line (before pressors)</li>
+                    <li>Postop MI: High PCWP = left heart failure (give diuretics, not more fluids)</li>
+                    <li>Spinal block too high → respiratory failure (support ventilation)</li>
+                    <li>Patient autonomy: Respect refusal even if you disagree (but explore alternatives)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 65-year-old man undergoes elective colectomy. Six hours postoperatively, he is tachycardic (HR 120), hypotensive (BP 85/60), and oliguric. Central venous pressure is low. What is the most appropriate first step?</p>
+                <ul class="choices">
+                    <li>Start norepinephrine</li>
+                    <li>Rapid IV crystalloid bolus</li>
+                    <li>Obtain a CT scan of the abdomen</li>
+                    <li>Administer furosemide</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Rapid IV crystalloid bolus</h5>
+                    <p><strong>Explanation:</strong> This patient has hypovolemic shock (tachycardia, hypotension, oliguria, low CVP). The first priority is volume resuscitation with IV crystalloid. Vasopressors should only be used after adequate volume resuscitation. Furosemide would worsen hypovolemia. Consider postoperative bleeding as the cause.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESOPHAGEAL DISORDERS SECTION -->
+        <section id="esophageal" class="topic-section">
+            <h2>🫁 Esophageal Disorders</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Dysphagia + esophageal stricture
+                    <span class="buzzword-tooltip hidden">GERD complication: Chronic acid → scarring → stricture. Dysphagia with x-ray showing narrowing → EGD and biopsy (rule out Barrett's/malignancy).</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Bird's beak sign
+                    <span class="buzzword-tooltip hidden">Achalasia: Tapered distal esophagus on barium swallow. Deficient peristalsis + impaired LES relaxation. Dysphagia to solids AND liquids. Treat with pneumatic dilation or Heller myotomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Esophageal perforation
+                    <span class="buzzword-tooltip hidden">Boerhaave syndrome: Forceful vomiting → rupture. Severe substernal pain, fever, subcutaneous emphysema. Surgical EMERGENCY - exploratory thoracotomy for repair.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Gastroesophageal Reflux Disease (GERD)</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Heartburn, chest discomfort, dysphagia (if stricture)</li>
+                    <li><strong>Complications:</strong> Barrett esophagus (metaplasia), esophageal stricture, adenocarcinoma</li>
+                    <li><strong>Diagnosis:</strong> Esophagoscopy and biopsy for concerning features (dysphagia, weight loss)</li>
+                    <li><strong>Treatment:</strong> PPIs, lifestyle modifications, surgery (Nissen fundoplication) for refractory</li>
+                </ul>
+
+                <h3>Achalasia</h3>
+                <ul>
+                    <li><strong>Pathophysiology:</strong> Deficient peristalsis + impaired LES relaxation</li>
+                    <li><strong>Presentation:</strong> Dysphagia (solids AND liquids), regurgitation, weight loss</li>
+                    <li><strong>Imaging:</strong> Barium swallow shows "bird's beak" (tapered distal esophagus)</li>
+                    <li><strong>Diagnosis:</strong> Esophageal manometry (absent peristalsis, high LES pressure)</li>
+                    <li><strong>Treatment:</strong> Pneumatic dilation, Heller myotomy, botox injection</li>
+                </ul>
+
+                <h3>Esophageal Perforation (Boerhaave Syndrome)</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Forceful vomiting, trauma, iatrogenic (endoscopy)</li>
+                    <li><strong>Presentation:</strong> Severe substernal pain, fever, subcutaneous emphysema (crunching sound)</li>
+                    <li><strong>Imaging:</strong> Chest X-ray (pneumomediastinum), water-soluble contrast esophagography</li>
+                    <li><strong>Treatment:</strong> Surgical emergency - exploratory thoracotomy for repair</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>GERD with dysphagia + x-ray showing stricture → EGD and biopsy (rule out malignancy)</li>
+                    <li>Achalasia: Bird's beak on barium swallow, absent peristalsis on manometry</li>
+                    <li>Esophageal perforation: Surgical emergency (mediastinitis can be fatal)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 45-year-old man presents with severe substernal chest pain after forceful vomiting. He is febrile and has subcutaneous emphysema in the neck. Chest x-ray shows pneumomediastinum. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Upper endoscopy</li>
+                    <li>CT scan of the chest</li>
+                    <li>Exploratory thoracotomy</li>
+                    <li>Observation and IV antibiotics</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Exploratory thoracotomy</h5>
+                    <p><strong>Explanation:</strong> This is Boerhaave syndrome (esophageal perforation from forceful vomiting). The combination of severe chest pain, subcutaneous emphysema, and pneumomediastinum after vomiting is classic. This is a surgical emergency requiring thoracotomy for repair. Delay increases mortality from mediastinitis. Endoscopy could worsen the perforation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACUTE ABDOMEN SECTION -->
+        <section id="acute-abdomen" class="topic-section">
+            <h2>🚨 Acute Abdomen</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    McBurney's point tenderness
+                    <span class="buzzword-tooltip hidden">Appendicitis: RLQ tenderness at 1/3 distance from ASIS to umbilicus. Periumbilical pain migrating to RLQ is classic. CT confirms. Appendectomy is definitive.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Murphy's sign
+                    <span class="buzzword-tooltip hidden">Acute Cholecystitis: Inspiratory arrest during RUQ palpation. Ultrasound shows gallstones, thickened wall, pericholecystic fluid. HIDA scan if US equivocal. Cholecystectomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Air-fluid levels + distension
+                    <span class="buzzword-tooltip hidden">Small Bowel Obstruction: Multiple dilated loops with air-fluid levels on upright x-ray. Most common cause: adhesions (prior surgery). NGT + IV fluids → surgery if no improvement.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Free air under diaphragm
+                    <span class="buzzword-tooltip hidden">Perforated viscus: Upright CXR showing pneumoperitoneum. Perforated peptic ulcer is most common cause. Surgical emergency → exploratory laparotomy.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Sentinel loop
+                    <span class="buzzword-tooltip hidden">Acute Pancreatitis: Localized ileus near inflamed pancreas on x-ray. Elevated lipase (more specific than amylase). Most common causes: gallstones > alcohol.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Coffee-bean sign
+                    <span class="buzzword-tooltip hidden">Sigmoid Volvulus: Large bent loop arising from pelvis on x-ray. Elderly, chronic constipation, nursing home. Decompression with sigmoidoscopy first, then surgery if recurrent.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Acute Appendicitis</h3>
+                <ul>
+                    <li><strong>Classic presentation:</strong> Periumbilical pain migrating to RLQ, anorexia, nausea, fever</li>
+                    <li><strong>Exam findings:</strong> McBurney's point tenderness, Rovsing sign, psoas sign, obturator sign</li>
+                    <li><strong>Diagnosis:</strong> CT abdomen/pelvis with contrast (sensitivity >95%); ultrasound preferred in pregnant/pediatric</li>
+                    <li><strong>Labs:</strong> Leukocytosis with left shift</li>
+                    <li><strong>Treatment:</strong> Appendectomy (laparoscopic preferred); antibiotics if perforated with abscess → interval appendectomy</li>
+                    <li><strong>Complications:</strong> Perforation, abscess, peritonitis (higher risk if delayed >24-48 hrs)</li>
+                </ul>
+
+                <h3>Acute Cholecystitis</h3>
+                <ul>
+                    <li><strong>Cause:</strong> Gallstone impaction in cystic duct → inflammation</li>
+                    <li><strong>Presentation:</strong> RUQ pain, fever, Murphy sign positive, nausea/vomiting</li>
+                    <li><strong>Diagnosis:</strong> Ultrasound (gallstones, wall thickening >4mm, pericholecystic fluid); HIDA scan if US equivocal (non-filling of gallbladder)</li>
+                    <li><strong>Labs:</strong> Leukocytosis; if elevated bilirubin/ALP → concern for choledocholithiasis</li>
+                    <li><strong>Treatment:</strong> Laparoscopic cholecystectomy (within 72 hrs of symptom onset preferred)</li>
+                    <li><strong>Choledocholithiasis:</strong> Stone in common bile duct → jaundice, elevated ALP/bilirubin → ERCP before cholecystectomy</li>
+                    <li><strong>Cholangitis (Charcot triad):</strong> Fever + jaundice + RUQ pain; Reynolds pentad adds hypotension + AMS</li>
+                </ul>
+
+                <h3>Small Bowel Obstruction (SBO)</h3>
+                <ul>
+                    <li><strong>Most common cause:</strong> Adhesions from prior surgery (then hernias, then tumors)</li>
+                    <li><strong>Presentation:</strong> Colicky abdominal pain, vomiting, distension, obstipation</li>
+                    <li><strong>Imaging:</strong> Upright x-ray shows dilated loops + air-fluid levels; CT for confirming and identifying cause</li>
+                    <li><strong>Initial management:</strong> NPO, NGT decompression, IV fluids, electrolyte correction</li>
+                    <li><strong>Surgical indications:</strong> Strangulation (peritoneal signs, fever, tachycardia), closed-loop, failure to improve in 48-72 hrs</li>
+                </ul>
+
+                <h3>Acute Pancreatitis</h3>
+                <ul>
+                    <li><strong>Causes:</strong> Gallstones (#1) > alcohol (#2) > hypertriglyceridemia, drugs, ERCP</li>
+                    <li><strong>Presentation:</strong> Epigastric pain radiating to back, nausea, vomiting</li>
+                    <li><strong>Diagnosis:</strong> Lipase >3x upper limit of normal (more specific than amylase)</li>
+                    <li><strong>Imaging:</strong> CT with contrast for complications (necrosis, pseudocyst, abscess) — not needed for diagnosis</li>
+                    <li><strong>Treatment:</strong> Aggressive IV fluids, NPO → early oral feeding, pain control</li>
+                    <li><strong>Ranson criteria / APACHE II:</strong> Prognostic scoring (not diagnostic)</li>
+                    <li><strong>Complications:</strong> Pseudocyst (>6 weeks, drain if symptomatic), infected necrosis (surgical debridement)</li>
+                </ul>
+
+                <h3>Sigmoid Volvulus</h3>
+                <ul>
+                    <li><strong>Population:</strong> Elderly, psychiatric patients, nursing home residents, chronic constipation</li>
+                    <li><strong>Imaging:</strong> "Coffee bean" or "bent inner tube" sign on x-ray</li>
+                    <li><strong>Treatment:</strong> Endoscopic decompression with sigmoidoscopy (first-line if no perforation/peritonitis)</li>
+                    <li><strong>Surgery:</strong> Sigmoid resection for recurrent volvulus or if endoscopic decompression fails</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Appendicitis: Pain migration from periumbilical → RLQ is the classic history</li>
+                    <li>Cholecystitis: Ultrasound is first-line; HIDA scan if US equivocal</li>
+                    <li>Charcot triad (cholangitis): Fever + jaundice + RUQ pain → ERCP urgently</li>
+                    <li>SBO: Adhesions from prior surgery are the #1 cause; try conservative management first</li>
+                    <li>Pancreatitis: Lipase is more specific than amylase; gallstone pancreatitis → cholecystectomy during same admission</li>
+                    <li>Free air on upright CXR = perforated viscus → OR</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 24-year-old man presents with 12 hours of periumbilical pain that has now localized to the right lower quadrant. He has a temperature of 38.5°C and WBC of 14,000. On exam, there is rebound tenderness at McBurney's point. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Observation and serial abdominal exams</li>
+                    <li>CT scan of the abdomen and pelvis</li>
+                    <li>Barium enema</li>
+                    <li>Appendectomy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: D - Appendectomy</h5>
+                    <p><strong>Explanation:</strong> This is a classic presentation of acute appendicitis (migrating periumbilical → RLQ pain, fever, leukocytosis, McBurney's point tenderness with rebound). When the clinical picture is convincing, proceeding directly to appendectomy is appropriate. CT can be used if the diagnosis is uncertain, but this presentation is textbook.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">A 48-year-old woman presents with RUQ pain, fever, and nausea. On exam, she has a positive Murphy sign. Ultrasound shows gallstones, gallbladder wall thickening to 5mm, and pericholecystic fluid. What is the most appropriate treatment?</p>
+                <ul class="choices">
+                    <li>Ursodiol (bile acid dissolution therapy)</li>
+                    <li>ERCP</li>
+                    <li>Laparoscopic cholecystectomy</li>
+                    <li>Percutaneous cholecystostomy tube</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Laparoscopic cholecystectomy</h5>
+                    <p><strong>Explanation:</strong> This is acute cholecystitis (RUQ pain, fever, positive Murphy sign, ultrasound findings of stones + wall thickening + pericholecystic fluid). Laparoscopic cholecystectomy is the definitive treatment, ideally performed within 72 hours of symptom onset. Percutaneous cholecystostomy is reserved for patients who are too unstable for surgery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BREAST SECTION -->
+        <section id="breast" class="topic-section">
+            <h2>🎀 Breast</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Peau d'orange
+                    <span class="buzzword-tooltip hidden">Inflammatory Breast Cancer: Skin dimpling resembling orange peel from dermal lymphatic invasion. Erythematous, warm, edematous breast. Biopsy shows tumor emboli in dermal lymphatics.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Bloody nipple discharge
+                    <span class="buzzword-tooltip hidden">Intraductal Papilloma (most common cause) or ductal carcinoma. Unilateral, spontaneous, single duct. Workup: mammogram + ductogram or duct excision.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Fibroadenoma
+                    <span class="buzzword-tooltip hidden">Most common benign breast mass in young women (<30). Firm, mobile, rubbery ("breast mouse"). Observe if <2cm and classic features. Excise if growing or >2cm.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Phyllodes tumor
+                    <span class="buzzword-tooltip hidden">Rapidly growing breast mass, can be benign or malignant. Large, leaf-like on histology. Wide local excision with 1cm margins. Unlike fibroadenoma, recurs if incompletely excised.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Breast Mass Workup</h3>
+                <ul>
+                    <li><strong>Age <30:</strong> Ultrasound first (dense breasts limit mammography)</li>
+                    <li><strong>Age 30-39:</strong> Ultrasound + mammogram</li>
+                    <li><strong>Age ≥40:</strong> Mammogram + ultrasound if needed</li>
+                    <li><strong>Suspicious mass:</strong> Core needle biopsy (NOT FNA for solid masses - need architecture)</li>
+                    <li><strong>Triple test:</strong> Physical exam + imaging + pathology must all agree</li>
+                </ul>
+
+                <h3>Breast Cancer Management</h3>
+                <ul>
+                    <li><strong>DCIS (Ductal Carcinoma In Situ):</strong> Pre-invasive; lumpectomy + radiation OR mastectomy; no axillary staging needed</li>
+                    <li><strong>LCIS (Lobular Carcinoma In Situ):</strong> Risk marker (not precancer); bilateral risk increase; surveillance + tamoxifen for prevention</li>
+                    <li><strong>Invasive cancer:</strong> Lumpectomy + radiation OR mastectomy (equivalent survival for early stage)</li>
+                    <li><strong>Sentinel lymph node biopsy:</strong> Standard for clinically node-negative; if positive → may need axillary dissection</li>
+                    <li><strong>Adjuvant therapy:</strong> ER/PR+ → endocrine therapy; HER2+ → trastuzumab; Triple negative → chemotherapy</li>
+                </ul>
+
+                <h3>Inflammatory Breast Cancer</h3>
+                <ul>
+                    <li><strong>Presentation:</strong> Erythema, warmth, peau d'orange, rapid onset (mimics mastitis/abscess)</li>
+                    <li><strong>Diagnosis:</strong> Skin punch biopsy showing tumor emboli in dermal lymphatics</li>
+                    <li><strong>Treatment:</strong> Neoadjuvant chemotherapy → mastectomy → radiation (NOT surgery first)</li>
+                    <li><strong>Prognosis:</strong> Aggressive; stage IIIB at minimum</li>
+                </ul>
+
+                <h3>Nipple Discharge</h3>
+                <ul>
+                    <li><strong>Bloody, unilateral, single duct:</strong> Concerning → intraductal papilloma (#1) or carcinoma</li>
+                    <li><strong>Milky, bilateral:</strong> Galactorrhea → check prolactin (pituitary adenoma, medications)</li>
+                    <li><strong>Green/brown, bilateral:</strong> Fibrocystic changes (benign)</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>DCIS is a precancer (treat); LCIS is a risk marker (observe + chemoprevention)</li>
+                    <li>Inflammatory breast cancer: Do NOT do surgery first → neoadjuvant chemo first</li>
+                    <li>Peau d'orange + erythema that doesn't improve with antibiotics = rule out inflammatory breast cancer</li>
+                    <li>Bloody nipple discharge: Most common cause is intraductal papilloma (benign), but must rule out cancer</li>
+                    <li>Phyllodes tumor: Wide excision (not enucleation); can recur</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 52-year-old woman presents with erythema, warmth, and skin thickening of her left breast that has been worsening over 3 weeks despite antibiotics for suspected mastitis. Mammogram shows skin thickening and diffuse enhancement. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Continue antibiotics for another 2 weeks</li>
+                    <li>Skin punch biopsy</li>
+                    <li>Immediate mastectomy</li>
+                    <li>Incision and drainage</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: B - Skin punch biopsy</h5>
+                    <p><strong>Explanation:</strong> Breast erythema and skin changes that do not resolve with antibiotics should raise concern for inflammatory breast cancer. Skin punch biopsy is needed to look for tumor emboli in dermal lymphatics. Mastectomy is not the first step for inflammatory breast cancer — neoadjuvant chemotherapy is given first.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERNIAS SECTION -->
+        <section id="hernias" class="topic-section">
+            <h2>🔗 Hernias</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Indirect inguinal hernia
+                    <span class="buzzword-tooltip hidden">Most common hernia overall. Through internal inguinal ring, LATERAL to inferior epigastric vessels. Congenital (patent processus vaginalis). More common in young males.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Direct inguinal hernia
+                    <span class="buzzword-tooltip hidden">Through Hesselbach triangle (floor of inguinal canal), MEDIAL to inferior epigastric vessels. Acquired, older patients. Weakness of transversalis fascia.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Femoral hernia
+                    <span class="buzzword-tooltip hidden">Below inguinal ligament through femoral canal. More common in women. HIGHEST risk of incarceration/strangulation. Always repair surgically (even if asymptomatic).</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Incarcerated hernia
+                    <span class="buzzword-tooltip hidden">Hernia contents cannot be reduced. If blood supply compromised = strangulated (surgical emergency!). Signs: tenderness, erythema, fever, SBO symptoms.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Inguinal Hernias</h3>
+                <ul>
+                    <li><strong>Indirect:</strong> Lateral to inferior epigastric vessels, through internal ring; congenital (patent processus vaginalis)</li>
+                    <li><strong>Direct:</strong> Medial to inferior epigastric vessels, through Hesselbach triangle; acquired, older patients</li>
+                    <li><strong>Hesselbach triangle:</strong> Inguinal ligament (inferior), rectus sheath (medial), inferior epigastric vessels (lateral)</li>
+                    <li><strong>Treatment:</strong> Surgical repair (mesh repair standard); open or laparoscopic</li>
+                </ul>
+
+                <h3>Femoral Hernia</h3>
+                <ul>
+                    <li><strong>Location:</strong> Below inguinal ligament, medial to femoral vein</li>
+                    <li><strong>Demographics:</strong> More common in women (but inguinal hernias are still most common in women overall)</li>
+                    <li><strong>Key point:</strong> Highest risk of incarceration/strangulation of all hernias → always repair</li>
+                </ul>
+
+                <h3>Incarcerated vs. Strangulated</h3>
+                <ul>
+                    <li><strong>Incarcerated:</strong> Cannot be reduced manually; may cause SBO</li>
+                    <li><strong>Strangulated:</strong> Compromised blood supply → ischemia/necrosis; surgical EMERGENCY</li>
+                    <li><strong>Signs of strangulation:</strong> Severe tenderness, erythema, fever, peritoneal signs, leukocytosis</li>
+                    <li><strong>Treatment:</strong> Emergent surgery; do NOT attempt reduction if strangulation suspected</li>
+                </ul>
+
+                <h3>Other Hernias</h3>
+                <ul>
+                    <li><strong>Umbilical:</strong> Common in infants, most close by age 5; repair if >2cm or persists past age 5</li>
+                    <li><strong>Incisional:</strong> Through prior surgical incision; risk factors: obesity, infection, poor nutrition</li>
+                    <li><strong>Richter hernia:</strong> Only part of bowel wall (antimesenteric border) herniates → can strangulate without SBO</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Indirect = LATERAL to inferior epigastric vessels; Direct = MEDIAL (mnemonic: MDs are DIRECT)</li>
+                    <li>Femoral hernia = highest strangulation risk → always repair even if asymptomatic</li>
+                    <li>Strangulated hernia: Do NOT attempt manual reduction → emergent surgery</li>
+                    <li>Richter hernia: Partial bowel wall involvement → can strangulate without obstruction signs</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 65-year-old woman presents with a tender, non-reducible mass in the right groin below the inguinal ligament. She has nausea and crampy abdominal pain. What is the most likely diagnosis?</p>
+                <ul class="choices">
+                    <li>Indirect inguinal hernia</li>
+                    <li>Direct inguinal hernia</li>
+                    <li>Incarcerated femoral hernia</li>
+                    <li>Lymphadenopathy</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Incarcerated femoral hernia</h5>
+                    <p><strong>Explanation:</strong> A tender, non-reducible groin mass BELOW the inguinal ligament is a femoral hernia. With nausea and crampy pain suggesting obstruction, this is incarcerated. Femoral hernias are more common in women and have the highest risk of incarceration/strangulation. This requires urgent surgical repair.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WOUND HEALING & BURNS SECTION -->
+        <section id="wound-healing" class="topic-section">
+            <h2>🩹 Wound Healing & Burns</h2>
+
+            <div class="buzzwords">
+                <h4>🔑 Key Buzzwords - Click to Learn</h4>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Parkland formula
+                    <span class="buzzword-tooltip hidden">Burns fluid resuscitation: 4 mL × body weight (kg) × %TBSA burned. Give half in first 8 hours, second half over next 16 hours. Use Lactated Ringer's.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Rule of nines
+                    <span class="buzzword-tooltip hidden">TBSA estimation: Head 9%, each arm 9%, anterior trunk 18%, posterior trunk 18%, each leg 18%, perineum 1%. Palmar surface of hand = 1% TBSA.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Wound dehiscence
+                    <span class="buzzword-tooltip hidden">Surgical wound separation. Risk: malnutrition, obesity, steroids, diabetes, infection. Serosanguinous discharge ("salmon-colored") heralds evisceration. Emergent repair needed.</span>
+                </span>
+                <span class="buzzword" onclick="toggleBuzzword(this)">
+                    Keloid vs hypertrophic scar
+                    <span class="buzzword-tooltip hidden">Keloid extends BEYOND wound borders (does not regress). Hypertrophic stays WITHIN wound borders (may regress). Keloids: more common in darker skin, treat with steroid injection/excision+radiation.</span>
+                </span>
+            </div>
+
+            <div class="summary">
+                <h4>📝 Key Concepts</h4>
+
+                <h3>Phases of Wound Healing</h3>
+                <ul>
+                    <li><strong>Hemostasis (minutes):</strong> Platelet plug, fibrin clot formation</li>
+                    <li><strong>Inflammatory (days 1-4):</strong> Neutrophils (first 24-48 hrs) → macrophages (most important cell for wound healing)</li>
+                    <li><strong>Proliferative (days 4-21):</strong> Fibroblasts deposit collagen (type III first → replaced by type I), angiogenesis, granulation tissue</li>
+                    <li><strong>Remodeling (weeks to months):</strong> Type III collagen replaced by type I, wound contraction; max tensile strength ~80% at 8 weeks</li>
+                </ul>
+
+                <h3>Factors Impairing Wound Healing</h3>
+                <ul>
+                    <li><strong>Local:</strong> Infection (#1 cause of impaired healing), ischemia, radiation, foreign bodies</li>
+                    <li><strong>Systemic:</strong> Malnutrition (albumin <3), diabetes, steroids, chemotherapy, smoking, vitamin C deficiency</li>
+                    <li><strong>Vitamin C deficiency:</strong> Impaired collagen cross-linking (hydroxylation of proline/lysine) → poor wound healing, scurvy</li>
+                    <li><strong>Zinc deficiency:</strong> Impaired cell division and immune function → poor healing</li>
+                </ul>
+
+                <h3>Wound Closure Types</h3>
+                <ul>
+                    <li><strong>Primary intention:</strong> Clean wound closed immediately (surgical incision)</li>
+                    <li><strong>Secondary intention:</strong> Wound left open to heal by granulation (contaminated/infected wounds)</li>
+                    <li><strong>Tertiary (delayed primary):</strong> Wound left open initially, then closed after 3-5 days (contaminated wound, cleaned then closed)</li>
+                </ul>
+
+                <h3>Burns Management</h3>
+                <ul>
+                    <li><strong>Superficial (1st degree):</strong> Painful, red, no blisters (sunburn). Heals in 3-5 days</li>
+                    <li><strong>Partial thickness (2nd degree):</strong> Blisters, painful, moist. Superficial partial → heals in 2-3 weeks; deep partial → may need grafting</li>
+                    <li><strong>Full thickness (3rd degree):</strong> Painless, leathery, waxy. Requires excision and skin grafting</li>
+                    <li><strong>Fluid resuscitation:</strong> Parkland formula: 4 mL × kg × %TBSA (½ in first 8 hrs from time of burn)</li>
+                    <li><strong>Escharotomy:</strong> Circumferential full-thickness burns → compartment syndrome risk → escharotomy to release pressure</li>
+                    <li><strong>Inhalation injury:</strong> Singed nasal hairs, hoarse voice, carbonaceous sputum → early intubation</li>
+                </ul>
+
+                <h3>Wound Dehiscence & Evisceration</h3>
+                <ul>
+                    <li><strong>Risk factors:</strong> Malnutrition, obesity, diabetes, steroids, wound infection, coughing/straining</li>
+                    <li><strong>Warning sign:</strong> Serosanguinous ("salmon-colored") drainage from wound on days 5-8</li>
+                    <li><strong>Evisceration:</strong> Bowel protrudes through wound → cover with moist saline gauze → emergent OR</li>
+                </ul>
+            </div>
+
+            <div class="pearl">
+                <h4>💎 Clinical Pearls</h4>
+                <ul>
+                    <li>Macrophages are the MOST important cell in wound healing (direct fibroblasts, angiogenesis)</li>
+                    <li>Infection is the #1 cause of impaired wound healing</li>
+                    <li>Maximum wound tensile strength is only ~80% of original (never reaches 100%)</li>
+                    <li>Parkland formula: Calculate from time of BURN, not time of arrival to hospital</li>
+                    <li>Circumferential burn → escharotomy (not fasciotomy) to prevent compartment syndrome</li>
+                    <li>Salmon-colored drainage from wound = impending dehiscence → inspect wound and prepare for OR</li>
+                    <li>Full thickness burns are painless (nerve endings destroyed)</li>
+                </ul>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 1</h4>
+                <p class="question-text">A 35-year-old man is rescued from a house fire with burns to his entire anterior trunk and both arms. He weighs 80 kg. Using the Parkland formula, how much fluid should he receive in the first 8 hours?</p>
+                <ul class="choices">
+                    <li>5,760 mL</li>
+                    <li>11,520 mL</li>
+                    <li>2,880 mL</li>
+                    <li>7,680 mL</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: A - 5,760 mL</h5>
+                    <p><strong>Explanation:</strong> TBSA: Anterior trunk (18%) + both arms (9% × 2 = 18%) = 36%. Parkland formula: 4 mL × 80 kg × 36% = 11,520 mL total in 24 hours. Half is given in the first 8 hours: 11,520 ÷ 2 = 5,760 mL. Use Lactated Ringer's solution.</p>
+                </div>
+            </div>
+
+            <div class="practice-question">
+                <h4>Practice Question 2</h4>
+                <p class="question-text">On postoperative day 6 after an open colectomy, a 68-year-old obese man with diabetes notices a gush of salmon-colored fluid from his abdominal wound when he coughs. What is the most appropriate next step?</p>
+                <ul class="choices">
+                    <li>Apply butterfly bandages</li>
+                    <li>Observe and change dressing</li>
+                    <li>Return to the operating room</li>
+                    <li>Apply wound vacuum</li>
+                </ul>
+                <button class="toggle-answer" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer answer-hidden">
+                    <h5>Answer: C - Return to the operating room</h5>
+                    <p><strong>Explanation:</strong> Serosanguinous drainage on POD 5-8 is a classic warning sign of wound dehiscence and impending evisceration. This patient has multiple risk factors (obesity, diabetes). The wound needs operative exploration and repair. If bowel is protruding, cover with moist saline gauze and take emergently to OR.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleAnswer(button) {
+            const answerDiv = button.nextElementSibling;
+            if (answerDiv.classList.contains('answer-hidden')) {
+                answerDiv.classList.remove('answer-hidden');
+                button.textContent = 'Hide Answer';
+            } else {
+                answerDiv.classList.add('answer-hidden');
+                button.textContent = 'Show Answer';
+            }
+        }
+
+        function toggleBuzzword(buzzwordElement) {
+            const tooltip = buzzwordElement.querySelector('.buzzword-tooltip');
+            if (!tooltip) return;
+
+            const overlay = document.getElementById('buzzword-overlay');
+            const title = document.getElementById('buzzword-overlay-title');
+            const body = document.getElementById('buzzword-overlay-body');
+
+            // Get the buzzword label (text content minus the tooltip text)
+            const buzzwordText = buzzwordElement.childNodes[0].textContent.trim();
+            title.textContent = buzzwordText;
+            body.textContent = tooltip.textContent.trim();
+
+            overlay.classList.remove('hidden');
+        }
+
+        function closeBuzzwordOverlay() {
+            document.getElementById('buzzword-overlay').classList.add('hidden');
+        }
+
+        // Back to top button visibility
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

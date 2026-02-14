@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surgery Study Guide - Login</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+h1 { font-size: 1.5em; margin-bottom: 8px; color: #333; }
+p { color: #666; margin-bottom: 24px; font-size: 0.95em; }
+input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+input[type="password"]:focus {
+    border-color: #667eea;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+button:hover { opacity: 0.9; }
+.error {
+    color: #e53e3e;
+    margin-top: 12px;
+    font-size: 0.9em;
+    display: none;
+}
+</style>
+</head>
+<body>
+<div class="login-box">
+    <h1>Surgery Study Guide</h1>
+    <p>Enter the password to access the study materials.</p>
+    <form onsubmit="return handleLogin()">
+        <input type="password" id="pw" placeholder="Password" autofocus>
+        <button type="submit">Enter</button>
+    </form>
+    <div class="error" id="error">Incorrect password. Try again.</div>
+</div>
+<script>
+const HASH = '8750b1c70c66ee87a31cede20e17d62a458de31a5f7bbcb5fe5aea08579db229';
+
+async function sha256(msg) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function handleLogin() {
+    const pw = document.getElementById('pw').value;
+    const hash = await sha256(pw);
+    if (hash === HASH) {
+        sessionStorage.setItem('surgery_auth', hash);
+        const redirect = new URLSearchParams(window.location.search).get('r') || 'index.html';
+        window.location.href = redirect;
+    } else {
+        document.getElementById('error').style.display = 'block';
+    }
+    return false;
+}
+
+// If already authenticated, redirect
+if (sessionStorage.getItem('surgery_auth') === HASH) {
+    const redirect = new URLSearchParams(window.location.search).get('r') || 'index.html';
+    window.location.href = redirect;
+}
+</script>
+</body>
+</html>
