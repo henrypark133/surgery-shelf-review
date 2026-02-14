@@ -1,0 +1,2481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surgery Shelf Exam - Study Guide</title>
+<style>
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.6; max-width: 920px; margin: 0 auto; padding: 20px;
+}
+header { text-align: center; margin-bottom: 24px; }
+header h1 { font-size: 26px; margin-bottom: 4px; }
+header p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+.controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.controls button {
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--card-bg); cursor: pointer; font-size: 13px; color: var(--text);
+}
+.controls button:hover { background: #f1f5f9; }
+#search {
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 14px; width: 260px; outline: none;
+}
+#search:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+nav#toc {
+  display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;
+  margin-bottom: 20px; padding: 12px; background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+nav#toc a {
+  font-size: 11px; padding: 3px 8px; text-decoration: none;
+  color: var(--text-muted); border-radius: 4px; white-space: nowrap;
+}
+nav#toc a:hover { background: #f1f5f9; color: var(--text); }
+.topic { margin-bottom: 6px; }
+.topic-header {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--cat-color, #64748b);
+  border-radius: 8px; cursor: pointer;
+  font-size: 15px; font-weight: 700; text-align: left;
+  transition: background 0.15s; color: var(--text);
+}
+.topic-header:hover { background: #f1f5f9; }
+.topic-header[aria-expanded="true"] { border-radius: 8px 8px 0 0; border-bottom: none; }
+.topic-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--cat-color, #64748b); color: #fff;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.topic-title { flex: 1; }
+.chevron { margin-left: auto; font-size: 11px; transition: transform 0.2s; color: var(--text-muted); }
+.topic-header[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.topic-body {
+  display: none; padding: 14px 18px; background: var(--card-bg);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+.topic-body.open { display: block; }
+.topic-body h3 {
+  font-size: 14px; color: var(--text); margin: 14px 0 5px;
+  padding-bottom: 3px; border-bottom: 1px solid var(--border);
+}
+.topic-body h3:first-child { margin-top: 0; }
+.topic-body ul, .topic-body ol { padding-left: 20px; margin: 5px 0; }
+.topic-body li { margin: 3px 0; font-size: 13.5px; }
+.topic-body p { font-size: 13.5px; margin: 5px 0; }
+.topic-body table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12.5px; }
+.topic-body th, .topic-body td { padding: 6px 8px; border: 1px solid var(--border); text-align: left; }
+.topic-body th { background: #f1f5f9; font-weight: 600; }
+.term {
+  color: #2563eb; border-bottom: 1px dashed #2563eb;
+  cursor: pointer; font-weight: 600;
+}
+.term:hover { background: #dbeafe; border-radius: 2px; }
+.pearl {
+  background: #fef3c7; border-left: 3px solid #f59e0b;
+  padding: 7px 11px; margin: 7px 0; border-radius: 0 4px 4px 0; font-size: 13px;
+}
+.dx-box {
+  background: #dbeafe; border-left: 3px solid #3b82f6;
+  padding: 7px 11px; margin: 7px 0; border-radius: 0 4px 4px 0; font-size: 13px;
+}
+.tx-box {
+  background: #d1fae5; border-left: 3px solid #10b981;
+  padding: 7px 11px; margin: 7px 0; border-radius: 0 4px 4px 0; font-size: 13px;
+}
+
+.img-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.img-card { flex: 1; min-width: 140px; max-width: 280px; text-align: center; }
+.img-card img { width: 100%; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
+.img-card img:hover { transform: scale(1.03); }
+.img-card .caption { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.img-card .source-link { font-size: 10px; color: #3b82f6; text-decoration: none; }
+.img-card .source-link:hover { text-decoration: underline; }
+/* Lightbox */
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center; cursor:pointer; }
+#lightbox.active { display:flex; }
+#lightbox img { max-width:90%; max-height:90%; border-radius:8px; box-shadow:0 0 40px rgba(0,0,0,0.5); }
+
+#tooltip {
+  position: absolute; display: none; background: #1e293b; color: #f8fafc;
+  padding: 8px 14px; border-radius: 6px; font-size: 13px;
+  max-width: 340px; line-height: 1.4; z-index: 1000;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3); pointer-events: none;
+}
+#tooltip::before {
+  content: ""; position: absolute; top: -6px; left: 50%;
+  transform: translateX(-50%); border-left: 6px solid transparent;
+  border-right: 6px solid transparent; border-bottom: 6px solid #1e293b;
+}
+@media (max-width: 640px) {
+  body { padding: 12px; }
+  .topic-header { font-size: 13px; padding: 10px 12px; }
+  .topic-body { padding: 10px 12px; }
+  
+.img-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.img-card { flex: 1; min-width: 140px; max-width: 280px; text-align: center; }
+.img-card img { width: 100%; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
+.img-card img:hover { transform: scale(1.03); }
+.img-card .caption { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.img-card .source-link { font-size: 10px; color: #3b82f6; text-decoration: none; }
+.img-card .source-link:hover { text-decoration: underline; }
+/* Lightbox */
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center; cursor:pointer; }
+#lightbox.active { display:flex; }
+#lightbox img { max-width:90%; max-height:90%; border-radius:8px; box-shadow:0 0 40px rgba(0,0,0,0.5); }
+
+#tooltip { max-width: 260px; font-size: 12px; }
+  #search { width: 100%; }
+  .controls { flex-direction: column; align-items: stretch; }
+}
+#auth-screen {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5000; flex-direction: column;
+}
+#auth-screen .auth-box {
+  background: #fff; border-radius: 16px; padding: 40px 36px; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4); max-width: 380px; width: 90%;
+}
+#auth-screen h2 { font-size: 22px; margin-bottom: 6px; color: #1e293b; }
+#auth-screen p { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+#auth-screen input {
+  width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px;
+  font-size: 15px; outline: none; text-align: center; letter-spacing: 2px;
+}
+#auth-screen input:focus { border-color: #3b82f6; }
+#auth-screen .auth-btn {
+  margin-top: 14px; width: 100%; padding: 12px; border: none; border-radius: 8px;
+  background: #3b82f6; color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+#auth-screen .auth-btn:hover { background: #2563eb; }
+#auth-screen .auth-error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+#app-content { display: none; }
+</style>
+</head>
+<body>
+<div id="auth-screen">
+  <div class="auth-box">
+    <h2>Surgery Shelf Review</h2>
+    <p>Enter the password to access the study guide</p>
+    <input type="password" id="auth-input" placeholder="Password" autocomplete="off">
+    <button class="auth-btn" id="auth-btn">Enter</button>
+    <div class="auth-error" id="auth-error">Incorrect password. Try again.</div>
+  </div>
+</div>
+<div id="app-content">
+<header>
+  <h1>Surgery Shelf Exam Review</h1>
+  <p>Based on Emma Holliday Ramahi's High Yield Surgery &mdash; Click any <span class="term" style="cursor:default">blue term</span> for its definition</p>
+  <div class="controls">
+    <button id="expand-all">Expand All</button>
+    <button id="collapse-all">Collapse All</button>
+    <input type="text" id="search" placeholder="Search topics...">
+  </div>
+</header>
+<nav id="toc"></nav>
+<main id="content">
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">1</span>
+    <span class="topic-title">Pre-Op Evaluation</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Absolute Contraindications</h3>
+    <ul>
+      <li><span class="term" data-def="Dangerous high blood sugar from lack of insulin">Diabetic coma</span></li>
+      <li><span class="term" data-def="Diabetic ketoacidosis, life-threatening metabolic crisis">DKA</span></li>
+    </ul>
+
+    <h3>Poor Nutritional Status</h3>
+    <ul>
+      <li>Albumin <3 g/dL</li>
+      <li>Transferrin <200 mg/dL</li>
+      <li>Weight loss >20%</li>
+    </ul>
+
+    <h3>Severe Liver Failure</h3>
+    <ul>
+      <li>Bilirubin >2 mg/dL</li>
+      <li><span class="term" data-def="Prothrombin time, measures blood clotting ability">PT</span> >16 seconds</li>
+      <li><span class="term" data-def="Ammonia level in blood, toxic if elevated">Ammonia</span> >150 or encephalopathy</li>
+    </ul>
+
+    <h3>Smoking & CO2 Retention</h3>
+    <ul>
+      <li>Stop smoking at least 8 weeks prior to surgery</li>
+      <li>If patient is a <span class="term" data-def="Patient who retains CO2 with respiratory disease">CO2 retainer</span>, use cautious post-op oxygen</li>
+    </ul>
+
+    <h3>Goldman's Cardiac Risk Index</h3>
+    <ul>
+      <li><strong>#1: Congestive heart failure</strong> — Check ejection fraction; if <35%, do not operate</li>
+      <li><strong>#2: MI within 6 months</strong> — Get <span class="term" data-def="Electrocardiogram">EKG</span> → stress test → cardiac catheterization → revascularization if needed</li>
+      <li><strong>#3: Arrhythmia</strong></li>
+      <li><strong>#4: Age >70</strong></li>
+      <li><strong>#5: Emergent surgery</strong></li>
+      <li><strong>#6: Aortic stenosis/poor medical condition/chest or abdominal surgery</strong></li>
+    </ul>
+
+    <h3>Aortic Stenosis Murmur</h3>
+    <ul>
+      <li>Late systolic crescendo-decrescendo</li>
+      <li>Radiates to carotids</li>
+      <li>Louder with squatting (increases preload)</li>
+      <li>Softer with decreased preload</li>
+    </ul>
+
+    <h3>Medications to Discontinue</h3>
+    <ul>
+      <li>Aspirin, <span class="term" data-def="Non-steroidal anti-inflammatory drugs">NSAIDs</span>, Vitamin E: stop 2 weeks prior</li>
+      <li>Warfarin: stop 5 days prior, aim for <span class="term" data-def="International normalized ratio, blood thinning level">INR</span> <1.5; can use vitamin K</li>
+      <li>Insulin: take half the morning dose if diabetic</li>
+    </ul>
+
+    <h3>CKD on Dialysis</h3>
+    <ul>
+      <li>Dialyze 24 hours before surgery</li>
+      <li><span class="term" data-def="Blood urea nitrogen, waste product">BUN</span> >100 = increased post-op bleeding risk</li>
+      <li>Cause: uremic platelet dysfunction (normal platelet count but prolonged bleeding time)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">2</span>
+    <span class="topic-title">Ventilator Settings</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Vent Modes</h3>
+    <ul>
+      <li><strong>Assist-Control:</strong> Set tidal volume and rate; if patient takes a breath, vent delivers full volume</li>
+      <li><strong>Pressure Support:</strong> Patient controls rate; vent provides boost of pressure (8-20 cm H2O). Important for weaning off vent</li>
+      <li><strong><span class="term" data-def="Continuous positive airway pressure">CPAP</span>:</strong> Patient breathes on own but positive pressure given continuously</li>
+      <li><strong><span class="term" data-def="Positive end-expiratory pressure">PEEP</span>:</strong> Pressure at end of breath cycle to keep alveoli open (5-20 cm H2O). Used in <span class="term" data-def="Acute respiratory distress syndrome">ARDS</span> or <span class="term" data-def="Congestive heart failure">CHF</span></li>
+    </ul>
+
+    <h3>Managing Ventilator Patients</h3>
+    <ul>
+      <li>Best test: <span class="term" data-def="Arterial blood gas, checks oxygen, CO2, pH">ABG</span></li>
+    </ul>
+
+    <h3>If Low PaO2</h3>
+    <ul>
+      <li>Increase <span class="term" data-def="Fraction of inspired oxygen">FiO2</span> (oxygen percentage)</li>
+    </ul>
+
+    <h3>If High PaO2</h3>
+    <ul>
+      <li>Decrease FiO2</li>
+    </ul>
+
+    <h3>If Low PaCO2 (High pH)</h3>
+    <ul>
+      <li>Decrease respiratory rate or tidal volume</li>
+    </ul>
+
+    <h3>If High PaCO2 (Low pH)</h3>
+    <ul>
+      <li>Increase respiratory rate or tidal volume</li>
+      <li>Tidal volume is more efficient to change (remember minute ventilation and dead space)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">3</span>
+    <span class="topic-title">Acid-Base Disorders</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Acidosis (pH <7.4)</h3>
+    <ul>
+      <li><strong>High HCO3 + High pCO2:</strong> Respiratory acidosis (lungs can't blow off CO2)</li>
+      <li><strong>Low HCO3 + Low pCO2:</strong> Metabolic acidosis (body losing acid or HCO3)</li>
+    </ul>
+
+    <h3>Anion Gap</h3>
+    <ul>
+      <li>Calculate: Na - (Cl + HCO3)</li>
+      <li>Normal: 8-12</li>
+      <li><strong>Gap acidosis:</strong> <span class="term" data-def="Methanol, uremia, DKA, paraldehyde, isoniazid, lactic acid, ethylene glycol">MUDPILES</span></li>
+      <li><strong>Non-gap acidosis:</strong> Diarrhea, diuretics, <span class="term" data-def="Renal tubular acidosis">RTA</span> (Type I, II, or IV)</li>
+    </ul>
+
+    <h3>Alkalosis (pH >7.4)</h3>
+    <ul>
+      <li><strong>Low HCO3 + Low pCO2:</strong> Respiratory alkalosis (lungs blowing off too much CO2)</li>
+      <li><strong>High HCO3 + High pCO2:</strong> Metabolic alkalosis (body retaining acid or losing HCO3)</li>
+    </ul>
+
+    <h3>Metabolic Alkalosis — Check Urine Chloride</h3>
+    <ul>
+      <li><strong>Urine Cl <20:</strong> Vomiting, <span class="term" data-def="Nasogastric tube">NG</span> tube, antacids, or diuretics (responsive to saline)</li>
+      <li><strong>Urine Cl >20:</strong> <span class="term" data-def="Aldosterone-producing tumor">Conn's</span> syndrome, <span class="term" data-def="Rare salt-wasting kidney disorder">Bartter's</span> syndrome, or <span class="term" data-def="Similar to Bartter's, affects blood pressure differently">Gitelman's</span> syndrome (not responsive to saline)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">4</span>
+    <span class="topic-title">Sodium Abnormalities</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Low Sodium (Hyponatremia)</h3>
+    <p>Check osmolality first, then assess volume status.</p>
+
+    <h3>Low Sodium + High Volume</h3>
+    <ul>
+      <li><span class="term" data-def="Congestive heart failure">CHF</span></li>
+      <li><span class="term" data-def="Kidney disease with protein loss">Nephrotic syndrome</span></li>
+      <li>Cirrhosis</li>
+    </ul>
+
+    <h3>Low Sodium + Low Volume</h3>
+    <ul>
+      <li>Diuretics or vomiting + free water intake</li>
+    </ul>
+
+    <h3>Low Sodium + Normal Volume</h3>
+    <ul>
+      <li><span class="term" data-def="Syndrome of inappropriate antidiuretic hormone secretion">SIADH</span></li>
+      <li><span class="term" data-def="Adrenal gland failure">Addison's disease</span></li>
+      <li>Hypothyroidism</li>
+    </ul>
+
+    <h3>Treatment of Hyponatremia</h3>
+    <ul>
+      <li>Fluid restriction & diuretics for euvolemic</li>
+      <li><span class="term" data-def="Normal saline, 0.9% salt solution">NS</span> for hypovolemic</li>
+      <li>3% saline if symptomatic (seizures) or Na <110 mEq/L</li>
+      <li>Watch for <span class="term" data-def="Brain damage from correcting sodium too quickly">central pontine myelinolysis</span></li>
+    </ul>
+
+    <h3>High Sodium (Hypernatremia)</h3>
+    <ul>
+      <li>Loss of water</li>
+      <li>Treatment: Replace with D5W or hypotonic fluid</li>
+      <li>Watch for <span class="term" data-def="Brain swelling from low sodium environment">cerebral edema</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">5</span>
+    <span class="topic-title">Other Electrolytes (K, Ca)</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Low Calcium (Hypocalcemia)</h3>
+    <ul>
+      <li>Symptoms: Numbness, <span class="term" data-def="Facial twitching with cheek tap">Chvostek sign</span>, <span class="term" data-def="Hand muscle spasm with BP cuff">Trousseau sign</span>, prolonged <span class="term" data-def="Time for heart to repolarize">QT</span></li>
+      <li>Diagnosis: Check serum calcium and ionized calcium</li>
+    </ul>
+
+    <h3>High Calcium (Hypercalcemia)</h3>
+    <ul>
+      <li>Symptoms: "Bones, stones, groans, and psychiatric overtones"</li>
+      <li>EKG: Shortened QT</li>
+      <li>Diagnosis: Check parathyroid hormone and vitamin D levels</li>
+    </ul>
+
+    <h3>Low Potassium (Hypokalemia)</h3>
+    <ul>
+      <li>Symptoms: Paralysis, ileus</li>
+      <li>EKG: <span class="term" data-def="ST segment depressed below baseline">ST depression</span>, U waves</li>
+      <li>Treatment: Give potassium (watch kidney function), max 40 mEq/hr IV</li>
+    </ul>
+
+    <h3>High Potassium (Hyperkalemia)</h3>
+    <ul>
+      <li>EKG: Peaked T waves, prolonged <span class="term" data-def="Time from atrial to ventricular activation">PR</span> and <span class="term" data-def="Width of ventricular depolarization">QRS</span>, sine waves</li>
+      <li><strong>Treatment (in order):</strong></li>
+      <li>Calcium gluconate first (protects heart)</li>
+      <li>Insulin + glucose (shifts K into cells)</li>
+      <li>Kayexalate (removes K from gut)</li>
+      <li>Albuterol (shifts K into cells)</li>
+      <li>Sodium bicarbonate (shifts K into cells)</li>
+      <li>Last resort: Dialysis</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #3b82f6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">6</span>
+    <span class="topic-title">Fluid and Nutrition</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Maintenance IV Fluids</h3>
+    <ul>
+      <li>Solution: D5 half-normal saline + 20 mEq potassium chloride (if patient is urinating)</li>
+      <li><strong>Calculation (daily):</strong></li>
+      <li>First 10 kg: 100 mL/kg/day</li>
+      <li>Next 10 kg: 50 mL/kg/day</li>
+      <li>All kg above 20: 20 mL/kg/day</li>
+    </ul>
+
+    <h3>Enteral Nutrition</h3>
+    <ul>
+      <li>Best choice whenever possible</li>
+      <li>Keeps gut mucosa intact</li>
+      <li>Prevents bacterial translocation into bloodstream</li>
+    </ul>
+
+    <h3>Total Parenteral Nutrition (TPN)</h3>
+    <ul>
+      <li>Use only if gut cannot absorb food (physical or functional loss)</li>
+      <li><strong>Risks:</strong></li>
+      <li><span class="term" data-def="Gallbladder inflammation without stones">Acalculous cholecystitis</span></li>
+      <li>Hyperglycemia</li>
+      <li>Liver dysfunction</li>
+      <li>Zinc deficiency</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">7</span>
+    <span class="topic-title">Burns</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-000.png" alt="1st Degree Burn — superficial, red, painful" loading="lazy"><div class="caption">1st Degree Burn — superficial, red, painful</div></div>
+<div class="img-card"><img src="images/slide-001.png" alt="2nd Degree Burn — blistering, partial thickness" loading="lazy"><div class="caption">2nd Degree Burn — blistering, partial thickness</div></div>
+<div class="img-card"><img src="images/slide-002.png" alt="3rd Degree Burn — full thickness, charred/leathery" loading="lazy"><div class="caption">3rd Degree Burn — full thickness, charred/leathery</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-003.png" alt="Rule of 9s — body surface area estimation" loading="lazy"><div class="caption">Rule of 9s — body surface area estimation</div></div></div>
+
+    <h3>Burn Depth Classification</h3>
+    <ul>
+      <li><strong>1st degree:</strong> Superficial (red, no blisters)</li>
+      <li><strong>2nd degree:</strong> Partial thickness (blisters)</li>
+      <li><strong>3rd degree:</strong> Full thickness (white, leathery, painless)</li>
+    </ul>
+
+    <h3>Special Considerations</h3>
+    <ul>
+      <li>Circumferential burns → consider escharotomy</li>
+      <li>Singed nose hairs, wheezing, soot in mouth → low threshold for intubation</li>
+    </ul>
+
+    <h3>Carbon Monoxide Poisoning</h3>
+    <ul>
+      <li>Symptoms: Confusion, headache, cherry red skin</li>
+      <li>Diagnosis: Check <span class="term" data-def="Carbon monoxide bound to hemoglobin">carboxyhemoglobin</span> level (pulse oximetry is useless)</li>
+      <li>Treatment: 100% oxygen; consider hyperbaric oxygen if very high CO-Hb</li>
+    </ul>
+
+    <h3>Burn Surface Area — Rule of 9s</h3>
+    <ul>
+      <li>Head/neck: 9%</li>
+      <li>Each arm: 9%</li>
+      <li>Front chest/abdomen: 18%</li>
+      <li>Back: 18%</li>
+      <li>Each leg: 18%</li>
+      <li>Perineum: 1%</li>
+    </ul>
+
+    <h3>Fluid Resuscitation — Parkland Formula</h3>
+    <ul>
+      <li>Formula: Body weight (kg) × %BSA burned × 3-4 mL (in adults) or × 2-4 mL (in children)</li>
+      <li>Give half over first 8 hours, rest over next 16 hours</li>
+      <li>Use <span class="term" data-def="Lactated Ringer's solution">LR</span> or <span class="term" data-def="Normal saline">NS</span></li>
+    </ul>
+
+    <h3>Topical Treatments</h3>
+    <ul>
+      <li><strong>Silver sulfadiazine:</strong> Doesn't penetrate eschar; can cause leukopenia</li>
+      <li><strong>Mafenide:</strong> Penetrates eschar but causes pain</li>
+      <li><strong>Silver nitrate:</strong> Doesn't penetrate; causes hypokalemia and hyponatremia</li>
+    </ul>
+
+    <h3>Chemical Burns</h3>
+    <ul>
+      <li>Irrigate with water for >30 minutes before going to ER</li>
+    </ul>
+
+    <h3>Electrical Burns</h3>
+    <ul>
+      <li>Get <span class="term" data-def="Electrocardiogram">EKG</span> first</li>
+      <li>If abnormal: 48 hours of continuous heart monitoring</li>
+      <li>Urine dipstick positive for blood but no RBCs on microscopy → <span class="term" data-def="Muscle protein in urine">myoglobinuria</span> → risk of <span class="term" data-def="Acute tubular necrosis, kidney damage">ATN</span></li>
+      <li>Check potassium level</li>
+    </ul>
+
+    <h3>Compartment Syndrome from Burns</h3>
+    <ul>
+      <li>Signs: Extremely tender, numb, white or cold extremity with barely detectable pulses</li>
+      <li>Diagnosis: Compartment pressure >30 mmHg or <span class="term" data-def="Five classic signs: pain, pallor, pulselessness, paresthesias, paralysis">5 Ps</span> present</li>
+      <li>Treatment: Fasciotomy</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #8b5cf6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">8</span>
+    <span class="topic-title">Clotting & Bleeding</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Thrombosis in Unusual Populations</h3>
+    <ul>
+      <li><strong>Clotting in elderly:</strong> Think cancer</li>
+      <li><strong>Edema + hypertension + foamy urine:</strong> <span class="term" data-def="Kidney disease with protein loss">Nephrotic syndrome</span></li>
+      <li><strong>Young person with positive family history:</strong> <span class="term" data-def="Genetic clotting disorder">Factor V Leiden</span></li>
+      <li><strong>Young woman with multiple spontaneous abortions:</strong> <span class="term" data-def="Antibody causing blood clots">Lupus anticoagulant</span></li>
+    </ul>
+
+    <h3>Special Clotting Defect: ATIII Deficiency</h3>
+    <ul>
+      <li>Heparin will NOT work (lacks antithrombin III to complex with)</li>
+    </ul>
+
+    <h3>HIT — Heparin-Induced Thrombocytopenia</h3>
+    <ul>
+      <li>Timeline: Decreased platelets + clots within 5-14 days of heparin exposure</li>
+      <li>Treatment: Switch to lepirudin or argatroban (NOT warfarin initially)</li>
+    </ul>
+
+    <h3>Bleeding Disorders</h3>
+    <ul>
+      <li><strong>Isolated low platelets:</strong> <span class="term" data-def="Immune thrombocytopenia">ITP</span> (immune destruction)</li>
+      <li><strong>Normal platelets + increased bleeding time and PTT:</strong> <span class="term" data-def="Von Willebrand disease, bleeding disorder">vWD</span></li>
+    </ul>
+
+    <h3>DIC — Disseminated Intravascular Coagulation</h3>
+    <ul>
+      <li>Findings: Low platelets + increased <span class="term" data-def="Prothrombin time">PT</span>/<span class="term" data-def="Partial thromboplastin time">PTT</span>/bleeding time + low fibrinogen + high <span class="term" data-def="D-dimer, shows fibrin breakdown">D-dimer</span> + schistocytes on blood smear</li>
+      <li>Causes: Gram-negative sepsis, carcinomatosis, obstetric complications</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">9</span>
+    <span class="topic-title">Trauma — Airway/Breathing</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>When to Intubate (Secure Airway)</h3>
+    <ul>
+      <li>Unconscious trauma patient</li>
+      <li><span class="term" data-def="Glasgow Coma Scale, rates consciousness">GCS</span> <8</li>
+      <li>Bee sting with stridor or tripod posturing</li>
+      <li>Stab wound to neck, GCS 15, with expanding lateral neck mass</li>
+    </ul>
+
+    <h3>Alternative Airway Approach</h3>
+    <ul>
+      <li><strong>Stab wound to neck with anterior neck crepitus (crackling):</strong> Use fiberoptic bronchoscope (avoid standard intubation tube trauma)</li>
+    </ul>
+
+    <h3>Emergency Airway: Cricothyroidotomy</h3>
+    <ul>
+      <li>When: Massive facial trauma, blood obscuring airway, GCS 7, cannot intubate normally</li>
+    </ul>
+
+    <h3>After Intubation</h3>
+    <ul>
+      <li>Check bilateral breath sounds immediately</li>
+      <li><strong>If decreased on left:</strong> Right mainstem intubation → pull back <span class="term" data-def="Endotracheal tube">ET</span> tube</li>
+      <li>Keep oxygen saturation >90% on pulse oximetry</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">10</span>
+    <span class="topic-title">Trauma — Chest</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-004.png" alt="CXR: Traumatic aortic injury — widened mediastinum" loading="lazy"><div class="caption">CXR: Traumatic aortic injury — widened mediastinum</div></div>
+<div class="img-card"><img src="images/slide-005.png" alt="CXR: Pneumothorax — absent lung markings" loading="lazy"><div class="caption">CXR: Pneumothorax — absent lung markings</div></div>
+<div class="img-card"><img src="images/slide-006.png" alt="CXR: Hemothorax — opacification of hemithorax" loading="lazy"><div class="caption">CXR: Hemothorax — opacification of hemithorax</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-007.png" alt="CXR: Pulmonary contusion — patchy infiltrate" loading="lazy"><div class="caption">CXR: Pulmonary contusion — patchy infiltrate</div></div></div>
+
+    <h3>Flail Chest</h3>
+    <ul>
+      <li>Definition: Inward movement of rib cage during inspiration caused by 3+ consecutive rib fractures</li>
+      <li>Treatment: Oxygen and aggressive pain control</li>
+    </ul>
+
+    <h3>Fat Embolism</h3>
+    <ul>
+      <li>When to suspect: After long bone fracture, especially femur</li>
+      <li>Symptoms: Confusion, petechial rash on chest/axilla/neck, acute shortness of breath</li>
+      <li>Diagnosis: Clinical; check oxygen saturation and imaging</li>
+    </ul>
+
+    <h3>Air Embolism</h3>
+    <ul>
+      <li>When to suspect: Sudden death after central line removal; also with lung trauma, mechanical ventilation, or open heart surgery</li>
+      <li>Prevention: Keep patient supine during central line removal</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">11</span>
+    <span class="topic-title">Trauma — Cardiovascular/Shock</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Hypovolemic/Hemorrhagic Shock</h3>
+    <ul>
+      <li>Presentation: Hypotensive + tachycardic, flat neck veins, normal <span class="term" data-def="Central venous pressure">CVP</span></li>
+      <li>Treatment: Two large-bore IVs, 2L crystalloid over 20 minutes, then blood products</li>
+    </ul>
+
+    <h3>Pericardial Tamponade</h3>
+    <ul>
+      <li><strong>Classic triad:</strong> Muffled heart sounds + <span class="term" data-def="Jugular venous distension">JVD</span> + electrical alternans (QRS alternates in size on EKG) + <span class="term" data-def="Drop in systolic BP >10 with inspiration">pulsus paradoxus</span></li>
+      <li>Confirm: <span class="term" data-def="Focused assessment with sonography for trauma">FAST</span> exam</li>
+      <li>Treatment: Needle decompression → pericardial window or median sternotomy for definitive care</li>
+    </ul>
+
+    <h3>Tension Pneumothorax</h3>
+    <ul>
+      <li>Presentation: Decreased breath sounds on one side + tracheal deviation AWAY from affected side</li>
+      <li><strong>DO NOT get CXR!</strong> This is a clinical diagnosis</li>
+      <li>Treatment: Needle decompression → chest tube</li>
+    </ul>
+
+    <h3>Shock Classification Table</h3>
+    <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+      <tr style="border-bottom:1px solid #ccc;">
+        <th style="text-align:left; padding:8px;">Type</th>
+        <th style="text-align:left; padding:8px;">Cause</th>
+        <th style="text-align:left; padding:8px;">Presentation</th>
+        <th style="text-align:left; padding:8px;">CVP/PCWP</th>
+        <th style="text-align:left; padding:8px;">SVR</th>
+        <th style="text-align:left; padding:8px;">CO</th>
+        <th style="text-align:left; padding:8px;">Treatment</th>
+      </tr>
+      <tr style="border-bottom:1px solid #ccc;">
+        <td style="padding:8px;"><strong>Hypovolemic</strong></td>
+        <td style="padding:8px;">Blood/fluid loss</td>
+        <td style="padding:8px;">Hypotensive, tachycardic, cool, clammy</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">Crystalloid IV fluids</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ccc;">
+        <td style="padding:8px;"><strong>Vasogenic (Septic/Anaphylactic)</strong></td>
+        <td style="padding:8px;">Decreased vascular resistance</td>
+        <td style="padding:8px;">Warm/dry early, later looks hypovolemic</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">Fluids + antibiotics/epinephrine</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ccc;">
+        <td style="padding:8px;"><strong>Neurogenic</strong></td>
+        <td style="padding:8px;">Spinal cord injury or adrenal insufficiency</td>
+        <td style="padding:8px;">Hypotensive, bradycardic, warm, dry, flaccid paralysis</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">Fluids; dexamethasone if adrenal crisis</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ccc;">
+        <td style="padding:8px;"><strong>Cardiocompressive (Tamponade)</strong></td>
+        <td style="padding:8px;">Cannot pump due to external pressure</td>
+        <td style="padding:8px;">Hypotensive, tachycardic, JVD, muffled heart sounds, pulsus paradoxus</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">Pericardiocentesis</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ccc;">
+        <td style="padding:8px;"><strong>Cardiogenic</strong></td>
+        <td style="padding:8px;">Heart pump failure</td>
+        <td style="padding:8px;">Shortness of breath, rales, S3 gallop, edema</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">↑</td>
+        <td style="padding:8px;">↓</td>
+        <td style="padding:8px;">Diuretics, rate control, vasopressors</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">12</span>
+    <span class="topic-title">Trauma — Head</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-008.png" alt="CT: Epidural hematoma — biconvex (lens-shaped)" loading="lazy"><div class="caption">CT: Epidural hematoma — biconvex (lens-shaped)</div></div>
+<div class="img-card"><img src="images/slide-009.png" alt="MRI: Acute subdural hematoma — crescent-shaped" loading="lazy"><div class="caption">MRI: Acute subdural hematoma — crescent-shaped</div></div>
+<div class="img-card"><img src="images/slide-010.png" alt="CT: Chronic subdural hematoma" loading="lazy"><div class="caption">CT: Chronic subdural hematoma</div></div></div>
+
+    <h3>Glasgow Coma Scale (GCS)</h3>
+    <ul>
+      <li>Eyes: 4 points</li>
+      <li>Motor: 6 points</li>
+      <li>Verbal: 5 points</li>
+      <li>Total: 15 (fully alert)</li>
+    </ul>
+
+    <h3>Types of Intracranial Hematoma</h3>
+    <ul>
+      <li><strong>Epidural:</strong> Between skull and dura; high mortality if untreated</li>
+      <li><strong>Acute subdural:</strong> Between dura and brain; very serious</li>
+      <li><strong>Chronic subdural:</strong> Delayed bleeding; can present weeks later</li>
+    </ul>
+
+    <h3>Increased Intracranial Pressure (ICP)</h3>
+    <ul>
+      <li><strong>Causes:</strong> Hematoma, brain edema, tumor</li>
+      <li><strong>Symptoms:</strong> Headache, vomiting, altered mental status</li>
+    </ul>
+
+    <h3>Management of Elevated ICP</h3>
+    <ul>
+      <li>Elevate head of bed 30 degrees</li>
+      <li>Hyperventilate to target <span class="term" data-def="Carbon dioxide in arterial blood">pCO2</span> 28-32 mmHg</li>
+      <li>Give mannitol (monitor kidney function)</li>
+      <li>Surgical: Ventriculostomy for monitoring and CSF drainage</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">13</span>
+    <span class="topic-title">Trauma — Neck</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-011.png" alt="Zones of the neck (I, II, III)" loading="lazy"><div class="caption">Zones of the neck (I, II, III)</div></div></div>
+
+    <h3>Penetrating Neck Trauma (Gunshot or Stab Wound)</h3>
+    <p>Classify by anatomic zone and manage accordingly.</p>
+
+    <h3>Zone 3 — Above Angle of Mandible</h3>
+    <ul>
+      <li>Workup: Aortography and triple endoscopy</li>
+      <li>High risk for intracranial and great vessel injury</li>
+    </ul>
+
+    <h3>Zone 2 — Angle of Mandible to Cricoid Cartilage</h3>
+    <ul>
+      <li>Workup: Doppler ultrasound ± exploratory surgery</li>
+      <li>Most common zone; easier access for surgery if needed</li>
+    </ul>
+
+    <h3>Zone 1 — Below Cricoid Cartilage</h3>
+    <ul>
+      <li>Workup: Aortography</li>
+      <li>High risk for great vessel and thoracic injury</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">14</span>
+    <span class="topic-title">Trauma — Penetrating Abdominal</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-012.png" alt="Abdominal trauma — evisceration/open wound" loading="lazy"><div class="caption">Abdominal trauma — evisceration/open wound</div></div></div>
+
+    <h3>Management Approach</h3>
+    <ul>
+      <li><strong>Gunshot wound:</strong> Mandatory exploratory laparotomy + tetanus prophylaxis</li>
+      <li><strong>Stab wound with instability:</strong> Immediate ex-lap if any of: rebound tenderness, rigidity, evisceration</li>
+      <li><strong>Stab wound stable:</strong> Serial observation; many resolve without surgery</li>
+      <li><strong>Blunt trauma unstable:</strong> <span class="term" data-def="Rapid ultrasound to detect free fluid in pelvis">FAST</span> exam first</li>
+      <li>If <span class="term" data-def="FAST inconclusive">equivocal</span> → <span class="term" data-def="Diagnostic peritoneal lavage">DPL</span></li>
+      <li>Positive FAST or DPL → ex-lap</li>
+    </ul>
+    <div class="pearl">GSW always goes to OR. Stable stab wounds can be observed with serial exams.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">15</span>
+    <span class="topic-title">Trauma — Blunt Abdominal</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Hemodynamic Status</h3>
+    <ul>
+      <li><strong>Unstable:</strong> Go directly to OR for ex-lap</li>
+      <li><strong>Stable:</strong> Get abdominal <span class="term" data-def="Cross-sectional imaging">CT</span> with contrast</li>
+    </ul>
+
+    <h3>Classic Injury Patterns</h3>
+    <ul>
+      <li><strong>Lower rib fractures + bleeding:</strong> Suspect spleen or liver laceration</li>
+      <li><strong>Lower rib fractures + hematuria:</strong> Kidney laceration</li>
+      <li><strong><span class="term" data-def="Sharp shoulder pain from diaphragm irritation">Kehr sign</span> + viscera in thorax on CXR:</strong> Diaphragm rupture</li>
+      <li><strong><span class="term" data-def="Horizontal bruising across abdomen from handlebar impact">Handlebar sign</span>:</strong> Pancreatic rupture</li>
+    </ul>
+
+    <h3>Diagnosis of Duodenal Injury</h3>
+    <ul>
+      <li>Stable with epigastric pain → CT with oral/IV/rectal contrast</li>
+      <li>Retroperitoneal fluid on imaging → suspect duodenal rupture</li>
+    </ul>
+    <div class="pearl">Retroperitoneal bleeds can be managed non-operatively if stable; keep monitoring.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">16</span>
+    <span class="topic-title">Trauma — Pelvic</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Hemorrhage from Pelvic Fractures</h3>
+    <ul>
+      <li>Hypotensive/tachycardic → FAST and <span class="term" data-def="Diagnostic peritoneal lavage">DPL</span> to rule out abdominal bleeding</li>
+      <li>Pelvis can bleed massively into retroperitoneum</li>
+      <li>Fracture stabilization required: external fixation if unstable, internal if stable</li>
+    </ul>
+
+    <h3>Urinary Tract Injury</h3>
+    <ul>
+      <li><strong>Warning signs:</strong> Blood at urethral meatus + high-riding prostate on DRE</li>
+      <li><strong>Do NOT place Foley catheter immediately</strong></li>
+      <li><strong>Next test:</strong> <span class="term" data-def="Urethrogram using retrograde contrast">Retrograde urethrogram</span> to look for injury</li>
+      <li>If normal urethrogram → proceed to retrograde cystogram</li>
+    </ul>
+
+    <h3>Bladder Injury Classification</h3>
+    <ul>
+      <li><strong>Extraperitoneal rupture:</strong> Look for extravasation on cystogram → bed rest + Foley drainage only</li>
+      <li><strong>Intraperitoneal rupture:</strong> Urine leaks into abdomen → requires ex-lap and surgical repair</li>
+    </ul>
+    <div class="pearl">Never catheterize blindly with pelvic fracture and blood at meatus—get urethrogram first.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ef4444">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">17</span>
+    <span class="topic-title">Trauma — Orthopedic</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-013.png" alt="CT: Depressed skull fracture" loading="lazy"><div class="caption">CT: Depressed skull fracture</div></div>
+<div class="img-card"><img src="images/slide-014.png" alt="X-ray: Colles fracture (distal radius)" loading="lazy"><div class="caption">X-ray: Colles fracture (distal radius)</div></div>
+<div class="img-card"><img src="images/slide-015.png" alt="X-ray: Scaphoid fracture" loading="lazy"><div class="caption">X-ray: Scaphoid fracture</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-016.png" alt="X-ray: Clavicle fracture" loading="lazy"><div class="caption">X-ray: Clavicle fracture</div></div>
+<div class="img-card"><img src="images/slide-017.png" alt="X-ray: Femoral neck fracture" loading="lazy"><div class="caption">X-ray: Femoral neck fracture</div></div>
+<div class="img-card"><img src="images/slide-018.png" alt="X-ray: Intertrochanteric fracture" loading="lazy"><div class="caption">X-ray: Intertrochanteric fracture</div></div></div>
+
+    <h3>Fractures Requiring Urgent OR</h3>
+    <ul>
+      <li>Depressed skull fractures</li>
+      <li>Severely displaced or angulated fractures</li>
+      <li>Any open (compound) fracture</li>
+      <li>Femoral neck or intertrochanteric fractures</li>
+    </ul>
+
+    <h3>Shoulder Injuries</h3>
+    <ul>
+      <li><strong>Posterior shoulder dislocation:</strong> Shoulder pain after seizure or electrical shock; arm held in adduction and internal rotation</li>
+      <li><strong>Anterior shoulder dislocation:</strong> Arm held outwardly rotated; <span class="term" data-def="Loss of sensation over lateral shoulder">deltoid numbness</span></li>
+    </ul>
+
+    <h3>Wrist & Hand Fractures</h3>
+    <ul>
+      <li><strong>Colles fracture:</strong> Elderly patient with <span class="term" data-def="Fall on outstretched hand">FOOSH</span>, distal radius fracture, dorsal angulation</li>
+      <li><strong>Scaphoid fracture:</strong> Young person with FOOSH; tenderness in anatomic snuffbox; always treat (high nonunion risk)</li>
+      <li><strong><span class="term" data-def="Fracture of 5th metacarpal neck from punch">Boxer's fracture</span>:</strong> Punched in face; may need K-wire fixation if rotated</li>
+      <li><strong>Clavicle fracture:</strong> Breaks between middle and distal 1/3 → figure-of-8 sling for immobilization</li>
+    </ul>
+    <div class="pearl">Scaphoid fractures are easy to miss on initial X-ray; treat if clinical suspicion high.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #f59e0b">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">18</span>
+    <span class="topic-title">Post-Op Fever</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-019.png" alt="CXR: Atelectasis — post-op day 1 fever cause" loading="lazy"><div class="caption">CXR: Atelectasis — post-op day 1 fever cause</div></div></div>
+
+    <h3>Postoperative Day 1</h3>
+    <ul>
+      <li><strong>Low-grade fever (<101°F) + non-productive cough:</strong> <span class="term" data-def="Lung collapse from shallow breathing">Atelectasis</span> (most common POD 1 fever)</li>
+      <li>CXR shows bilateral lower lobe fluffy infiltrates</li>
+      <li>Tx: mobilization, incentive spirometry, deep breathing</li>
+    </ul>
+    <ul>
+      <li><strong>High fever (104°F) + severely ill appearance:</strong> <span class="term" data-def="Rapidly spreading subq soft tissue infection">Necrotizing fasciitis</span></li>
+      <li>Spreads along Scarpa's fascia in subcutaneous tissue</li>
+      <li>Causative organisms: Group A beta-hemolytic streptococcus or <span class="term" data-def="Clostridium perfringens">C. perfringens</span></li>
+      <li>Tx: IV penicillin + immediate operative debridement</li>
+    </ul>
+    <ul>
+      <li><strong>High fever (>104°F) + muscle rigidity:</strong> <span class="term" data-def="Hypermetabolic crisis from anesthesia drugs">Malignant hyperthermia</span></li>
+      <li>Triggered by succinylcholine or halothane</li>
+      <li>Caused by ryanodine receptor genetic defect</li>
+      <li>Tx: Dantrolene sodium, cooling measures, aggressive fluids</li>
+    </ul>
+
+    <h3>Postoperative Days 3-5</h3>
+    <ul>
+      <li><strong>Fever + productive cough:</strong> Pneumonia; send sputum for culture and cover streptococcus pneumoniae</li>
+      <li><strong>Fever + dysuria/frequency (especially with Foley):</strong> <span class="term" data-def="Urinary tract infection">UTI</span></li>
+      <li>Tx: UA and culture, change Foley if indwelling, start broad-spectrum antibiotics</li>
+    </ul>
+
+    <h3>Postoperative Day 7+</h3>
+    <ul>
+      <li><strong>Pain at IV site:</strong> Central line infection; blood cultures from line, remove line, cover Staph</li>
+      <li><strong>Incision pain + edema but no drainage:</strong> Cellulitis; blood cultures + IV antibiotics</li>
+      <li><strong>Incision pain WITH purulent drainage:</strong> Simple wound infection; open/repack incision (no systemic antibiotics needed)</li>
+      <li><strong>Salmon-colored serous drainage from incision:</strong> <span class="term" data-def="Separation of fascial layers">Dehiscence</span> — surgical emergency</li>
+      <li>Tx: OR urgently, IV antibiotics, primary fascial closure</li>
+      <li><strong>Unexplained fever:</strong> Intra-abdominal abscess</li>
+      <li>Dx: CT with oral/IV/rectal contrast; Tx: percutaneous or operative drainage</li>
+    </ul>
+    <div class="pearl">Timeline matters: Day 1 = atelectasis, Day 3–5 = pneumonia/UTI, Day 7+ = wound/abscess.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #f59e0b">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">19</span>
+    <span class="topic-title">Pressure Ulcers</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-020.png" alt="Pressure Ulcer Stage 1 — non-blanchable erythema" loading="lazy"><div class="caption">Pressure Ulcer Stage 1 — non-blanchable erythema</div></div>
+<div class="img-card"><img src="images/slide-021.png" alt="Pressure Ulcer Stage 2 — partial thickness skin loss" loading="lazy"><div class="caption">Pressure Ulcer Stage 2 — partial thickness skin loss</div></div>
+<div class="img-card"><img src="images/slide-022.png" alt="Pressure Ulcer Stage 3 — full thickness, subcutaneous" loading="lazy"><div class="caption">Pressure Ulcer Stage 3 — full thickness, subcutaneous</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-023.png" alt="Pressure Ulcer Stage 4 — exposed bone/muscle/tendon" loading="lazy"><div class="caption">Pressure Ulcer Stage 4 — exposed bone/muscle/tendon</div></div></div>
+
+    <h3>Pathophysiology & Diagnosis</h3>
+    <ul>
+      <li>Caused by impaired blood flow leading to tissue ischemia</li>
+      <li>Do not culture ulcer (only finds skin flora, not cause)</li>
+      <li>Check <span class="term" data-def="Complete blood count">CBC</span> and blood cultures if infection suspected (may indicate bacteremia or osteomyelitis)</li>
+      <li>Tissue biopsy can rule out <span class="term" data-def="Squamous cell cancer arising in chronic wound">Marjolin's ulcer</span></li>
+    </ul>
+
+    <h3>Prevention</h3>
+    <ul>
+      <li><strong>Most effective:</strong> Turn patient every 2 hours</li>
+      <li>Use special mattresses and pressure-relief devices</li>
+      <li>Maintain skin integrity and manage moisture</li>
+    </ul>
+
+    <h3>Staging & Treatment</h3>
+    <ul>
+      <li><strong>Stage 1:</strong> Skin intact but red, non-blanching → special mattress, barrier protection</li>
+      <li><strong>Stage 2:</strong> Blister or break through dermis → special mattress, barrier protection</li>
+      <li><strong>Stage 3:</strong> Destruction into subcutaneous tissue and muscle → flap reconstruction</li>
+      <li><strong>Stage 4:</strong> Involvement of joint or bone → flap reconstruction</li>
+    </ul>
+
+    <h3>Prerequisites for Flap Reconstruction</h3>
+    <ul>
+      <li>Albumin must be ≥3.5 g/dL (nutritional support first)</li>
+      <li>Bacterial load must be <100,000 CFU/mL</li>
+    </ul>
+    <div class="pearl">Turning every 2 hours is the single best preventive measure.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #8b5cf6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">20</span>
+    <span class="topic-title">Thoracic</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-024.png" alt="CXR: Pleural effusion — meniscus sign" loading="lazy"><div class="caption">CXR: Pleural effusion — meniscus sign</div></div>
+<div class="img-card"><img src="images/slide-025.png" alt="CXR: Lung abscess — air-fluid level" loading="lazy"><div class="caption">CXR: Lung abscess — air-fluid level</div></div>
+<div class="img-card"><img src="images/slide-026.png" alt="CXR: Solitary pulmonary nodule" loading="lazy"><div class="caption">CXR: Solitary pulmonary nodule</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-027.png" alt="CXR: Lung cancer — hilar mass" loading="lazy"><div class="caption">CXR: Lung cancer — hilar mass</div></div>
+<div class="img-card"><img src="images/slide-028.png" alt="CXR: ARDS — bilateral diffuse infiltrates" loading="lazy"><div class="caption">CXR: ARDS — bilateral diffuse infiltrates</div></div></div>
+
+    <h3>Pleural Effusions</h3>
+    <ul>
+      <li><strong>Indication for thoracentesis:</strong> Fluid >1 cm on lateral decubitus X-ray</li>
+      <li><strong>Transudative causes:</strong> <span class="term" data-def="Congestive heart failure">CHF</span>, nephrotic syndrome, cirrhosis</li>
+      <li><strong>Exudative causes:</strong> Parapneumonic, malignancy</li>
+    </ul>
+    <ul>
+      <li><strong>Low pleural glucose:</strong> Rheumatoid arthritis</li>
+      <li><strong>High lymphocytes:</strong> Tuberculosis</li>
+      <li><strong>Bloody effusion:</strong> Malignancy or pulmonary embolism</li>
+    </ul>
+    <ul>
+      <li><strong>Complicated parapneumonic:</strong> Positive gram/culture, pH <7.2, glucose <60 → requires chest tube</li>
+    </ul>
+    <div class="dx-box"><strong>Light's Criteria (transudate if all met):</strong> Pleural LDH <200 IU/L, LDH ratio (eff/serum) <0.6, protein ratio (eff/serum) <0.5</div>
+
+    <h3>Spontaneous Pneumothorax</h3>
+    <ul>
+      <li>Caused by rupture of subpleural bleb</li>
+      <li>Classic: tall, thin young men with sudden dyspnea</li>
+      <li>Dx: chest X-ray</li>
+      <li>Tx: chest tube for complete collapse or symptoms</li>
+      <li><strong>Surgical indications (VATS ± pleurodesis):</strong> Recurrence, bilateral pneumothorax, incomplete lung expansion, or if patient is pilot/scuba diver/in remote location</li>
+    </ul>
+
+    <h3>Lung Abscess</h3>
+    <ul>
+      <li>Usually from aspiration; most common in posterior upper lobes or superior segments of lower lobes</li>
+      <li>Tx: IV penicillin or clindamycin</li>
+      <li>Surgery if: antibiotics fail, abscess >6 cm, or empyema present</li>
+    </ul>
+
+    <h3>Solitary Pulmonary Nodule</h3>
+    <ul>
+      <li><strong>First critical step:</strong> Find and review old chest X-rays (benign if unchanged for 2 years)</li>
+      <li><strong>Benign features:</strong> Popcorn calcification (hamartoma), concentric calcification (old granuloma), age <40, size <3 cm, well-circumscribed borders</li>
+      <li>Tx for benign: Serial CT or chest X-ray every 2 months</li>
+      <li><strong>Malignant features:</strong> Smoker, age >60, size >3 cm, eccentric calcification, irregular borders</li>
+      <li>Tx for malignant: Removal (bronchoscopy if central location, open biopsy if peripheral)</li>
+    </ul>
+
+    <h3>Lung Cancer Types</h3>
+    <ul>
+      <li><strong>Adenocarcinoma:</strong> Most common in non-smokers; arises in scars; peripheral location; metastasizes to liver, bone, brain, adrenals</li>
+      <li><strong>Squamous cell:</strong> Associated with paraneoplastic hypercalcemia (<span class="term" data-def="PTH-related peptide secretion">PTH-rP</span> production); central location; presents with kidney stones, constipation, malaise, low <span class="term" data-def="Parathyroid hormone">PTH</span></li>
+      <li><strong>Small cell:</strong> High mortality; associated with paraneoplastic syndromes:</li>
+      <ul>
+        <li><span class="term" data-def="Pancoast tumor syndrome: shoulder pain, Horner syndrome">Superior sulcus syndrome</span> (shoulder pain, ptosis, miosis, facial edema)</li>
+        <li><span class="term" data-def="Neuromuscular junction autoimmunity">Lambert-Eaton syndrome</span> (ptosis improves after 1 minute of upward gaze)</li>
+        <li><span class="term" data-def="Syndrome of inappropriate antidiuretic hormone">SIADH</span> (low sodium, moist membranes, no JVD; treat with fluid restriction)</li>
+      </ul>
+      <li><strong>Large cell:</strong> Peripheral cavitation; distant metastases</li>
+    </ul>
+
+    <h3>Acute Respiratory Distress Syndrome (ARDS)</h3>
+    <ul>
+      <li>Inflammatory injury → impaired gas exchange and pulmonary edema</li>
+      <li><strong>Common triggers:</strong> Sepsis, aspiration, trauma, pancreatitis</li>
+      <li><strong>Diagnostic criteria:</strong> <span class="term" data-def="Arterial partial pressure oxygen/fraction inspired oxygen ratio"><span class="term" data-def="Arterial oxygen partial pressure / FiO2 ratio">PaO2/FiO2</span></span> <200, bilateral infiltrates on CXR, <span class="term" data-def="Pulmonary capillary wedge pressure">PCWP</span> <18 (rules out cardiogenic)</li>
+      <li>Tx: Mechanical ventilation with <span class="term" data-def="Positive end-expiratory pressure">PEEP</span> to recruit alveoli</li>
+    </ul>
+    <div class="pearl">ARDS is defined by clinical picture + gas exchange impairment, not by cause alone.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #8b5cf6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">21</span>
+    <span class="topic-title">Cardiac Murmurs</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Systolic Ejection Murmurs</h3>
+    <ul>
+      <li><strong>Aortic stenosis:</strong> Systolic ejection murmur with crescendo-decrescendo (diamond-shaped)</li>
+      <ul>
+        <li>Louder with squatting (increased preload)</li>
+        <li>Softer with valsalva (decreased preload)</li>
+        <li>Associated with parvus et tardus pulse (weak, delayed carotid upstroke)</li>
+      </ul>
+      <li><strong>Hypertrophic obstructive cardiomyopathy (HOCM):</strong> Systolic ejection murmur</li>
+      <ul>
+        <li>Louder with valsalva or standing (decreases ventricular filling)</li>
+        <li>Softer with squatting or handgrip (increases preload)</li>
+      </ul>
+    </ul>
+
+    <h3>Holosystolic (Pansystolic) Murmurs</h3>
+    <ul>
+      <li><strong>Mitral regurgitation:</strong> High-pitched holosystolic murmur radiating to axilla; associated with left atrial enlargement</li>
+      <li><strong>Ventricular septal defect (VSD):</strong> Holosystolic murmur; in children may hear late diastolic rumble from increased mitral flow</li>
+    </ul>
+
+    <h3>Late Systolic Murmur</h3>
+    <ul>
+      <li><strong>Mitral valve prolapse:</strong> Late systolic murmur with mid-systolic click</li>
+      <ul>
+        <li>Louder with valsalva or handgrip (decreases ventricular volume, earlier prolapse)</li>
+        <li>Softer with squatting (increases preload, delays prolapse)</li>
+      </ul>
+    </ul>
+
+    <h3>Continuous Murmurs</h3>
+    <ul>
+      <li><strong>Patent ductus arteriosus (PDA):</strong> Continuous machine-like murmur throughout systole and diastole; associated with wide pulse pressure and hyperactive precordium</li>
+    </ul>
+
+    <h3>Diastolic Murmurs</h3>
+    <ul>
+      <li><strong>Mitral stenosis:</strong> Rumbling diastolic murmur; opening snap in early diastole; left atrial enlargement and atrial fibrillation common</li>
+      <li><strong>Aortic regurgitation:</strong> Blowing diastolic murmur; wide pulse pressure; hyperdynamic precordium</li>
+    </ul>
+
+    <h3>Fixed Split S2</h3>
+    <ul>
+      <li><strong>Atrial septal defect (ASD):</strong> Fixed, wide split S2 (doesn't vary with respiration); associated with atrial arrhythmias and paradoxical embolism</li>
+    </ul>
+    <div class="pearl">Remember Valsalva and Squatting: valsalva decreases volume (worsens AS/MS, improves MVP/HOCM); squatting increases it (opposite).</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">22</span>
+    <span class="topic-title">Esophagus</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-029.png" alt="Barium swallow: Zenker's diverticulum" loading="lazy"><div class="caption">Barium swallow: Zenker's diverticulum</div></div>
+<div class="img-card"><img src="images/slide-030.png" alt="Barium swallow: Achalasia — bird beak sign" loading="lazy"><div class="caption">Barium swallow: Achalasia — bird beak sign</div></div>
+<div class="img-card"><img src="images/slide-031.png" alt="Barium swallow: Esophageal stricture/cancer" loading="lazy"><div class="caption">Barium swallow: Esophageal stricture/cancer</div></div></div>
+
+    <h3>Zenker's Diverticulum</h3>
+    <ul>
+      <li>False diverticulum (only mucosa, no muscle layers)</li>
+      <li>Presents with halitosis (bad breath) and undigested food in morning</li>
+      <li>Can cause dysphagia and aspiration</li>
+      <li>Tx: Surgical repair (cricopharyngeal myotomy)</li>
+    </ul>
+
+    <h3>Achalasia</h3>
+    <ul>
+      <li>Dysphagia to <strong>both liquids AND solids</strong> (key feature)</li>
+      <li>Worse with temperature extremes (hot/cold)</li>
+      <li>Chest pain mimics <span class="term" data-def="Heart attack">MI</span>; typically NO regurgitation</li>
+      <li>Associated with Chagas disease and increased esophageal cancer risk</li>
+      <li>Tx: Calcium channel blockers, nitrates, botulinum toxin, or <span class="term" data-def="Surgical division of lower esophageal sphincter">Heller myotomy</span></li>
+    </ul>
+
+    <h3>Diffuse Esophageal Spasm</h3>
+    <ul>
+      <li>Similar presentation to achalasia (dysphagia, chest pain)</li>
+      <li>Tx: Calcium channel blockers or nitrates</li>
+    </ul>
+
+    <h3>Gastroesophageal Reflux Disease (GERD)</h3>
+    <ul>
+      <li>Epigastric pain worse after eating or lying down</li>
+      <li>Associated symptoms: cough, wheeze, hoarseness</li>
+      <li><strong>Most sensitive diagnostic test:</strong> 24-hour <span class="term" data-def="Acid measurement over 24 hours">pH monitoring</span></li>
+      <li>Endoscopy indicated if danger signs (dysphagia, hematemesis, weight loss)</li>
+      <li><strong>Treatment stepwise:</strong> Behavior modification → antacids → <span class="term" data-def="H2 receptor antagonist">H2 blockers</span> → <span class="term" data-def="Proton pump inhibitor">PPI</span></li>
+      <li><strong>Surgery indications:</strong> Bleeding, stricture, Barrett's esophagus, incompetent lower esophageal sphincter, or persistent symptoms despite max PPI</li>
+    </ul>
+
+    <h3>Boerhaave Syndrome (Esophageal Rupture)</h3>
+    <ul>
+      <li>Hematemesis after vomiting; severe retching history</li>
+      <li>Associated findings: subcutaneous emphysema, pleural effusion with high amylase</li>
+      <li><strong>Imaging:</strong> CXR first, then gastrografin esophagram (do NOT do endoscopy—risk of perforation)</li>
+      <li>Tx: Surgical repair if full-thickness rupture; mortality high if delayed</li>
+    </ul>
+
+    <h3>Gastric Varices from Portal Hypertension</h3>
+    <ul>
+      <li>Gross hematemesis in cirrhotic patient with portal hypertension</li>
+      <li><strong>Acute management:</strong> <span class="term" data-def="Airway, breathing, circulation">ABCs</span>, nasogastric lavage, octreotide or somatostatin, balloon tamponade only as bridge to definitive treatment</li>
+      <li>Tx: Endoscopic sclerotherapy or banding</li>
+      <li>Do NOT prophylactically band asymptomatic varices → give beta-blockers instead for primary prevention</li>
+    </ul>
+
+    <h3>Esophageal Cancer</h3>
+    <ul>
+      <li>Presents with progressive dysphagia and weight loss (often advanced at diagnosis)</li>
+      <li><strong>Squamous cell:</strong> Associated with smoking and alcohol; middle third of esophagus</li>
+      <li><strong>Adenocarcinoma:</strong> Associated with long-standing GERD and Barrett's; distal third</li>
+      <li><strong>Diagnostic approach:</strong> Barium swallow (first) → endoscopy with biopsy (gold standard) → staging CT</li>
+    </ul>
+    <div class="pearl">Achalasia = dysphagia to BOTH solids and liquids equally. GERD = solids initially, then liquids.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">23</span>
+    <span class="topic-title">Stomach</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-048.png" alt="Barium swallow: Hiatal hernia" loading="lazy"><div class="caption">Barium swallow: Hiatal hernia</div></div>
+<div class="img-card"><img src="images/slide-032.png" alt="Endoscopy: Gastric ulcer" loading="lazy"><div class="caption">Endoscopy: Gastric ulcer</div></div></div>
+
+    <h3>Hiatal Hernia</h3>
+    <ul>
+      <li><strong>Type 1 (Sliding):</strong> Gastroesophageal junction herniates above diaphragm</li>
+      <ul>
+        <li>Worsens GERD symptoms</li>
+        <li>Tx: Symptomatic management only</li>
+      </ul>
+      <li><strong>Type 2 (Paraesophageal):</strong> Stomach herniates alongside esophagus</li>
+      <ul>
+        <li>Presents with abdominal pain, obstruction, or strangulation</li>
+        <li>Tx: Surgical repair to prevent incarceration</li>
+      </ul>
+    </ul>
+
+    <h3>Gastric Ulcers</h3>
+    <ul>
+      <li>Epigastric pain worse with eating</li>
+      <li>Risk factors: <span class="term" data-def="Helicobacter pylori bacterium">H. pylori</span>, <span class="term" data-def="Nonsteroidal anti-inflammatory drug">NSAIDs</span>, steroids</li>
+      <li><strong>Workup:</strong> Double-contrast barium swallow or upper endoscopy with biopsy (must rule out malignancy)</li>
+      <li>Tx: PPI + H. pylori eradication if positive; if persists >12 weeks despite treatment → consider surgery</li>
+    </ul>
+
+    <h3>Gastric Adenocarcinoma</h3>
+    <ul>
+      <li>Most common gastric malignancy; very high incidence in Japan</li>
+      <li><strong>Metastatic presentations:</strong></li>
+      <ul>
+        <li><span class="term" data-def="Ovarian metastases from gastric cancer">Krukenberg tumor</span> (bilateral ovarian metastases)</li>
+        <li><span class="term" data-def="Left supraclavicular lymph node metastasis">Virchow's node</span> (left supraclavicular lymphadenopathy)</li>
+        <li><span class="term" data-def="Peritoneal metastases palpable on rectal exam">Blummer's shelf</span> (mass on digital rectal exam)</li>
+        <li><span class="term" data-def="Umbilical nodule metastasis">Sister Mary Joseph nodule</span> (umbilical lymph node)</li>
+      </ul>
+    </ul>
+
+    <h3>MALT Lymphoma</h3>
+    <ul>
+      <li>Mucosa-associated lymphoid tissue lymphoma</li>
+      <li>Strongly associated with <span class="term" data-def="Helicobacter pylori">H. pylori</span> infection</li>
+      <li>Tx: H. pylori eradication can lead to lymphoma regression</li>
+    </ul>
+
+    <h3>Other Gastric Pathology</h3>
+    <ul>
+      <li><strong><span class="term" data-def="Hypertrophic rugae with protein-losing enteropathy">Menetrier's disease</span>:</strong> Enlarged gastric rugae with protein loss; treat underlying cause</li>
+      <li><strong>Gastric varices:</strong> From splenic vein thrombosis; high bleeding risk</li>
+      <li><strong><span class="term" data-def="Bleeding from submucosal artery without visible ulcer">Dieulafoy's lesion</span>:</strong> Massive hematemesis from exposed mucosal artery</li>
+    </ul>
+    <div class="pearl">Always biopsy gastric ulcers to rule out cancer. Gastric ulcers have higher malignancy risk than duodenal.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">24</span>
+    <span class="topic-title">Duodenum</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-033.png" alt="Endoscopy: Duodenal ulcer" loading="lazy"><div class="caption">Endoscopy: Duodenal ulcer</div></div></div>
+
+    <h3>Duodenal Ulcers</h3>
+    <ul>
+      <li>Epigastric pain that improves with eating (opposite of gastric ulcers)</li>
+      <li>95% associated with <span class="term" data-def="Helicobacter pylori">H. pylori</span> infection</li>
+      <li><strong>Young healthy patient <45 years:</strong> Can trial H2 blocker or PPI without full workup</li>
+      <li><strong>Full diagnostic workup:</strong> Upper endoscopy with biopsy + <span class="term" data-def="Campylobacter-like organism test">CLO test</span> (fastest H. pylori detection)</li>
+      <li>Tx: Triple therapy — PPI + clarithromycin + amoxicillin x 2 weeks</li>
+      <li>Test of cure: Breath test or stool antigen test (not serology, which stays positive)</li>
+    </ul>
+
+    <h3>Zollinger-Ellison Syndrome</h3>
+    <ul>
+      <li>Ulcers that fail to heal despite adequate PPI therapy</li>
+      <li>Caused by gastrin-secreting tumor (gastrinoma)</li>
+      <li><strong>Best diagnostic test:</strong> Secretin stimulation test (inappropriate gastrin rise confirms diagnosis)</li>
+      <li>Associated with <span class="term" data-def="Multiple endocrine neoplasia type 1">MEN1</span> syndrome → screen for pituitary and parathyroid tumors</li>
+      <li>Tx: Surgical resection of gastrinoma (usually pancreatic/duodenal)</li>
+    </ul>
+
+    <h3>Superior Mesenteric Artery (SMA) Syndrome</h3>
+    <ul>
+      <li>SMA compresses third portion of duodenum</li>
+      <li>Presents with bilious vomiting and post-prandial pain</li>
+      <li>Risk factor: Massive weight loss</li>
+      <li>Tx: Restore nutrition/weight, supportive care; if refractory → Roux-en-Y bypass</li>
+    </ul>
+    <div class="pearl">Duodenal ulcers improve with food (increased buffering); gastric ulcers worsen with food.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">25</span>
+    <span class="topic-title">Exocrine Pancreas</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-034.png" alt="CT: Acute pancreatitis — peripancreatic inflammation" loading="lazy"><div class="caption">CT: Acute pancreatitis — peripancreatic inflammation</div></div></div>
+
+    <h3>Acute Pancreatitis</h3>
+    <ul>
+      <li>Epigastric pain radiating straight through to back</li>
+      <li><strong>Most common causes:</strong> Gallstones and alcohol (90% of cases)</li>
+      <li><strong>Diagnosis:</strong> Elevated amylase/lipase (lipase more specific); CT is best imaging</li>
+      <li><strong>Treatment:</strong> Nothing by mouth, nasogastric suction if vomiting, aggressive IV hydration, analgesics, observation</li>
+    </ul>
+
+    <h3>Poor Prognostic Factors (Ranson Criteria)</h3>
+    <ul>
+      <li><span class="term" data-def="White blood cell count">WBC</span> >16,000</li>
+      <li>Glucose >200 mg/dL</li>
+      <li><span class="term" data-def="Lactate dehydrogenase enzyme">LDH</span> >350 IU/L</li>
+      <li><span class="term" data-def="Aspartate aminotransferase">AST</span> >250 IU/L</li>
+      <li>Age >55 years</li>
+      <li>Drop in hematocrit >10%</li>
+      <li>Decreased calcium <8 mg/dL</li>
+      <li>Metabolic acidosis, hypoxia</li>
+    </ul>
+
+    <h3>Complications of Acute Pancreatitis</h3>
+    <ul>
+      <li><span class="term" data-def="Fluid collection without epithelial lining">Pseudocyst</span> (no epithelial cells; can rupture or become infected)</li>
+      <li>Hemorrhage (necrotizing pancreatitis)</li>
+      <li>Abscess</li>
+      <li><span class="term" data-def="Acute respiratory distress syndrome">ARDS</span></li>
+    </ul>
+
+    <h3>Chronic Pancreatitis</h3>
+    <ul>
+      <li>Chronic epigastric pain radiating to back</li>
+      <li>Pancreatic insufficiency: diabetes mellitus and malabsorption (steatorrhea)</li>
+      <li>Can cause splenic vein thrombosis → gastric varices</li>
+      <li>Increased risk of pancreatic adenocarcinoma</li>
+    </ul>
+
+    <h3>Pancreatic Adenocarcinoma</h3>
+    <ul>
+      <li>Often asymptomatic until advanced disease</li>
+      <li><strong>Head of pancreas:</strong> <span class="term" data-def="Non-tender palpable gallbladder from biliary obstruction">Courvoisier's sign</span> (enlarged GB), jaundice, pruritus</li>
+      <li><strong>Paraneoplastic syndrome:</strong> <span class="term" data-def="Migratory thrombophlebitis from hypercoagulability">Trousseau's sign</span> (migratory blood clots)</li>
+      <li><strong>Diagnostic approach:</strong> <span class="term" data-def="Endoscopic ultrasound">EUS</span> with fine-needle aspiration (FNA) biopsy</li>
+      <li><strong>Surgical criteria (Whipple procedure):</strong></li>
+      <ul>
+        <li>No distant metastases outside abdomen</li>
+        <li>No superior mesenteric artery or portal vein extension</li>
+        <li>No liver metastases</li>
+        <li>No peritoneal metastases</li>
+      </ul>
+    </ul>
+    <div class="pearl">Pancreatic cancer is almost always fatal without resection. Whipple is highest-risk surgery but only curative option.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">26</span>
+    <span class="topic-title">Endocrine Pancreas</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-035.png" alt="Necrolytic migratory erythema — glucagonoma sign" loading="lazy"><div class="caption">Necrolytic migratory erythema — glucagonoma sign</div></div></div>
+
+    <h3>Insulinoma</h3>
+    <ul>
+      <li><strong><span class="term" data-def="Whipple's triad: symptoms, hypoglycemia, relief with glucose">Whipple's triad</span>:</strong></li>
+      <ul>
+        <li>Symptoms: Sweating, tremors, hunger, seizures (from hypoglycemia)</li>
+        <li>Documented blood glucose <45 mg/dL</li>
+        <li>Symptoms resolve with glucose administration</li>
+      </ul>
+      <li><strong>Diagnostic labs:</strong> High insulin (inappropriately detectable during hypoglycemia), high C-peptide, high proinsulin</li>
+      <li>Most benign neuroendocrine tumor of pancreas</li>
+      <li>Tx: Surgical resection</li>
+    </ul>
+
+    <h3>Glucagonoma</h3>
+    <ul>
+      <li>Presents with hyperglycemia, diarrhea, weight loss</li>
+      <li><strong>Characteristic rash:</strong> <span class="term" data-def="Migratory dermatitis from hyperglucagonemia">Necrolytic migratory erythema</span> (can be misdiagnosed as eczema or infection)</li>
+      <li>Often malignant by time of diagnosis</li>
+      <li>Tx: Surgical resection if resectable; octreotide for symptom control</li>
+    </ul>
+
+    <h3>Somatostatinoma</h3>
+    <ul>
+      <li>Rare; commonly malignant</li>
+      <li>Causes malabsorption and steatorrhea from impaired exocrine pancreatic function</li>
+      <li>Also causes achlorhydria (no stomach acid) and diabetes</li>
+      <li>Tx: Surgical resection</li>
+    </ul>
+
+    <h3>VIPoma (Vasoactive Intestinal Peptide Secretion)</h3>
+    <ul>
+      <li>Also called <span class="term" data-def="VIPoma disorder name">Verner-Morrison syndrome</span></li>
+      <li><strong>Classic triad:</strong> Watery diarrhea, hypokalemia, hypochlorhydria</li>
+      <li>Presents with dehydration and flushing</li>
+      <li>Can mimic carcinoid syndrome</li>
+      <li>Tx: Octreotide (somatostatin analog) for symptom control; surgical resection if possible</li>
+    </ul>
+    <div class="pearl">Neuroendocrine tumors are rare but high-yield exam questions. Remember Whipple's triad for insulinoma.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">27</span>
+    <span class="topic-title">Gallbladder</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-036.png" alt="Ultrasound: Cholecystitis — gallbladder wall thickening" loading="lazy"><div class="caption">Ultrasound: Cholecystitis — gallbladder wall thickening</div></div></div>
+
+    <h3>Acute Cholecystitis</h3>
+    <ul>
+      <li><span class="term" data-def="Right upper quadrant">RUQ</span> pain radiating to back, nausea/vomiting, fever</li>
+      <li>Worse after fatty foods</li>
+      <li>Best 1st test: <span class="term" data-def="Ultrasound">U/S</span></li>
+      <li><span class="term" data-def="Surgical removal of gallbladder">Cholecystectomy</span> (or percutaneous <span class="term" data-def="Drainage catheter placed in gallbladder">cholecystostomy</span> if unstable)</li>
+    </ul>
+
+    <h3>Choledocholithiasis (Common Bile Duct Stones)</h3>
+    <ul>
+      <li><span class="term" data-def="Right upper quadrant">RUQ</span> pain + high bilirubin + high <span class="term" data-def="Alkaline phosphatase">alk phos</span></li>
+      <li>Dx: <span class="term" data-def="Ultrasound">U/S</span> shows <span class="term" data-def="Common bile duct">CBD</span> stone</li>
+      <li>Tx: cholecystectomy +/- <span class="term" data-def="Endoscopic retrograde cholangiopancreatography">ERCP</span></li>
+    </ul>
+
+    <h3>Ascending Cholangitis</h3>
+    <div class="pearl"><span class="term" data-def="Right upper quadrant pain, fever, jaundice">Charcot's triad</span>: RUQ pain + fever + jaundice. <span class="term" data-def="Charcot's triad plus low blood pressure and altered mental status">Reynolds pentad</span> adds low BP + altered mental status</div>
+    <ul>
+      <li>Tx: fluids + broad spectrum antibiotics + <span class="term" data-def="Endoscopic retrograde cholangiopancreatography">ERCP</span> + stone removal</li>
+    </ul>
+
+    <h3>Choledochal Cysts</h3>
+    <ul>
+      <li>Type 1: fusiform dilation of <span class="term" data-def="Common bile duct">CBD</span> → excision</li>
+      <li>Type 5: <span class="term" data-def="Intrahepatic bile duct cysts">Caroli's disease</span> → liver transplant</li>
+    </ul>
+
+    <h3>Cholangiocarcinoma</h3>
+    <ul>
+      <li>Rare bile duct cancer</li>
+      <li>Risk factors: <span class="term" data-def="Inflammation of bile ducts, associated with ulcerative colitis">primary sclerosing cholangitis</span> (UC), liver flukes, thorotrast</li>
+      <li>Tx: surgery +/- radiation</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">28</span>
+    <span class="topic-title">Liver</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-037.png" alt="CT/MRI: Liver mass" loading="lazy"><div class="caption">CT/MRI: Liver mass</div></div></div>
+
+    <h3>Hepatitis</h3>
+    <ul>
+      <li><span class="term" data-def="Aspartate aminotransferase">AST</span> 2x <span class="term" data-def="Alanine aminotransferase">ALT</span> → alcoholic (reversible)</li>
+      <li><span class="term" data-def="Aspartate aminotransferase">AST</span>/<span class="term" data-def="Alanine aminotransferase">ALT</span> very high (1000s) → viral hepatitis</li>
+      <li><span class="term" data-def="Aspartate aminotransferase">AST</span>/<span class="term" data-def="Alanine aminotransferase">ALT</span> high after hemorrhage/surgery/sepsis → <span class="term" data-def="Liver injury from inadequate blood flow">shock liver</span></li>
+    </ul>
+
+    <h3>Cirrhosis & Portal Hypertension</h3>
+    <ul>
+      <li>Tx: <span class="term" data-def="Hormone that decreases portal pressure">somatostatin</span> + <span class="term" data-def="Hormone that causes vasoconstriction">vasopressin</span> to vasoconstrict, beta blockers also decrease pressure</li>
+      <li>Don't treat esophageal varices prophylactically; band/burn once they bleed</li>
+      <li><span class="term" data-def="Transjugular intrahepatic portosystemic shunt">TIPS</span> relieves portal HTN but worsens hepatic encephalopathy</li>
+      <li>Treat encephalopathy with lactulose</li>
+    </ul>
+
+    <h3>Hepatocellular Carcinoma (HCC)</h3>
+    <ul>
+      <li>Risk factors: chronic <span class="term" data-def="Hepatitis B virus">HepB</span> > <span class="term" data-def="Hepatitis C virus">HepC</span>, cirrhosis, aflatoxin, carbon tetrachloride</li>
+      <li>Dx: high <span class="term" data-def="Alpha-fetoprotein, tumor marker">AFP</span> (70%), <span class="term" data-def="Computed tomography">CT</span>/<span class="term" data-def="Magnetic resonance imaging">MRI</span></li>
+      <li>Tx: surgical removal of solitary mass, rads/cryoablation for multiple</li>
+    </ul>
+
+    <h3>Hepatic Adenoma</h3>
+    <ul>
+      <li>Seen in women on <span class="term" data-def="Oral contraceptive pills">OCPs</span></li>
+      <li>Presents: palpable mass or spontaneous rupture → hemorrhagic shock</li>
+      <li>Dx: <span class="term" data-def="Ultrasound">U/S</span> or <span class="term" data-def="Magnetic resonance imaging">MRI</span></li>
+      <li>Tx: stop <span class="term" data-def="Oral contraceptive pills">OCPs</span>, resect if large or pregnancy desired</li>
+    </ul>
+
+    <h3>Focal Nodular Hyperplasia</h3>
+    <ul>
+      <li>2nd most common benign liver tumor</li>
+      <li>More common in women, less likely to rupture</li>
+      <li>No treatment needed</li>
+    </ul>
+
+    <h3>Bacterial Abscess</h3>
+    <ul>
+      <li>Common bugs: E. coli, bacteroides, enterococcus</li>
+      <li>Tx: surgical drainage + <span class="term" data-def="Intravenous">IV</span> antibiotics</li>
+    </ul>
+
+    <h3>Amebic Abscess (Entamoeba histolytica)</h3>
+    <ul>
+      <li><span class="term" data-def="Right upper quadrant">RUQ</span> pain, profuse sweating, rigors, palpable liver</li>
+      <li>Tx: metronidazole. <strong>DO NOT drain</strong></li>
+    </ul>
+
+    <h3>Echinococcus (Hydatid Cysts)</h3>
+    <ul>
+      <li>Patient from endemic area + large liver cysts on <span class="term" data-def="Ultrasound">U/S</span></li>
+      <li>Transmission: hydatid cyst from dog feces</li>
+      <li>Labs: eosinophilia, positive <span class="term" data-def="Skin test for echinococcus">Casoni test</span></li>
+      <li>Tx: albendazole + surgical removal of <strong>ENTIRE</strong> cyst (rupture → anaphylaxis)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">29</span>
+    <span class="topic-title">Spleen</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-038.png" alt="Blood smear: Spherocytes — hereditary spherocytosis" loading="lazy"><div class="caption">Blood smear: Spherocytes — hereditary spherocytosis</div></div>
+<div class="img-card"><img src="images/slide-039.png" alt="CT: Splenic injury/laceration" loading="lazy"><div class="caption">CT: Splenic injury/laceration</div></div></div>
+
+    <h3>Post-Splenectomy Complications</h3>
+    <ul>
+      <li>Thrombocytosis >1 million → give aspirin</li>
+      <li>Prophylaxis: <span class="term" data-def="Penicillin">PCN</span> + vaccines (S. pneumo, H. flu, N. meningitidis)</li>
+    </ul>
+
+    <h3>Immune Thrombocytopenia (ITP)</h3>
+    <ul>
+      <li>Isolated thrombocytopenia (bleeding gums, petechiae, nosebleeds)</li>
+      <li>Decreased platelets, increased megakaryocytes, NO splenomegaly</li>
+      <li>Tx: steroids 1st; if relapse → splenectomy</li>
+    </ul>
+
+    <h3>Hereditary Spherocytosis</h3>
+    <ul>
+      <li><span class="term" data-def="Breakdown of red blood cells">Hemolytic anemia</span> symptoms: jaundice, increased indirect bili, <span class="term" data-def="Lactate dehydrogenase">LDH</span>, decreased haptoglobin, elevated retics</li>
+      <li>Spherocytes on smear + positive <span class="term" data-def="Test showing red blood cell fragility">osmotic fragility test</span></li>
+      <li>Prone to gallstones</li>
+      <li>Tx: splenectomy (including accessory spleens)</li>
+    </ul>
+
+    <h3>Traumatic Splenic Rupture</h3>
+    <ul>
+      <li>Left lower rib fracture + <span class="term" data-def="Bleeding inside the abdomen">intra-abdominal hemorrhage</span></li>
+      <li><span class="term" data-def="Left shoulder pain from diaphragm irritation">Kehr's sign</span>: left shoulder pain</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">30</span>
+    <span class="topic-title">Appendix</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-040.png" alt="CT: Appendicitis — periappendiceal inflammation" loading="lazy"><div class="caption">CT: Appendicitis — periappendiceal inflammation</div></div></div>
+
+    <h3>Appendicitis</h3>
+    <ul>
+      <li>Classic: periumbilical pain → <span class="term" data-def="Right lower quadrant">RLQ</span>, nausea/vomiting</li>
+      <li>Go to surgery if clinical picture is convincing</li>
+      <li>If perforated/abscess: drain + antibiotics (cover E. coli and bacteroides) + interval appendectomy</li>
+    </ul>
+
+    <h3>Carcinoid Tumor</h3>
+    <ul>
+      <li>#1 site: appendix</li>
+      <li><span class="term" data-def="Syndrome from carcinoid hormone release">Carcinoid syndrome</span> (diarrhea, wheezing) occurs when metastases to liver</li>
+      <li>Also: diarrhea, dementia, dermatitis (<span class="term" data-def="Vitamin B3 deficiency disease">pellagra</span> from niacin depletion)</li>
+      <li>If >2cm, at base, or positive nodes → <span class="term" data-def="Removal of half the colon">hemicolectomy</span></li>
+      <li>Otherwise appendectomy is enough</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">31</span>
+    <span class="topic-title">Bowel Obstruction</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-041.png" alt="AXR: Small bowel obstruction — dilated loops, air-fluid levels" loading="lazy"><div class="caption">AXR: Small bowel obstruction — dilated loops, air-fluid levels</div></div>
+<div class="img-card"><img src="images/slide-042.png" alt="AXR: Volvulus — coffee bean sign" loading="lazy"><div class="caption">AXR: Volvulus — coffee bean sign</div></div>
+<div class="img-card"><img src="images/slide-043.png" alt="AXR: Large bowel dilation (Ogilvie's syndrome)" loading="lazy"><div class="caption">AXR: Large bowel dilation (Ogilvie's syndrome)</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-046.png" alt="AXR: Sigmoid volvulus" loading="lazy"><div class="caption">AXR: Sigmoid volvulus</div></div></div>
+
+    <h3>Small Bowel Obstruction (SBO)</h3>
+    <ul>
+      <li>Suspect with: hernia, prior surgery (adhesions), cancer, intussusception, <span class="term" data-def="Inflammatory bowel disease">IBD</span></li>
+      <li>Symptoms: pain, constipation, obstipation, vomiting</li>
+      <li>1st test: upright <span class="term" data-def="Chest X-ray">CXR</span> for free air. <span class="term" data-def="Computed tomography">CT</span> shows point of obstruction</li>
+      <li>Tx: <span class="term" data-def="Intravenous fluids">IVF</span> + <span class="term" data-def="Nasogastric">NG</span> tube. Surgery if peritoneal signs, increased <span class="term" data-def="White blood cell count">WBC</span>, no improvement in 48hrs</li>
+    </ul>
+
+    <h3>Volvulus (Cecal or Sigmoid)</h3>
+    <ul>
+      <li>Decompression from below if not strangulated</li>
+      <li>Otherwise surgical removal + colostomy</li>
+    </ul>
+
+    <h3>Post-op Ileus</h3>
+    <ul>
+      <li>Also consider hypokalemia, opiates</li>
+      <li>Dilated loops + air-fluid levels on imaging</li>
+      <li>Surgery for perforation. Give lactulose/erythromycin</li>
+    </ul>
+
+    <h3>Ogilvie's Syndrome</h3>
+    <ul>
+      <li>Massive colonic distension</li>
+      <li>If >10cm → decompression with <span class="term" data-def="Nasogastric">NG</span> tube + <span class="term" data-def="Drug that increases colon contractions">neostigmine</span> (watch for bradycardia) or colonoscopic decompression</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">32</span>
+    <span class="topic-title">Hernias</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Umbilical Hernia</h3>
+    <ul>
+      <li>In kids: closes by age 2</li>
+      <li>In adults: obesity, ascites, pregnancy</li>
+    </ul>
+
+    <h3>Indirect Inguinal Hernia</h3>
+    <ul>
+      <li>Most common type</li>
+      <li>Through inguinal ring (lateral to epigastric vessels), in spermatic cord</li>
+      <li>Right > left; more congenital (patent processus vaginalis)</li>
+    </ul>
+
+    <h3>Direct Inguinal Hernia</h3>
+    <ul>
+      <li>Through <span class="term" data-def="Area of weakness in groin below inguinal ligament">Hesselbach's triangle</span> (medial to epigastric vessels)</li>
+      <li>More acquired</li>
+    </ul>
+
+    <h3>Femoral Hernia</h3>
+    <ul>
+      <li>More common in women</li>
+    </ul>
+
+    <h3>Management</h3>
+    <div class="tx-box">Emergent surgery if incarcerated (to avoid strangulation). Elective if reducible.</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">33</span>
+    <span class="topic-title">IBD</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-051.png" alt="Barium study: Crohn's disease — string sign" loading="lazy"><div class="caption">Barium study: Crohn's disease — string sign</div></div></div>
+
+    <h3>Crohn's Disease</h3>
+    <ul>
+      <li>Terminal ileum involvement, mimics appendicitis</li>
+      <li>Fistulae, granulomas on biopsy, transmural inflammation</li>
+      <li>Smokers: higher risk</li>
+      <li>NOT cured by colectomy</li>
+    </ul>
+
+    <h3>Ulcerative Colitis (UC)</h3>
+    <ul>
+      <li>Continuous inflammation involving rectum</li>
+      <li>Rarely ileal backwash</li>
+      <li>Increased risk <span class="term" data-def="Bile duct inflammation, associated with colitis">primary sclerosing cholangitis</span> (→ cholangiocarcinoma)</li>
+      <li>Cured by colectomy</li>
+      <li>Smokers: lower risk</li>
+      <li>Highest colon cancer risk</li>
+      <li>Associated with <span class="term" data-def="Antineutrophil cytoplasmic antibody">p-ANCA</span></li>
+    </ul>
+
+    <h3>Treatment</h3>
+    <div class="tx-box">
+      <strong>Maintenance:</strong> <span class="term" data-def="5-aminosalicylic acid, for colitis">ASA</span>/sulfasalazine
+      <br/><strong>Induce remission:</strong> Corticosteroids
+      <br/><strong>Crohn's:</strong> Metronidazole for any ulcer/abscess. Azathioprine, 6MP, methotrexate for severe disease
+    </div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">34</span>
+    <span class="topic-title">Diverticular Disease</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-045.png" alt="Barium enema: Diverticular disease" loading="lazy"><div class="caption">Barium enema: Diverticular disease</div></div></div>
+
+    <h3>Diverticulosis</h3>
+    <ul>
+      <li>False diverticula (mucosa only) from low fiber diet</li>
+      <li>Bleed at vessel penetration sites</li>
+      <li>Complications: bleeding, obstruction, diverticulitis</li>
+    </ul>
+
+    <h3>Diverticulitis</h3>
+    <ul>
+      <li>Obstructed diverticulum → abscess/perforation</li>
+      <li><span class="term" data-def="Left lower quadrant">LLQ</span> pain, constipation or diarrhea</li>
+      <li>Look for free air</li>
+      <li><strong>Best imaging: <span class="term" data-def="Computed tomography">CT</span> (NO barium enema!)</strong></li>
+    </ul>
+
+    <h3>Management</h3>
+    <div class="tx-box">
+      NPO + <span class="term" data-def="Nasogastric">NG</span> suction + <span class="term" data-def="Intravenous fluids">IVF</span> + broad spectrum antibiotics + pain control
+    </div>
+    <ul>
+      <li>Colonoscopy 4-6 weeks later</li>
+      <li>Surgery if: multiple episodes OR age <50</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #10b981">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">35</span>
+    <span class="topic-title">Colorectal Cancer</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Risk Factors</h3>
+    <ul>
+      <li>Genetics: <span class="term" data-def="Familial adenomatous polyposis syndrome">FAP</span>, <span class="term" data-def="Hereditary nonpolyposis colorectal cancer">Lynch/HNPCC</span>, <span class="term" data-def="Polyposis syndrome with osteomas">Gardner's</span>, <span class="term" data-def="Hamartomatous polyp syndrome">Cowden's</span></li>
+      <li><span class="term" data-def="Ulcerative colitis">UC</span> (colonoscopy 8-10yrs after diagnosis)</li>
+    </ul>
+
+    <h3>Presentation by Location</h3>
+    <ul>
+      <li>Right-sided: bleeding</li>
+      <li>Left-sided: obstruction</li>
+      <li>Rectal: pain/fullness/bleeding/obstruction</li>
+    </ul>
+
+    <h3>Diagnostic Workup</h3>
+    <div class="dx-box">
+      <span class="term" data-def="Digital rectal exam">DRE</span>, transrectal U/S (depth), colonoscopy, <span class="term" data-def="Carcinoembryonic antigen, tumor marker">CEA</span> for recurrence, <span class="term" data-def="Computed tomography">CT</span> for staging
+    </div>
+
+    <h3>Treatment</h3>
+    <ul>
+      <li>Colon cancer: remove affected segments + chemo if node positive</li>
+      <li>Rectal cancer:</li>
+      <ul>
+        <li>Upper/middle 1/3 → <span class="term" data-def="Low anterior resection">LAR</span></li>
+        <li>Lower 1/3 → <span class="term" data-def="Abdominoperineal resection">APR</span> (remove sphincter, permanent colostomy)</li>
+      </ul>
+    </ul>
+
+    <div class="pearl">Screening: colonoscopy starting at age 45 for average risk (per USPSTF)</div>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #dc2626">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">36</span>
+    <span class="topic-title">AAA</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-047.png" alt="AXR: AAA — aortic calcification" loading="lazy"><div class="caption">AXR: AAA — aortic calcification</div></div></div>
+
+    <h3>Screening</h3>
+    <ul>
+      <li>Men 65-75 who ever smoked → abdominal <span class="term" data-def="Ultrasound">U/S</span></li>
+    </ul>
+
+    <h3>Intact AAA Management</h3>
+    <ul>
+      <li>Pulsatile abdominal mass on exam</li>
+      <li>Conservative if <5cm and asymptomatic → monitor q3-12mo</li>
+      <li>Surgery if >5cm or growing >4mm/yr</li>
+    </ul>
+
+    <h3>Ruptured AAA</h3>
+    <div class="pearl">Severe sudden abdominal/flank/back pain + shock + tender pulsatile mass. 50% die before hospital.</div>
+
+    <h3>Post-op Complications</h3>
+    <ul>
+      <li>#1 cause of death: <span class="term" data-def="Myocardial infarction">MI</span></li>
+      <li>Bloody diarrhea → <span class="term" data-def="Bowel death from loss of blood flow">ischemic colitis</span></li>
+      <li>Weakness + decreased pain with preserved vibration/proprioception → <span class="term" data-def="Spinal cord stroke from interrupted blood supply">anterior spinal artery syndrome</span></li>
+      <li>1-2yrs later brisk GI bleed → <span class="term" data-def="Abnormal connection between aorta and intestine">aortoenteric fistula</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #dc2626">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">37</span>
+    <span class="topic-title">Mesenteric Ischemia</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Acute Mesenteric Ischemia</h3>
+    <div class="pearl">Surgical emergency. Severe acute abdominal pain in patient with A-fib subtherapeutic on warfarin or post high-dose vasoconstrictors.</div>
+    <ul>
+      <li>Workup: angiography (aorta + <span class="term" data-def="Superior mesenteric artery">SMA</span>/<span class="term" data-def="Inferior mesenteric artery">IMA</span>)</li>
+      <li>Tx: embolectomy or aortomesenteric bypass</li>
+    </ul>
+
+    <h3>Chronic Mesenteric Ischemia</h3>
+    <ul>
+      <li>Slow progressive stenosis (requires 2.5 of 3 vessels: celiac, <span class="term" data-def="Superior mesenteric artery">SMA</span>, <span class="term" data-def="Inferior mesenteric artery">IMA</span>)</li>
+      <li>Severe epigastric pain after eating, food fear, weight loss</li>
+      <li><span class="term" data-def="Clinical finding that severity is unexpected">Pain out of proportion to exam</span></li>
+      <li>Dx: duplex or angiography</li>
+      <li>Tx: aortomesenteric bypass or transaortic mesenteric endarterectomy</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #dc2626">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">38</span>
+    <span class="topic-title">PAD</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Acute Arterial Occlusion</h3>
+    <div class="pearl">5 Ps: pain, pulselessness, paresthesias, pallor, paralysis. No dopplerable pulses.</div>
+    <ul>
+      <li>Tx: immediate heparin + surgery (embolectomy or bypass) within 6hrs</li>
+      <li>Thrombolytics possible if no recent surgery or hemorrhagic stroke</li>
+      <li>Complications: <span class="term" data-def="Elevated pressure in limb muscle compartment">compartment syndrome</span> during reperfusion → fasciotomy, watch for myoglobinuria</li>
+    </ul>
+
+    <h3>Claudication</h3>
+    <ul>
+      <li>Pain in butt/calf/thigh with exertion</li>
+      <li>Best test: <span class="term" data-def="Ankle-brachial index">ABI</span></li>
+    </ul>
+
+    <h3>ABI Interpretation & Treatment</h3>
+    <ul>
+      <li>Normal: >1</li>
+      <li>Claudication/ulcers (0.4-0.8) → medical management</li>
+      <li>Limb ischemia (0.2-0.4) → surgery</li>
+      <li>Gangrene (<0.2) → may need amputation</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #dc2626">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">39</span>
+    <span class="topic-title">DVT & PE</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-049.png" alt="Venous stasis ulcer — medial malleolus" loading="lazy"><div class="caption">Venous stasis ulcer — medial malleolus</div></div>
+<div class="img-card"><img src="images/slide-050.png" alt="DVT — unilateral leg swelling" loading="lazy"><div class="caption">DVT — unilateral leg swelling</div></div></div>
+
+    <h3>DVT (Deep Vein Thrombosis)</h3>
+    <ul>
+      <li>High risk after surgery (esp orthopedic)</li>
+      <li>Dx: duplex <span class="term" data-def="Ultrasound">U/S</span>, also check for <span class="term" data-def="Pulmonary embolism">PE</span></li>
+      <li>Tx: heparin → overlap warfarin 5 days → warfarin 3-6mo</li>
+      <li>Complications: <span class="term" data-def="Chronic leg swelling and pain from valve damage">post-phlebitic syndrome</span> (chronic valvular incompetence, cyanosis, edema)</li>
+    </ul>
+
+    <h3>PE (Pulmonary Embolism)</h3>
+    <ul>
+      <li>Signs: right heart strain on <span class="term" data-def="Electrocardiogram">EKG</span>, sinus tach, decreased vascular markings on <span class="term" data-def="Chest X-ray">CXR</span>, wedge infarct, <span class="term" data-def="Arterial blood gas">ABG</span> with low CO₂ and O₂</li>
+    </ul>
+
+    <h3>PE Workup & Treatment</h3>
+    <div class="dx-box">
+      If suspected: heparin FIRST then workup with V/Q scan then spiral <span class="term" data-def="Computed tomography">CT</span>. <span class="term" data-def="Catheter study of pulmonary arteries">Pulmonary angiography</span> = gold standard.
+    </div>
+    <ul>
+      <li>Tx: heparin/warfarin overlap</li>
+      <li>Thrombolytics if severe (NOT if post-surgery or hemorrhagic stroke)</li>
+      <li>Surgical thrombectomy if life-threatening</li>
+      <li><span class="term" data-def="Filter placed in inferior vena cava to catch clots">IVC filter</span> if contraindications to anticoagulation</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #14b8a6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">40</span>
+    <span class="topic-title">Thyroid Nodule Workup</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Initial Workup</h3>
+    <ol>
+      <li>Check <span class="term" data-def="Thyroid stimulating hormone">TSH</span></li>
+      <li>If low → <span class="term" data-def="Radioactive iodine uptake scan">RAIU</span> to find hot nodule → excise or radioactive I-131</li>
+      <li>If normal → <span class="term" data-def="Fine needle aspiration biopsy">FNA</span></li>
+      <li>If benign → leave alone</li>
+      <li>If malignant → surgical excision + pathology</li>
+      <li>If indeterminate → re-biopsy or RAIU</li>
+      <li>If cold → surgical excision</li>
+    </ol>
+    <h3>Thyroid Cancers</h3>
+    <ul>
+      <li><strong>Papillary</strong> = most common type, spreads via lymph, <span class="term" data-def="Calcium carbonate deposits seen on pathology">psammoma bodies</span></li>
+      <li><strong>Follicular</strong> = spreads via blood, must remove whole thyroid</li>
+      <li><strong>Medullary</strong> = associated with <span class="term" data-def="Multiple endocrine neoplasia type 2">MEN2</span> (look for pheochromocytoma, hypercalcemia), amyloid/calcitonin</li>
+      <li><strong>Anaplastic</strong> = 80% mortality in first year</li>
+      <li><strong>Thyroid lymphoma</strong> = <span class="term" data-def="Autoimmune thyroid inflammation">Hashimoto's</span> predisposes</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #14b8a6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">41</span>
+    <span class="topic-title">Adrenal Nodule Workup</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Step 1: Assess Functional Status</h3>
+    <ul>
+      <li><strong>Pheochromocytoma:</strong> high BP + catecholamine symptoms → urine and plasma-free <span class="term" data-def="Catecholamine breakdown products">metanephrines</span></li>
+      <li><strong>Primary aldosteronism:</strong> high BP + low K + low <span class="term" data-def="Plasma renin activity">PRA</span> → plasma aldosterone-to-renin ratio</li>
+      <li><strong>Adrenocortical carcinoma:</strong> virilization or feminization → urine 17-ketosteroids</li>
+      <li><strong>Cushing syndrome:</strong> Cushing symptoms → overnight 1mg <span class="term" data-def="Dexamethasone suppression test for Cushing">dexamethasone suppression test</span></li>
+    </ul>
+    <h3>Step 2: Size and Management</h3>
+    <ul>
+      <li>If &lt;5cm and non-functional → observe with <span class="term" data-def="Computed tomography">CT</span> every 6 months</li>
+      <li>If &gt;6cm or functional → surgical excision</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #14b8a6">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">42</span>
+    <span class="topic-title">Parathyroid & MEN</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Hypoparathyroidism</h3>
+    <ul>
+      <li>Typically from thyroidectomy</li>
+      <li>Symptoms: perioral numbness, <span class="term" data-def="Facial nerve tap causes muscle contraction">Chvostek</span> sign, <span class="term" data-def="Arm compression causes muscle contraction">Trousseau</span> sign</li>
+      <li>Labs: low Ca, high phosphate, low <span class="term" data-def="Parathyroid hormone">PTH</span></li>
+    </ul>
+    <h3>Hyperparathyroidism</h3>
+    <ul>
+      <li>Usually asymptomatic high calcium, can have kidney stones, abdominal or psychiatric symptoms</li>
+      <li>Labs: high Ca, low phosphate, high vitamin D, high PTH</li>
+      <li>Diagnosis: <span class="term" data-def="Fine needle aspiration">FNA</span> of suspicious nodules, <span class="term" data-def="Radionuclide scan for parathyroid adenoma">sestamibi scan</span></li>
+      <li>Treatment: surgical removal of adenoma</li>
+      <li>If hyperplasia → remove all 4 glands + implant 1 in forearm</li>
+    </ul>
+    <h3>MEN Syndromes</h3>
+    <ul>
+      <li><strong>MEN1:</strong> pituitary adenoma + parathyroid hyperplasia + pancreatic islet cell tumor</li>
+      <li><strong>MEN2a:</strong> parathyroid hyperplasia + medullary thyroid cancer + pheochromocytoma</li>
+      <li><strong>MEN2b:</strong> medullary thyroid cancer + pheochromocytoma + marfanoid habitus</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ec4899">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">43</span>
+    <span class="topic-title">Breast Mass Workup</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-055.png" alt="Inflammatory breast cancer — peau d'orange" loading="lazy"><div class="caption">Inflammatory breast cancer — peau d'orange</div></div>
+<div class="img-card"><img src="images/slide-056.png" alt="Paget's disease of the nipple" loading="lazy"><div class="caption">Paget's disease of the nipple</div></div></div>
+
+    <h3>Imaging & Diagnosis</h3>
+    <ul>
+      <li><span class="term" data-def="Ultrasound">U/S</span> tells solid vs cystic (best for young breast)</li>
+      <li><span class="term" data-def="Magnetic resonance imaging">MRI</span> good for dense tissue, nodes, recurrent cancer</li>
+      <li>Aspiration if cystic, <span class="term" data-def="Fine needle aspiration">FNA</span> if solid</li>
+      <li>Send fluid for cytology if bloody or recurs x2</li>
+    </ul>
+    <div class="pearl">Fibrocystic change: painful cysts that change with menses, green/straw fluid. Tx: restrict caffeine, vitamin E, supportive bra. Excisional biopsy if palpable or fluid recurs.</div>
+    <h3>Breast Cancer Risk Factors</h3>
+    <ul>
+      <li><span class="term" data-def="Genetic mutations increasing cancer risk">BRCA1/2</span>, personal history, nulliparity, estrogen</li>
+      <li><strong>BRCA1</strong> = higher risk breast + ovarian cancer</li>
+      <li><strong>BRCA2</strong> = breast + ovarian + pancreatic + prostate</li>
+    </ul>
+    <h3>Breast Cancer Types & Treatment</h3>
+    <ul>
+      <li><strong>DCIS:</strong> excision with clear margins or simple mastectomy if multiple + adjuvant <span class="term" data-def="Radiation therapy">RT</span> (no node sampling)</li>
+      <li><strong>LCIS:</strong> bilateral mastectomy only if family history, hormone sensitive, prior history</li>
+      <li><strong>Infiltrating ductal/lobular:</strong> lumpectomy with axillary node sampling if small/away from nipple + adjuvant RT + chemo if node-positive + tamoxifen/raloxifene if <span class="term" data-def="Estrogen receptor positive">ER+</span></li>
+      <li><strong>Modified radical mastectomy:</strong> gives same prognosis</li>
+      <li><strong>Paget's:</strong> eczema of nipple → mammogram to find mass</li>
+      <li><strong>Inflammatory:</strong> red, hot, swollen, orange peel skin, nipple retraction</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ec4899">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">44</span>
+    <span class="topic-title">Skin Cancer</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-057.png" alt="Basal cell carcinoma — pearly, rolled borders" loading="lazy"><div class="caption">Basal cell carcinoma — pearly, rolled borders</div></div>
+<div class="img-card"><img src="images/slide-058.png" alt="Squamous cell carcinoma — scaly, ulcerated" loading="lazy"><div class="caption">Squamous cell carcinoma — scaly, ulcerated</div></div>
+<div class="img-card"><img src="images/slide-059.png" alt="Melanoma — asymmetric, irregular borders" loading="lazy"><div class="caption">Melanoma — asymmetric, irregular borders</div></div></div>
+
+    <h3>BCC & SCC</h3>
+    <ul>
+      <li><strong>BCC:</strong> shave or punch biopsy → <span class="term" data-def="Microsurgical technique for complete tumor removal">Mohs surgery</span></li>
+      <li><strong>SCC:</strong> <span class="term" data-def="Precancerous rough skin lesion">actinic keratosis</span> is precursor (tx with 5-FU or excision)</li>
+      <li>Excisional biopsy at edge → wide local excision</li>
+      <li>Can use radiation for tough locations</li>
+    </ul>
+    <h3>Melanoma Types</h3>
+    <ul>
+      <li><strong>Superficial spreading:</strong> best prognosis, most common</li>
+      <li><strong>Nodular:</strong> poor prognosis</li>
+      <li><strong>Acrolentiginous:</strong> palms, soles, mucous membranes, darker skin</li>
+      <li><strong>Lentigo maligna:</strong> head/neck, good prognosis</li>
+    </ul>
+    <div class="pearl">Need full thickness biopsy because depth is #1 prognostic factor.</div>
+    <h3>Excision Margins</h3>
+    <ul>
+      <li>&lt;1mm thick → 1cm margin</li>
+      <li>1-4mm → 2cm margin</li>
+      <li>&gt;4mm → 3cm margin</li>
+      <li>High dose <span class="term" data-def="Interferon alpha">IFN</span> or <span class="term" data-def="Interleukin-2">IL-2</span> may help</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #ec4899">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">45</span>
+    <span class="topic-title">Sarcoma</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-060.png" alt="Histology: Sarcoma — pleomorphic cells" loading="lazy"><div class="caption">Histology: Sarcoma — pleomorphic cells</div></div></div>
+
+    <h3>Soft Tissue Sarcoma</h3>
+    <ul>
+      <li>Painless enlarging mass</li>
+      <li>Diagnosis: biopsy (NOT <span class="term" data-def="Fine needle aspiration">FNA</span>)</li>
+      <li>Excisional if &lt;3cm, incisional if larger</li>
+      <li>Treatment: wide local excision or amputation + <span class="term" data-def="Radiation therapy">RT</span></li>
+      <li>Spreads to lungs first (hematogenous) → can do wedge resection if only metastasis and primary controlled</li>
+    </ul>
+    <h3>Specific Types</h3>
+    <ul>
+      <li><strong>Liposarcoma:</strong> 99% DON'T come from lipoma</li>
+      <li><strong>Fibrosarcoma/Rhabdomyosarcoma/Lymphangiosarcoma:</strong> hard round mass on extremity, can occur in chronic lymphedema areas</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #6366f1">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">46</span>
+    <span class="topic-title">Neck Mass</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-061.png" alt="Thyroglossal duct cyst — midline neck mass" loading="lazy"><div class="caption">Thyroglossal duct cyst — midline neck mass</div></div></div>
+
+    <h3>Timeline Rule</h3>
+    <ul>
+      <li>7 days = inflammatory</li>
+      <li>7 months = cancer</li>
+      <li>7 years = congenital</li>
+    </ul>
+    <h3>Diagnostic Approach</h3>
+    <ul>
+      <li>Most common = reactive node</li>
+      <li>#1 step: examine teeth/tonsils for infection</li>
+      <li>If lesion still there in 2 weeks → <span class="term" data-def="Fine needle aspiration">FNA</span></li>
+      <li>If firm, rubbery + B symptoms → excisional biopsy for lymphoma</li>
+    </ul>
+    <h3>Lymphomas</h3>
+    <ul>
+      <li><strong>Hodgkin's:</strong> lymphocyte predominance = good prognosis, <span class="term" data-def="Multinucleate cells seen in Hodgkin's">Reed-Sternberg cells</span></li>
+      <li><strong>Non-Hodgkin's:</strong> nodular + well-differentiated = good prognosis</li>
+      <li>Staging: <span class="term" data-def="Computed tomography">CT</span>, <span class="term" data-def="Chest x-ray">CXR</span>, laparotomy</li>
+    </ul>
+    <h3>Congenital Lesions</h3>
+    <ul>
+      <li><strong>Midline → Thyroglossal duct cyst:</strong> moves with tongue movement, remove surgically</li>
+      <li><strong>Anterior to SCM → Branchial cleft cyst</strong></li>
+      <li><strong>Spongy/diffuse/lateral to SCM → Cystic hygroma:</strong> associated with Turner's, Down's, Klinefelter's</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #6366f1">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">47</span>
+    <span class="topic-title">ENT Cancers</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-062.png" alt="Parotid mass — pleomorphic adenoma" loading="lazy"><div class="caption">Parotid mass — pleomorphic adenoma</div></div></div>
+
+    <h3>Oral & Laryngeal Cancer</h3>
+    <ul>
+      <li><strong>Oral cancer:</strong> most common = squamous cell, associated with smokers/drinkers</li>
+      <li>Treatment: <span class="term" data-def="X-ray radiation therapy">XRT</span> or radical dissection</li>
+      <li><strong>Laryngeal cancer:</strong> papilloma in kids (stridor/cough), <span class="term" data-def="Squamous cell carcinoma">SCC</span> in adults</li>
+      <li>Treatment: laryngoscope laser or resection</li>
+    </ul>
+    <h3>Salivary Gland Tumors</h3>
+    <ul>
+      <li><strong>Pleomorphic adenoma:</strong> most common salivary gland tumor, usually parotid, benign but recurs</li>
+      <li><strong>Warthin's tumor:</strong> papillary cystadenoma lymphomatosum, benign on parotid</li>
+      <li><strong>Mucoepidermoid carcinoma:</strong> most common malignant salivary tumor, arises from duct, causes pain + <span class="term" data-def="Cranial nerve VII - facial nerve">CN VII</span> palsy</li>
+      <li>Risk: can injure facial nerve with surgery</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #0ea5e9">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">48</span>
+    <span class="topic-title">Pediatric Surgery</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-053.png" alt="CXR: Congenital diaphragmatic hernia (Bochdalek)" loading="lazy"><div class="caption">CXR: Congenital diaphragmatic hernia (Bochdalek)</div></div>
+<div class="img-card"><img src="images/slide-063.png" alt="CXR: Neonatal bowel loops in chest" loading="lazy"><div class="caption">CXR: Neonatal bowel loops in chest</div></div>
+<div class="img-card"><img src="images/slide-064.png" alt="Gastroschisis — no covering membrane" loading="lazy"><div class="caption">Gastroschisis — no covering membrane</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-065.png" alt="Omphalocele — covered by peritoneal sac" loading="lazy"><div class="caption">Omphalocele — covered by peritoneal sac</div></div>
+<div class="img-card"><img src="images/slide-066.png" alt="Umbilical hernia in infant" loading="lazy"><div class="caption">Umbilical hernia in infant</div></div>
+<div class="img-card"><img src="images/slide-067.png" alt="AXR: Double bubble sign — duodenal atresia" loading="lazy"><div class="caption">AXR: Double bubble sign — duodenal atresia</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-052.png" alt="Barium enema: Intussusception" loading="lazy"><div class="caption">Barium enema: Intussusception</div></div></div>
+
+    <h3>Diaphragmatic Hernia</h3>
+    <ul>
+      <li>Respiratory distress + scaphoid abdomen</li>
+      <li>Biggest concern: pulmonary hypoplasia</li>
+      <li>If prenatal diagnosis → deliver at <span class="term" data-def="Extracorporeal membrane oxygenation">ECMO</span> center, let lungs mature 3-4 days then surgery</li>
+    </ul>
+    <h3>Tracheoesophageal Fistula</h3>
+    <ul>
+      <li>Respiratory distress + excess drooling</li>
+      <li>Diagnosis: place feeding tube → x-ray shows coiled in thorax</li>
+    </ul>
+    <h3>Abdominal Wall Defects</h3>
+    <ul>
+      <li><strong>Gastroschisis:</strong> defect lateral (usually R) of midline, no sac, high maternal <span class="term" data-def="Alpha-fetoprotein">AFP</span></li>
+      <li>Not usually associated with other disorders; complications: atresia/necrosis, short gut syndrome</li>
+      <li><strong>Omphalocele:</strong> defect at midline, covered by sac, associated with other disorders</li>
+      <li><strong>Umbilical hernia:</strong> midline defect, no bowel, associated with congenital hypothyroidism, repair not needed unless persists past age 2-3</li>
+    </ul>
+    <h3>Gastric & Intestinal Disorders</h3>
+    <ul>
+      <li><strong>Pyloric stenosis:</strong> 4-week-old, non-bilious vomiting, palpable olive; hypochloremic metabolic alkalosis → immediate surgical myotomy</li>
+      <li><strong>Intestinal atresia/annular pancreas:</strong> 2-week-old, bilious vomiting, polyhydramnios, associated with Down syndrome (esp duodenal)</li>
+      <li><strong>Malrotation and volvulus:</strong> 1-week-old, bilious vomiting, draws up legs, distension; Ladd's bands can kink duodenum (doesn't rotate 270° counterclockwise around <span class="term" data-def="Superior mesenteric artery">SMA</span>)</li>
+    </ul>
+    <h3>Meconium & Intestinal Obstruction</h3>
+    <ul>
+      <li><strong>Meconium ileus:</strong> 3-day-old, hasn't passed meconium, consider <span class="term" data-def="Cystic fibrosis">CF</span>; gastrografin enema diagnostic AND therapeutic</li>
+      <li>Differential: <span class="term" data-def="Absence of ganglion cells in colon">Hirschsprung's</span> (digital rectal exam → explosion of stool, biopsy showing no ganglia is gold standard)</li>
+    </ul>
+    <h3>NEC & Intussusception</h3>
+    <ul>
+      <li><strong>Necrotizing enterocolitis (NEC):</strong> 5-day-old former preemie, bloody diarrhea; x-ray: <span class="term" data-def="Air in bowel wall on x-ray">pneumatosis intestinalis</span>; treat with NPO, <span class="term" data-def="Total parenteral nutrition">TPN</span>, antibiotics, resect necrotic bowel; risk factors: premature gut, feeds, formula</li>
+      <li><strong>Intussusception:</strong> 2-month-old, colicky pain, <span class="term" data-def="Red jelly-like stools">currant jelly stool</span>, sausage-shaped right upper quadrant mass; barium enema diagnostic AND therapeutic</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #64748b">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">49</span>
+    <span class="topic-title">Urology</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Benign Prostatic Hyperplasia</h3>
+    <ul>
+      <li>Anticholinergics make it worse → foley for acute retention</li>
+      <li>Medical treatment: <span class="term" data-def="Alpha-1 blocker for BPH">tamsulosin</span> or <span class="term" data-def="5-alpha reductase inhibitor">finasteride</span></li>
+      <li>Surgical: <span class="term" data-def="Transurethral resection of prostate">TURP</span> (complications: hyponatremia, retrograde ejaculation)</li>
+    </ul>
+    <h3>Prostate Cancer</h3>
+    <ul>
+      <li>Nodules on <span class="term" data-def="Digital rectal examination">DRE</span> or elevated/rising <span class="term" data-def="Prostate-specific antigen">PSA</span> → transrectal ultrasound + biopsy</li>
+      <li>Bone scan for blastic lesions</li>
+      <li>Treatment: surgery, radiation, leuprolide, flutamide</li>
+    </ul>
+    <h3>Kidney Stones</h3>
+    <ul>
+      <li><span class="term" data-def="Computed tomography">CT</span> is best test</li>
+      <li>&lt;5mm → hydrate and pass</li>
+      <li>&gt;5mm → shock wave lithotripsy</li>
+      <li>&gt;2cm → surgical removal</li>
+    </ul>
+    <h3>Scrotal & Testicular Conditions</h3>
+    <ul>
+      <li><strong>Scrotal mass:</strong> transilluminate, ultrasound, excision (don't biopsy), know hormone markers</li>
+      <li><strong>Testicular torsion:</strong> acute pain/swelling + high riding testis; <span class="term" data-def="Doppler ultrasound">STAT doppler U/S</span> shows no flow (vs epididymitis which has flow); salvageable if &lt;6 hours; do orchiopexy to BOTH testes</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #64748b">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">50</span>
+    <span class="topic-title">Ortho</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+<div class="img-row"><div class="img-card"><img src="images/slide-068.png" alt="X-ray: Avascular necrosis (AVN) of femoral head" loading="lazy"><div class="caption">X-ray: Avascular necrosis (AVN) of femoral head</div></div>
+<div class="img-card"><img src="images/slide-069.png" alt="X-ray: Osteosarcoma — sunburst pattern" loading="lazy"><div class="caption">X-ray: Osteosarcoma — sunburst pattern</div></div>
+<div class="img-card"><img src="images/slide-070.png" alt="X-ray: Ewing sarcoma — onion skinning" loading="lazy"><div class="caption">X-ray: Ewing sarcoma — onion skinning</div></div></div>
+<div class="img-row"><div class="img-card"><img src="images/slide-071.png" alt="X-ray: Ewing sarcoma — periosteal reaction" loading="lazy"><div class="caption">X-ray: Ewing sarcoma — periosteal reaction</div></div></div>
+
+    <h3>Avascular Necrosis</h3>
+    <ul>
+      <li><strong>Kids:</strong> <span class="term" data-def="AVN of femoral head in young children">Legg-Calve-Perthes</span> (4-5 years old, painless limp) and <span class="term" data-def="Slipped capital femoral epiphysis">SCFE</span> (12-13 years old, knee pain, sickle cell)</li>
+      <li><strong>Adults:</strong> steroid use, post-femur fracture</li>
+    </ul>
+    <h3>Bone Tumors</h3>
+    <ul>
+      <li><strong>Osteosarcoma:</strong> distal femur, proximal tibia at metaphysis (around knee); <span class="term" data-def="New bone formation in cortex seen on x-ray">Codman's triangle</span> + <span class="term" data-def="Radiating bone spicules on x-ray">sunray appearance</span> on imaging</li>
+      <li><strong>Ewing sarcoma:</strong> diaphysis of long bones, night pain, fever, elevated <span class="term" data-def="Erythrocyte sedimentation rate">ESR</span>; lytic lesions + <span class="term" data-def="Concentric bone layers on x-ray">onion skinning</span>; neuroendocrine (small blue cell) tumor</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #475569">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">51</span>
+    <span class="topic-title">Transplant</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Types of Rejection</h3>
+    <ul>
+      <li><strong>Hyperacute:</strong> vascular thrombosis within minutes, caused by preformed antibodies</li>
+      <li><strong>Acute:</strong> organ dysfunction (increased <span class="term" data-def="Gamma-glutamyl transferase">GGT</span> or <span class="term" data-def="Creatinine">Cr</span>) within 5 days to 3 months, due to T-lymphocytes</li>
+      <li><strong>Chronic:</strong> after years, T-lymphocytes, can't treat → need re-transplantation</li>
+    </ul>
+    <h3>Rejection Workup by Organ</h3>
+    <ul>
+      <li><strong>Liver:</strong> check for biliary obstruction with ultrasound then thrombosis with doppler</li>
+      <li><strong>Heart:</strong> symptoms come late, check ventricular biopsy periodically</li>
+      <li><strong>Treatment for acute rejection:</strong> steroid bolus + <span class="term" data-def="Monoclonal antibody against T cells">antilymphocyte agent (OKT3)</span></li>
+    </ul>
+    <h3>Immunosuppressants & Side Effects</h3>
+    <ul>
+      <li><strong>Tacrolimus:</strong> nephrotoxicity</li>
+      <li><strong>Cyclosporine:</strong> nephrotoxicity + gingival hyperplasia</li>
+      <li><strong>Mycophenolate:</strong> standard immunosuppressant</li>
+      <li><strong>Sirolimus:</strong> standard immunosuppressant</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic" style="--cat-color: #475569">
+  <button class="topic-header" aria-expanded="false">
+    <span class="topic-num">52</span>
+    <span class="topic-title">Anesthesia</span>
+    <span class="chevron">&#9660;</span>
+  </button>
+  <div class="topic-body">
+    <h3>Local Anesthesia</h3>
+    <ul>
+      <li><strong>Lidocaine:</strong> give with epinephrine to prevent systemic absorption</li>
+      <li><strong>Toxicity:</strong> numb tongue, seizures, hypotension, bradycardia, arrhythmias</li>
+      <li><strong>No epinephrine on:</strong> fingers, nose, penis, toes</li>
+    </ul>
+    <h3>Regional Anesthesia</h3>
+    <ul>
+      <li><strong>Spinal-subarachnoid (bupivacaine):</strong> for patients who can't be intubated; can't give if increased <span class="term" data-def="Intracranial pressure">ICP</span> or hypotensive</li>
+      <li><strong>Epidural (local + opioid):</strong> if "high block" → blocks heart's sympathetic nerves + phrenic nerve</li>
+    </ul>
+    <h3>General Anesthesia Agents</h3>
+    <ul>
+      <li><strong>Meperidine:</strong> normeperidine metabolite can lower seizure threshold (esp renal failure)</li>
+      <li><strong>Succinylcholine:</strong> malignant hyperthermia, hyperkalemia (not for burn/crush victims)</li>
+      <li><strong>Rocuronium:</strong> allergic reaction in asthmatics</li>
+      <li><strong>Halothane:</strong> malignant hyperthermia (tx dantrolene), liver toxicity</li>
+    </ul>
+    <h3>ASA Physical Status Classification</h3>
+    <ul>
+      <li><strong>I:</strong> healthy</li>
+      <li><strong>II:</strong> mild systemic disease</li>
+      <li><strong>III:</strong> severe systemic disease</li>
+      <li><strong>IV:</strong> life-threatening</li>
+      <li><strong>V:</strong> moribund</li>
+      <li><strong>VI:</strong> brain dead organ donor</li>
+    </ul>
+  </div>
+</section>
+</main>
+<div id="tooltip" role="tooltip" aria-hidden="true"></div>
+<script>
+// Accordion
+document.querySelectorAll('.topic-header').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    body.classList.toggle('open');
+  });
+});
+// Expand/Collapse All
+document.getElementById('expand-all').addEventListener('click', () => {
+  document.querySelectorAll('.topic').forEach(s => {
+    if (s.style.display !== 'none') {
+      s.querySelector('.topic-header').setAttribute('aria-expanded', 'true');
+      s.querySelector('.topic-body').classList.add('open');
+    }
+  });
+});
+document.getElementById('collapse-all').addEventListener('click', () => {
+  document.querySelectorAll('.topic-header').forEach(btn => {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.nextElementSibling.classList.remove('open');
+  });
+});
+// Search
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.topic').forEach(s => {
+    const txt = s.textContent.toLowerCase();
+    const match = !q || txt.includes(q);
+    s.style.display = match ? '' : 'none';
+    if (match && q) {
+      s.querySelector('.topic-header').setAttribute('aria-expanded', 'true');
+      s.querySelector('.topic-body').classList.add('open');
+    }
+  });
+});
+// Tooltip
+document.addEventListener('click', function(e) {
+  const tip = document.getElementById('tooltip');
+  if (e.target.classList.contains('term') && e.target.dataset.def) {
+    const r = e.target.getBoundingClientRect();
+    tip.textContent = e.target.dataset.def;
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+    tip.style.left = '0'; tip.style.top = '0';
+    const tw = tip.offsetWidth;
+    let left = r.left + window.scrollX + (r.width / 2) - (tw / 2);
+    let top = r.bottom + window.scrollY + 8;
+    if (left < 10) left = 10;
+    if (left + tw > document.documentElement.clientWidth - 10)
+      left = document.documentElement.clientWidth - tw - 10;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  } else {
+    tip.style.display = 'none';
+    tip.setAttribute('aria-hidden', 'true');
+  }
+});
+// TOC
+const toc = document.getElementById('toc');
+document.querySelectorAll('.topic-header').forEach(btn => {
+  const a = document.createElement('a');
+  a.href = '#';
+  const title = btn.querySelector('.topic-title');
+  a.textContent = title ? title.textContent : '';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    btn.setAttribute('aria-expanded', 'true');
+    btn.nextElementSibling.classList.add('open');
+  });
+  toc.appendChild(a);
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.closest('.img-card img')) {
+    var lb = document.getElementById('lightbox');
+    document.getElementById('lb-img').src = e.target.src;
+    lb.classList.add('active');
+    e.stopPropagation();
+  }
+});
+</script>
+</div><!-- end #app-content -->
+
+<div id="lightbox" onclick="this.classList.remove('active')"><img id="lb-img" src="" alt=""></div>
+
+<script>
+// Password protection
+(function() {
+  const HASH = '8750b1c70c66ee87a31cede20e17d62a458de31a5f7bbcb5fe5aea08579db229';
+  const authScreen = document.getElementById('auth-screen');
+  const appContent = document.getElementById('app-content');
+  const authInput = document.getElementById('auth-input');
+  const authBtn = document.getElementById('auth-btn');
+  const authError = document.getElementById('auth-error');
+
+  // Check if already authenticated this session
+  if (sessionStorage.getItem('surgery-auth') === 'true') {
+    authScreen.style.display = 'none';
+    appContent.style.display = 'block';
+  }
+
+  async function checkPassword() {
+    const pw = authInput.value;
+    const encoded = new TextEncoder().encode(pw);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    if (hashHex === HASH) {
+      sessionStorage.setItem('surgery-auth', 'true');
+      authScreen.style.display = 'none';
+      appContent.style.display = 'block';
+    } else {
+      authError.style.display = 'block';
+      authInput.value = '';
+      authInput.focus();
+    }
+  }
+
+  authBtn.addEventListener('click', checkPassword);
+  authInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+})();
+</script>
+</body>
+</html>
