@@ -4,11 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surgery Shelf Exam - Study Guide</title>
-<script>
-if (sessionStorage.getItem('surgery_auth') !== '8750b1c70c66ee87a31cede20e17d62a458de31a5f7bbcb5fe5aea08579db229') {
-    window.location.href = 'login.html?r=' + encodeURIComponent(window.location.pathname.split('/').pop() || 'index.html');
-}
-</script>
 <style>
 :root {
   --bg: #f8fafc;
@@ -2457,7 +2452,7 @@ document.addEventListener('click', function(e) {
   const authError = document.getElementById('auth-error');
 
   // Check if already authenticated this session
-  if (sessionStorage.getItem('surgery-auth') === 'true') {
+  if (sessionStorage.getItem('surgery_auth') === 'true') {
     authScreen.style.display = 'none';
     appContent.style.display = 'block';
   }
@@ -2470,7 +2465,7 @@ document.addEventListener('click', function(e) {
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
     if (hashHex === HASH) {
-      sessionStorage.setItem('surgery-auth', 'true');
+      sessionStorage.setItem('surgery_auth', 'true');
       authScreen.style.display = 'none';
       appContent.style.display = 'block';
     } else {
